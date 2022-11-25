@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 public class Projection : MonoBehaviour
 {
     public static Projection Instance;
@@ -23,6 +24,7 @@ public class Projection : MonoBehaviour
     private bool isVisible;
     private float alpha;
     private Color color;
+    private float highestVerticlePoint;
     void Start()
     {
         CreatePhysicScene();
@@ -63,8 +65,10 @@ public class Projection : MonoBehaviour
         {
             physicScene.Simulate(Time.fixedDeltaTime);
             if (i % 3 == 0)
+            {
                 points[i / 3].transform.position = ghostObj.transform.position;
-
+                highestVerticlePoint = Mathf.Max(highestVerticlePoint, ghostObj.transform.position.y);
+            }
         }
         Destroy(ghostObj.gameObject);
     }
@@ -94,5 +98,9 @@ public class Projection : MonoBehaviour
             foreach (GameObject obj in points)
                 obj.SetActive(true);
         }
+    }
+    public float GetHighestVerticlePoint()
+    {
+        return highestVerticlePoint;
     }
 }

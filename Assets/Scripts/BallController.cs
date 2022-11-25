@@ -11,11 +11,19 @@ public class BallController : MonoBehaviour
         rigidBody.simulated = true;
         rigidBody.AddForce(DragPanel.getForce());
         transform.SetParent(null);
-        rigidBody.angularVelocity = Random.Range(1000,1200);
+        rigidBody.angularVelocity = Random.Range(300, 1200);
     }
     public void ContactHoop()
     {
         rigidBody.simulated = false;
         rigidBody.velocity = Vector2.zero;
+    }
+    public float CalculateBallSpeed()
+    {
+        return (DragPanel.getForce().magnitude / rigidBody.mass) * Time.fixedDeltaTime;
+    }
+    public float CalculateTimeGetHighest()
+    {
+        return Mathf.Abs(CalculateBallSpeed() * Mathf.Sin((90 - DragPanel.GetAngle()) * Mathf.Deg2Rad) / Physics2D.gravity.magnitude);
     }
 }

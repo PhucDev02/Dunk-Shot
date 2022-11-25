@@ -345,13 +345,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.01
   m_Points:
-  - {x: -1.1019344, y: -0.4476281}
-  - {x: -0.7792774, y: -0.7905042}
+  - {x: -0.61524594, y: -0.9018154}
+  - {x: -0.52173, y: -0.96361}
   - {x: -0.4182603, y: -1.0224783}
   - {x: -0.0011109095, y: -1.1234624}
   - {x: 0.42578715, y: -1.0139942}
-  - {x: 0.7682435, y: -0.7938417}
-  - {x: 1.0964615, y: -0.4506845}
+  - {x: 0.53267056, y: -0.954721}
+  - {x: 0.62823695, y: -0.88730174}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -406,6 +406,7 @@ MonoBehaviour:
   net: {fileID: 2812352083316794386}
   ball: {fileID: 0}
   anchor: {fileID: 2254778810640326938}
+  netController: {fileID: 3425085787702836500}
 --- !u!1 &2812352083994902780
 GameObject:
   m_ObjectHideFlags: 0

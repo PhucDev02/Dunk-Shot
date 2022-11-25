@@ -11,7 +11,7 @@ public class HoopController : MonoBehaviour
     [SerializeField] GameObject net;
     [SerializeField] BallController ball;
     [SerializeField] Transform anchor;
-
+    [SerializeField] NetController netController;
     Vector3 angle, scale;
 
     void Start()
@@ -24,13 +24,15 @@ public class HoopController : MonoBehaviour
 
     private void Shoot()
     {
-        net.transform.localScale = Vector3.one;
         if (isHoldingBall == true && DragPanel.force.magnitude > 140)
         {
             isHoldingBall = false;
             ball.transform.position = anchor.position;
+            netController.EnableSensor();
             ball.Shoot();
+            netController.OnLaunch();
         }
+        else netController.OnLaunchFailed();
         Projection.Instance.TurnOffTrajectory();
     }
     private void Drag()
@@ -57,6 +59,8 @@ public class HoopController : MonoBehaviour
             ball.ContactHoop();
             ball.transform.SetParent(transform);
             transform.DORotate(Vector2.zero, 0.2f).SetEase(Ease.InOutExpo);
+            netController.OnContactHoop();
+            this.PostEvent(EventID.OnContactHoop);
         }
     }
     // Update is called once per frame

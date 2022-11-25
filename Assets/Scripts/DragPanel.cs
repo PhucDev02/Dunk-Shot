@@ -9,6 +9,7 @@ public class DragPanel : MonoBehaviour
     Vector2 startPosition, endPosition;
     public static Vector2 force;
     private static float maxNetScale = 1.8f,maxMagnitude=370,forceCoef=2f;
+   
     private void OnMouseDown()
     {
         startPosition = Input.mousePosition;
