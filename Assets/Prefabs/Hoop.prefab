@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 2812352082819388786}
   - component: {fileID: 2812352082819388787}
   m_Layer: 0
-  m_Name: hoop_2
-  m_TagString: Untagged
+  m_Name: sideR
+  m_TagString: HoopSide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   ball: {fileID: 0}
   anchor: {fileID: 2254778810640326938}
   netController: {fileID: 3425085787702836500}
+  id: 0
 --- !u!1 &2812352083994902780
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,8 +420,8 @@ GameObject:
   - component: {fileID: 2812352083994902778}
   - component: {fileID: 2812352083994902779}
   m_Layer: 0
-  m_Name: hoop_1
-  m_TagString: Untagged
+  m_Name: sideL
+  m_TagString: HoopSide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

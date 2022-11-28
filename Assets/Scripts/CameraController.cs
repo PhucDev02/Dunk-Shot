@@ -3,39 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     // Start is called before the first frame update
     public static CameraController Instance;
-    [SerializeField] private BallController ball;
+
+    [SerializeField] Transform firstHoop;
+    [SerializeField] CinemachineVirtualCamera vCamera;
+    CinemachineComponentBase componentBase;
+    private float screenWidth, screenHeight;
     private void Awake()
     {
         Instance = this;
-    }
 
-    private float lastPosition,timeGetHighest;
-    void Start()
-    {
-        this.RegisterListener(EventID.OnShoot, (param) => MoveOnShoot());
-        this.RegisterListener(EventID.OnContactHoop, (param) => OnContact());
-    }
-
-    private void MoveOnShoot()
-    {
-        timeGetHighest = ball.CalculateTimeGetHighest();
-        transform.DOMoveY(Projection.Instance.GetHighestVerticlePoint(), timeGetHighest * 0.9f).SetEase(Ease.InOutQuad).OnComplete(() =>
+        screenHeight = Camera.main.orthographicSize * 2;
+        screenWidth = screenHeight * Camera.main.aspect;
+        componentBase = vCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
+        if (componentBase is CinemachineFramingTransposer)
         {
-            transform.DOMoveY(lastPosition,timeGetHighest*0.8f).SetEase(Ease.InOutQuad).SetDelay(timeGetHighest*0.5f);
-        });
+            (componentBase as CinemachineFramingTransposer).m_ScreenX = (firstHoop.position.x + screenWidth / 2) / screenWidth;
+            (componentBase as CinemachineFramingTransposer).m_ScreenY =  ((screenHeight / 2 - firstHoop.position.y ) / screenHeight);
+            (componentBase as CinemachineFramingTransposer).m_BiasX = (componentBase as CinemachineFramingTransposer).m_ScreenX;
+        }
+    }
 
-        //Logger.Log(ball.CalculateBallSpeed().ToString());
-        //Logger.Log(ball.CalculateTimeGetHighest().ToString());
-    }
-    private void OnContact()
-    {
-        transform.DOKill();
-        lastPosition = transform.position.y ;
-    }
-    // Update is called once per fram
 }

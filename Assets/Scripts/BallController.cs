@@ -26,4 +26,20 @@ public class BallController : MonoBehaviour
     {
         return Mathf.Abs(CalculateBallSpeed() * Mathf.Sin((90 - DragPanel.GetAngle()) * Mathf.Deg2Rad) / Physics2D.gravity.magnitude);
     }
+    private void Update()
+    {
+        if (transform.position.y < -8)
+            rigidBody.simulated = false;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Wall"))
+        {
+            this.PostEvent(EventID.OnBounceWall);
+        }
+        if(collision.gameObject.CompareTag("HoopSide"))
+        {
+            this.PostEvent(EventID.OnBounceSide);
+        }
+    }
 }

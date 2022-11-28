@@ -12,7 +12,6 @@ public class NetController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hoopController.ContactBall();
-        Logger.Log("contact");
         sensor.enabled = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -20,7 +19,6 @@ public class NetController : MonoBehaviour
         
         OnCollisionWithBall();
     }
-    //onco
     public void EnableSensor()
     {
         StartCoroutine(WaitToEnableSensor());

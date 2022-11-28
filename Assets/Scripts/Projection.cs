@@ -16,11 +16,13 @@ public class Projection : MonoBehaviour
     private PhysicsScene2D physicScene;
 
     [SerializeField] private Transform obstacles;
-    // Start is called before the first frame update
+
+
     [SerializeField] private int maxTrajectoryPoint;
     [SerializeField] GameObject pointPrefab;
     [SerializeField] private GameObject[] points;
     private SpriteRenderer[] pointsRenderer;
+
     private bool isVisible;
     private float alpha;
     private Color color;
@@ -30,7 +32,6 @@ public class Projection : MonoBehaviour
         CreatePhysicScene();
         isVisible = false;
     }
-
     void CreatePhysicScene()
     {
         simulatorScene = SceneManager.CreateScene("Simulator", new CreateSceneParameters(LocalPhysicsMode.Physics2D));

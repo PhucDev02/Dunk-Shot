@@ -13,7 +13,7 @@ public class HoopController : MonoBehaviour
     [SerializeField] Transform anchor;
     [SerializeField] NetController netController;
     Vector3 angle, scale;
-
+    public int id;
     void Start()
     {
         angle = Vector3.zero;
@@ -21,7 +21,11 @@ public class HoopController : MonoBehaviour
         this.RegisterListener(EventID.OnShoot, (param) => Shoot());
         this.RegisterListener(EventID.OnDrag, (param) => Drag());
     }
-
+    private void OnEnable()
+    {
+        //scale at inspector    
+        transform.DOScale(0.36f, 0.5f).SetEase(Ease.OutCubic);
+    }
     private void Shoot()
     {
         if (isHoldingBall == true && DragPanel.force.magnitude > 140)
@@ -60,8 +64,19 @@ public class HoopController : MonoBehaviour
             ball.transform.SetParent(transform);
             transform.DORotate(Vector2.zero, 0.2f).SetEase(Ease.InOutExpo);
             netController.OnContactHoop();
+
+            HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
+            //
         }
+    }
+    public void Disappear()
+    {
+        transform.DOScale(0, 0.5f).SetEase(Ease.OutCubic).OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+        }
+        );
     }
     // Update is called once per frame
     void Update()
