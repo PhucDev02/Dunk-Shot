@@ -23,8 +23,9 @@ public class HoopController : MonoBehaviour
     }
     private void OnEnable()
     {
+
         //scale at inspector    
-        transform.DOScale(0.36f, 0.5f).SetEase(Ease.OutCubic);
+        transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
     }
     private void Shoot()
     {
@@ -34,9 +35,9 @@ public class HoopController : MonoBehaviour
             ball.transform.position = anchor.position;
             netController.EnableSensor();
             ball.Shoot();
-            netController.OnLaunch();
         }
-        else netController.OnLaunchFailed();
+        else
+            netController.OnLaunchFailed();
         Projection.Instance.TurnOffTrajectory();
     }
     private void Drag()
@@ -72,7 +73,7 @@ public class HoopController : MonoBehaviour
     }
     public void Disappear()
     {
-        transform.DOScale(0, 0.5f).SetEase(Ease.OutCubic).OnComplete(() =>
+        transform.DOScale(0, 0.4f).SetEase(Ease.InBack).OnComplete(() =>
         {
             gameObject.SetActive(false);
         }

@@ -11,8 +11,9 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] Transform firstHoop;
     [SerializeField] CinemachineVirtualCamera vCamera;
+    [SerializeField] Transform ball;
     CinemachineComponentBase componentBase;
-    private float screenWidth, screenHeight;
+    public float screenWidth, screenHeight;
     private void Awake()
     {
         Instance = this;
@@ -25,6 +26,13 @@ public class CameraController : MonoBehaviour
             (componentBase as CinemachineFramingTransposer).m_ScreenX = (firstHoop.position.x + screenWidth / 2) / screenWidth;
             (componentBase as CinemachineFramingTransposer).m_ScreenY =  ((screenHeight / 2 - firstHoop.position.y ) / screenHeight);
             (componentBase as CinemachineFramingTransposer).m_BiasX = (componentBase as CinemachineFramingTransposer).m_ScreenX;
+        }
+    }
+    private void Update()
+    {
+        if(ball.position.y<HoopsPooler.Instance.GetLowestPositionHoop()-1.5f)
+        {
+            vCamera.enabled = false;
         }
     }
 

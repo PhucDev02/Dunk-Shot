@@ -16,7 +16,7 @@ public class Projection : MonoBehaviour
     private PhysicsScene2D physicScene;
 
     [SerializeField] private Transform obstacles;
-
+    private List<GameObject> simulationObstacles;
 
     [SerializeField] private int maxTrajectoryPoint;
     [SerializeField] GameObject pointPrefab;
@@ -36,10 +36,15 @@ public class Projection : MonoBehaviour
     {
         simulatorScene = SceneManager.CreateScene("Simulator", new CreateSceneParameters(LocalPhysicsMode.Physics2D));
         physicScene = simulatorScene.GetPhysicsScene2D();
+
+        simulationObstacles = new List<GameObject>();
         foreach (Transform obj in obstacles)
         {
             var ghostObj = Instantiate(obj.gameObject, obj.position, obj.rotation);
+            ghostObj.tag = "Untagged";
             SceneManager.MoveGameObjectToScene(ghostObj, simulatorScene);
+            simulationObstacles.Add(ghostObj);
+
         }
         points = new GameObject[maxTrajectoryPoint];
         pointsRenderer = new SpriteRenderer[maxTrajectoryPoint];
@@ -57,6 +62,11 @@ public class Projection : MonoBehaviour
 
     public void SimulateTrajectory(BallController ball, Vector2 pos)
     {
+        for(int i=0;i<obstacles.childCount;i++)
+        {
+            simulationObstacles[i].transform.position = obstacles.GetChild(i).transform.position;
+        }
+
         var ghostObj = Instantiate(ball, pos, Quaternion.identity);
         ghostObj.gameObject.transform.localScale = ball.transform.lossyScale;
         SceneManager.MoveGameObjectToScene(ghostObj.gameObject, simulatorScene);

@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     {
         Instance = this;
     }
-   [SerializeField] private int score, streak, bounceCnt;
+    [SerializeField] private int score, streak, bounceCnt;
     private bool isPerfect;
     private void Start()
     {
@@ -40,14 +40,13 @@ public class GameController : MonoBehaviour
     }
     private void updateScore()
     {
-        Logger.Log(HoopsPooler.Instance.IsValidShot().ToString());
         if (HoopsPooler.Instance.IsValidShot())
         {
             if (isPerfect == true)
             {
                 streak++;
             }
-            score += (bounceCnt == 0 ? 1 : 2) * ((streak + 1)>10?10:(streak+1));
+            score += (bounceCnt == 0 ? 1 : 2) * ((streak + 1) > 10 ? 10 : (streak + 1));
             UI_Gameplay.Instance.ShowIncreasePoint((bounceCnt == 0 ? 1 : 2) * ((streak + 1) > 10 ? 10 : (streak + 1)), streak, bounceCnt);
             bounceCnt = 0;
             isPerfect = true;
