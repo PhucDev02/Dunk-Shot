@@ -14,6 +14,8 @@ public class HoopController : MonoBehaviour
     [SerializeField] NetController netController;
     Vector3 angle, scale;
     public int id;
+    [SerializeField] SpriteRenderer topHoop, downHoop;
+    [SerializeField] GameObject powerRing;
     void Start()
     {
         angle = Vector3.zero;
@@ -25,6 +27,8 @@ public class HoopController : MonoBehaviour
     {
 
         //scale at inspector    
+        topHoop.sprite = GameManager.Instance.GetTheme().topHoop;
+        downHoop.sprite = GameManager.Instance.GetTheme().downHoop;
         transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
     }
     private void Shoot()
@@ -68,7 +72,33 @@ public class HoopController : MonoBehaviour
 
             HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
-            //
+
+            if (GameController.Instance.GetScore() != 0)
+                effectContact();
+        }
+    }
+    private void effectContact()
+    {
+        topHoop.sprite = GameManager.Instance.GetTheme().topHoopDisable;
+        downHoop.sprite = GameManager.Instance.GetTheme().downHoopDisable;
+        powerRing.transform.localScale = GameManager.powerRingScale;
+        powerRing.GetComponent<SpriteRenderer>().DOFade(1, 0);
+        powerRing.SetActive(true);
+        if (GameController.Instance.isPerfect)
+        {
+            powerRing.transform.DOScale(powerRing.transform.localScale * 2.6f, 0.5f).SetEase(Ease.OutCubic);
+            powerRing.GetComponent<SpriteRenderer>().DOFade(0, 0.5f).OnComplete(() =>
+            {
+                powerRing.SetActive(false);
+            });
+        }
+        else
+        {
+            powerRing.transform.DOScale(powerRing.transform.localScale * 2.0f, 0.5f);
+            powerRing.GetComponent<SpriteRenderer>().DOFade(0, 0.5f).OnComplete(() =>
+            {
+                powerRing.SetActive(false);
+            });
         }
     }
     public void Disappear()

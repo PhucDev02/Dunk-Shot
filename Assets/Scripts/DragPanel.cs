@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragPanel : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] BoxCollider2D collider;
+    [SerializeField] new BoxCollider2D collider;
     Vector2 startPosition, endPosition;
     public static Vector2 force;
     private static float maxNetScale = 1.8f,maxMagnitude=370,forceCoef=2f;

@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
         Instance = this;
     }
     [SerializeField] private int score, streak, bounceCnt;
-    private bool isPerfect;
+    public bool isPerfect;
     private void Start()
     {
         Reset();
@@ -49,7 +49,6 @@ public class GameController : MonoBehaviour
             score += (bounceCnt == 0 ? 1 : 2) * ((streak + 1) > 10 ? 10 : (streak + 1));
             UI_Gameplay.Instance.ShowIncreasePoint((bounceCnt == 0 ? 1 : 2) * ((streak + 1) > 10 ? 10 : (streak + 1)), streak, bounceCnt);
             bounceCnt = 0;
-            isPerfect = true;
         }
     }
     public int GetScore()
