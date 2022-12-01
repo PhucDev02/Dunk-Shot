@@ -24,16 +24,18 @@ public class CameraController : MonoBehaviour
         if (componentBase is CinemachineFramingTransposer)
         {
             (componentBase as CinemachineFramingTransposer).m_ScreenX = (firstHoop.position.x + screenWidth / 2) / screenWidth;
-            (componentBase as CinemachineFramingTransposer).m_ScreenY =  ((screenHeight / 2 - firstHoop.position.y ) / screenHeight);
+            (componentBase as CinemachineFramingTransposer).m_ScreenY = ((screenHeight / 2 - firstHoop.position.y) / screenHeight);
             (componentBase as CinemachineFramingTransposer).m_BiasX = (componentBase as CinemachineFramingTransposer).m_ScreenX;
         }
     }
     private void Update()
     {
-        if(ball.position.y<HoopsPooler.Instance.GetLowestPositionHoop()-1.5f)
-        {
-            vCamera.enabled = false;
-        }
+        if (GameController.Instance.IsGameOver == false)
+            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 1.5f)
+            {
+                vCamera.enabled = false;
+                this.PostEvent(EventID.OnGameOver);
+            }
     }
 
 }

@@ -74,10 +74,10 @@ public class HoopController : MonoBehaviour
             this.PostEvent(EventID.OnContactHoop);
 
             if (GameController.Instance.GetScore() != 0)
-                effectContact();
+                EffectContact();
         }
     }
-    private void effectContact()
+    private void EffectContact()
     {
         topHoop.sprite = GameManager.Instance.GetTheme().topHoopDisable;
         downHoop.sprite = GameManager.Instance.GetTheme().downHoopDisable;
@@ -114,8 +114,7 @@ public class HoopController : MonoBehaviour
     {
         if (isHoldingBall)
         {
-            ball.transform.rotation = Quaternion.identity;
-            ball.transform.position = anchor.position;
+            ball.transform.SetPositionAndRotation(anchor.position, Quaternion.identity);
         }
     }
 }

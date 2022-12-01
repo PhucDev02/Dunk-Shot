@@ -13,12 +13,14 @@ public class GameController : MonoBehaviour
     }
     [SerializeField] private int score, streak, bounceCnt;
     public bool isPerfect;
+    public bool IsGameOver;
     private void Start()
     {
         Reset();
-        this.RegisterListener(EventID.OnContactHoop, (param) => updateScore());
+        this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
         this.RegisterListener(EventID.OnBounceSide, (param) => OnBounceSide());
         this.RegisterListener(EventID.OnBounceWall, (param) => OnBounceWall());
+        this.RegisterListener(EventID.OnGameOver, (param) => OnGameOver());
     }
     public void Reset()
     {
@@ -26,6 +28,7 @@ public class GameController : MonoBehaviour
         streak = 0;
         bounceCnt = 0;
         isPerfect = true;
+        IsGameOver = false;
     }
     private void OnBounceWall()
     {
@@ -38,7 +41,7 @@ public class GameController : MonoBehaviour
         isPerfect = false;
 
     }
-    private void updateScore()
+    private void UpdateScore()
     {
         if (HoopsPooler.Instance.IsValidShot())
         {
@@ -54,5 +57,14 @@ public class GameController : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+    private void OnGameOver()
+    {
+        IsGameOver = true;
+        if (UI_SecondChange.Instance.IsActivated == false)
+        {
+            UI_SecondChange.Instance.ActiveSecondChange();
+        }
+        else UI_GameOver.Instance.GameOver();
     }
 }

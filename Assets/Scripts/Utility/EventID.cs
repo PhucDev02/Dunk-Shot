@@ -4,5 +4,8 @@ public enum EventID
     OnDrag,
     OnContactHoop,
     OnBounceSide,
-    OnBounceWall
+    OnBounceWall,
+    ////
+    OnGameOver,
+    OnSecondChange
 }
