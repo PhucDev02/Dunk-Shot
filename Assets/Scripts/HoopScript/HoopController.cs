@@ -117,4 +117,9 @@ public class HoopController : MonoBehaviour
             ball.transform.SetPositionAndRotation(anchor.position, Quaternion.identity);
         }
     }
+    public void ResetRotation()
+    {
+        transform.DORotate(Vector2.zero, 0.2f).SetEase(Ease.InOutExpo);
+
+    }
 }

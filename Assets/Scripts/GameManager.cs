@@ -26,9 +26,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
         SetTheme(PlayerPrefs.GetString("Theme"));
     }
-    private void Start()
-    {
-    }
     public Theme GetTheme()
     {
         foreach (Theme t in themes)

@@ -12,6 +12,7 @@ public class HoopsPooler : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        this.RegisterListener(EventID.OnSecondChange, (param) => OnSecondChange());
     }
     void Start()
     {
@@ -81,5 +82,9 @@ public class HoopsPooler : MonoBehaviour
     public Transform GetLastHoop()
     {
         return hoops[idLastHoop].transform;
+    }
+    public void OnSecondChange()
+    {
+        hoops[idLastHoop].GetComponent<HoopController>().ResetRotation();
     }
 }

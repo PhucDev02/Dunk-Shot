@@ -10,7 +10,7 @@ public class UI_SecondChange : MonoBehaviour
     {
         Instance = this;
     }
-    public bool IsActivated=false;
+    public bool IsActivated = false;
     private float timer;
     [SerializeField] GameObject panel;
     [SerializeField] Image clock;
@@ -24,20 +24,24 @@ public class UI_SecondChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsActivated==true)
+        if (IsActivated == true)
         {
             timer -= Time.deltaTime;
             clock.fillAmount = timer / 5.0f;
         }
     }
-    public void ActiveSecondChange()
+    public void ActivePanel()
     {
-        if(IsActivated==false)
+        if (IsActivated == false)
         {
             score.text = GameController.Instance.GetScore().ToString();
             panel.SetActive(true);
             IsActivated = true;
-            this.PostEvent(EventID.OnSecondChange);
         }
+    }
+    public void ActiveSecondChange()
+    {
+        panel.SetActive(false);
+        this.PostEvent(EventID.OnSecondChange);
     }
 }

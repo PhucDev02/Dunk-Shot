@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     {
         Instance = this;
     }
+    [SerializeField] GameObject ball;
+
     [SerializeField] private int score, streak, bounceCnt;
     public bool isPerfect;
     public bool IsGameOver;
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour
         this.RegisterListener(EventID.OnBounceSide, (param) => OnBounceSide());
         this.RegisterListener(EventID.OnBounceWall, (param) => OnBounceWall());
         this.RegisterListener(EventID.OnGameOver, (param) => OnGameOver());
+        this.RegisterListener(EventID.OnSecondChange, (param) => ActiveSecondChange());
     }
     public void Reset()
     {
@@ -61,10 +64,19 @@ public class GameController : MonoBehaviour
     private void OnGameOver()
     {
         IsGameOver = true;
-        if (UI_SecondChange.Instance.IsActivated == false)
+        StartCoroutine(WaitGameOver());
+    }
+    IEnumerator WaitGameOver()
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (UI_SecondChange.Instance.IsActivated == false && GameController.Instance.score >= 2)
         {
-            UI_SecondChange.Instance.ActiveSecondChange();
+            UI_SecondChange.Instance.ActivePanel();
         }
         else UI_GameOver.Instance.GameOver();
+    }
+    private void ActiveSecondChange()
+    {
+        IsGameOver = false;
     }
 }
