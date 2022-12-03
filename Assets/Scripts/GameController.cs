@@ -63,8 +63,15 @@ public class GameController : MonoBehaviour
     }
     private void OnGameOver()
     {
-        IsGameOver = true;
-        StartCoroutine(WaitGameOver());
+        if(score!=0)
+        {
+            IsGameOver = true;
+            StartCoroutine(WaitGameOver());
+        }
+        else
+        {
+
+        }
     }
     IEnumerator WaitGameOver()
     {

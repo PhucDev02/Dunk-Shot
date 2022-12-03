@@ -133,13 +133,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4051746}
   - component: {fileID: 4051745}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: confiner
-  m_TagString: Untagged
+  m_TagString: DeadBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &4051745
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2566,7 +2566,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 5f4dec4a98c3ff34b96b0e88f3bbdf49, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2574,7 +2574,7 @@ SpriteRenderer:
   m_Size: {x: 13.83, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &987613535
@@ -3292,6 +3292,10 @@ MonoBehaviour:
   panel: {fileID: 167124005}
   clock: {fileID: 246627573}
   score: {fileID: 996047425}
+  clockObj: {fileID: 442507682}
+  continueBtn: {fileID: 1498467881}
+  ball: {fileID: 1205514676}
+  notks: {fileID: 1405307673}
 --- !u!1 &1294416899
 GameObject:
   m_ObjectHideFlags: 0

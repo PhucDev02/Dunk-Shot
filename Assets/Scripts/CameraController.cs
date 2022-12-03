@@ -27,8 +27,8 @@ public class CameraController : MonoBehaviour
         componentBase = vCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
         if (componentBase is CinemachineFramingTransposer)
         {
-            (componentBase as CinemachineFramingTransposer).m_ScreenX = (HoopsPooler.Instance.GetLastHoop().position.x + screenWidth / 2) / screenWidth;
-            (componentBase as CinemachineFramingTransposer).m_ScreenY = ((screenHeight / 2 - firstHoop.position.y) / screenHeight);
+            (componentBase as CinemachineFramingTransposer).m_ScreenX = (GameManager.initPositionCamera.x + screenWidth / 2) / screenWidth;
+            (componentBase as CinemachineFramingTransposer).m_ScreenY = ((screenHeight / 2 - GameManager.initPositionCamera.y) / screenHeight);
             (componentBase as CinemachineFramingTransposer).m_BiasX = (componentBase as CinemachineFramingTransposer).m_ScreenX;
         }
     }
@@ -37,13 +37,15 @@ public class CameraController : MonoBehaviour
         if (GameController.Instance.IsGameOver == false)
             if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 1.5f)
             {
-                vCamera.enabled = false;
+                //vCamera.enabled = false;
+                vCamera.m_Follow = null;
                 this.PostEvent(EventID.OnGameOver);
             }
     }
     public void Enable()
     {
-        vCamera.enabled = true;
+        //vCamera.enabled = true;
+        vCamera.m_Follow = ball;
         setCamera();
     }
 }

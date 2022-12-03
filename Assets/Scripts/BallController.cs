@@ -8,7 +8,7 @@ public class BallController : MonoBehaviour
     [SerializeField] new CircleCollider2D collider;
     private void Awake()
     {
-        this.RegisterListener(EventID.OnSecondChange, (param) => OnSecondChange());
+        this.RegisterListener(EventID.OnSecondChange, (param) => Respawn());
 
     }
     public void Shoot()
@@ -33,9 +33,9 @@ public class BallController : MonoBehaviour
     {
         return Mathf.Abs(CalculateBallSpeed() * Mathf.Sin((90 - DragPanel.GetAngle()) * Mathf.Deg2Rad) / Physics2D.gravity.magnitude);
     }
-    public void OnSecondChange()
+    public void Respawn()
     {
-        rigidBody.simulated = true;
+        gameObject.SetActive(true);
         transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1.5f;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,8 +50,8 @@ public class BallController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("DeadBar"))
         {
-            rigidBody.simulated = false;
             rigidBody.velocity = Vector2.zero;
+            gameObject.SetActive(false);
         }
     }
 
