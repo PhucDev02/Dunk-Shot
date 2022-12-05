@@ -18,9 +18,11 @@ public class CameraController : MonoBehaviour
     {
         Instance = this;
         this.RegisterListener(EventID.OnSecondChange, (param) => Enable());
+        this.RegisterListener(EventID.OnContactHoop, (param) => Follow());
         screenHeight = Camera.main.orthographicSize * 2;
         screenWidth = screenHeight * Camera.main.aspect;
         setCamera();
+
     }
     private void setCamera()
     {
@@ -35,11 +37,9 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         if (GameController.Instance.IsGameOver == false)
-            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 1.5f)
+            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 2.5f)
             {
-                //vCamera.enabled = false;
                 vCamera.m_Follow = null;
-                this.PostEvent(EventID.OnGameOver);
             }
     }
     public void Enable()
@@ -47,5 +47,9 @@ public class CameraController : MonoBehaviour
         //vCamera.enabled = true;
         vCamera.m_Follow = ball;
         setCamera();
+    }
+    public void Follow()
+    {
+        vCamera.m_Follow = ball;
     }
 }

@@ -70,17 +70,19 @@ public class GameController : MonoBehaviour
         }
         else
         {
-
+            ball.GetComponent<BallController>().Respawn();
+            HoopsPooler.Instance.OnSecondChange();
         }
     }
     IEnumerator WaitGameOver()
     {
         yield return new WaitForSeconds(0.3f);
-        if (UI_SecondChange.Instance.IsActivated == false && GameController.Instance.score >= 2)
+        if (UI_SecondChange.Instance.IsActivated == false && GameController.Instance.score >= 3)
         {
             UI_SecondChange.Instance.ActivePanel();
         }
         else UI_GameOver.Instance.GameOver();
+        UI_Gameplay.Instance.HideButton();
     }
     private void ActiveSecondChange()
     {

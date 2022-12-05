@@ -56,6 +56,7 @@ public class UI_SecondChange : MonoBehaviour
     public void ActiveSecondChange()
     {
         panel.SetActive(false);
+        UI_Gameplay.Instance.UnhideButton();
         this.PostEvent(EventID.OnSecondChange);
     }
     private new void animation()

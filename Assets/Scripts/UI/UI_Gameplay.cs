@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 public class UI_Gameplay : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] TextMeshProUGUI score, stars_txt, increaseScore, bounceCnt, streakCnt;
+    [SerializeField] GameObject pauseBtn;
     public static UI_Gameplay Instance;
     private void Awake()
     {
         Instance = this;
+        pauseBtn.SetActive(false);
     }
     public void ShowIncreasePoint(int point, int streak, int bounce)
     {
@@ -56,5 +59,15 @@ public class UI_Gameplay : MonoBehaviour
     public void UpdateScore()
     {
         score.text = GameController.Instance.GetScore().ToString();
+    }
+    public void HideButton()
+    {
+        pauseBtn.GetComponent<Image>().DOFade(0, 0);
+        pauseBtn.SetActive(false);
+    }
+    public void UnhideButton()
+    {
+        pauseBtn.GetComponent<Image>().DOFade(1, 0.4f);
+        pauseBtn.SetActive(true);
     }
 }

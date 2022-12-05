@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DragPanel : MonoBehaviour
 {
@@ -9,21 +10,31 @@ public class DragPanel : MonoBehaviour
     Vector2 startPosition, endPosition;
     public static Vector2 force;
     private static float maxNetScale = 1.8f,maxMagnitude=370,forceCoef=2f;
-   
+
     private void OnMouseDown()
     {
-        startPosition = Input.mousePosition;
+        if (!IsMouseOverUI())
+        {
+            startPosition = Input.mousePosition;
+            UI_Menu.Instance.NewGame();
+        }
     }
     private void OnMouseDrag()
     {
-        endPosition = Input.mousePosition;
-        force = startPosition - endPosition;
-        this.PostEvent(EventID.OnDrag);
+        if (!IsMouseOverUI())
+        {
+            endPosition = Input.mousePosition;
+            force = startPosition - endPosition;
+            this.PostEvent(EventID.OnDrag);
+        }
     }
     private void OnMouseUp()
     {
-        this.PostEvent(EventID.OnShoot);
-        force = Vector2.zero;
+        //if (!IsMouseOverUI())
+        {
+            this.PostEvent(EventID.OnShoot);
+            force = Vector2.zero;
+        }
     }
     public static float GetAngle()
     {
@@ -39,5 +50,13 @@ public class DragPanel : MonoBehaviour
     public static Vector2 getForce()
     {
         return (force.magnitude >= maxMagnitude ? force.normalized*maxMagnitude : force)*forceCoef;
+    }
+    public bool IsMouseOverUI()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

@@ -51,7 +51,9 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("DeadBar"))
         {
             rigidBody.velocity = Vector2.zero;
+        rigidBody.velocity = Vector2.zero;
             gameObject.SetActive(false);
+            this.PostEvent(EventID.OnGameOver);
         }
     }
 
