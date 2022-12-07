@@ -9,12 +9,13 @@ public class UI_Controller : MonoBehaviour
 
     [SerializeField] Transform flashTransition;
     [SerializeField] float a, timeFade;
+    private void Awake()
+    {
+    }
     private void Start()
     {
-        flashTransition.GetComponent<Image>().DOFade(a, 0).OnComplete(() =>
-        {
-            flashTransition.GetComponent<Image>().DOFade(0, timeFade);
-        });
+        flashTransition.GetComponent<Image>().DOFade(a, 0);
+        flashTransition.GetComponent<Image>().DOFade(0, timeFade);
     }
     public void Reload()
     {

@@ -9,23 +9,28 @@ public class DragPanel : MonoBehaviour
     [SerializeField] new BoxCollider2D collider;
     Vector2 startPosition, endPosition;
     public static Vector2 force;
-    private static float maxNetScale = 1.8f,maxMagnitude=370,forceCoef=2f;
-
+    private static float maxNetScale = 1.8f, maxMagnitude = 370, forceCoef = 2f;
+    private bool isValid;
     private void OnMouseDown()
     {
         if (!IsMouseOverUI())
         {
+            isValid = true;
             startPosition = Input.mousePosition;
-            UI_Menu.Instance.NewGame();
+            UI_Menu.Instance.Hide();
         }
+        else isValid = false;
+
     }
     private void OnMouseDrag()
     {
-        if (!IsMouseOverUI())
         {
-            endPosition = Input.mousePosition;
-            force = startPosition - endPosition;
-            this.PostEvent(EventID.OnDrag);
+            if (!IsMouseOverUI() && isValid)
+            {
+                endPosition = Input.mousePosition;
+                force = startPosition - endPosition;
+                this.PostEvent(EventID.OnDrag);
+            }
         }
     }
     private void OnMouseUp()
@@ -39,17 +44,17 @@ public class DragPanel : MonoBehaviour
     public static float GetAngle()
     {
         if (force.x < 0)
-            return Vector3.Angle(Vector3.up, force) ;
-        else 
+            return Vector3.Angle(Vector3.up, force);
+        else
             return -Vector3.Angle(Vector3.up, force);
     }
     public static float GetScale()
     {
-        return force.magnitude<maxMagnitude?1+(force.magnitude/maxMagnitude)*0.8f:maxNetScale;
+        return force.magnitude < maxMagnitude ? 1 + (force.magnitude / maxMagnitude) * 0.8f : maxNetScale;
     }
     public static Vector2 getForce()
     {
-        return (force.magnitude >= maxMagnitude ? force.normalized*maxMagnitude : force)*forceCoef;
+        return (force.magnitude >= maxMagnitude ? force.normalized * maxMagnitude : force) * forceCoef;
     }
     public bool IsMouseOverUI()
     {

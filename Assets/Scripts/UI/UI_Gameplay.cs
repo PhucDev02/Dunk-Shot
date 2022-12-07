@@ -14,6 +14,7 @@ public class UI_Gameplay : MonoBehaviour
     {
         Instance = this;
         pauseBtn.SetActive(false);
+        HideScore();
     }
     public void ShowIncreasePoint(int point, int streak, int bounce)
     {
@@ -67,7 +68,12 @@ public class UI_Gameplay : MonoBehaviour
     }
     public void UnhideButton()
     {
+        score.GetComponent<Image>().DOFade(1, 0);
         pauseBtn.GetComponent<Image>().DOFade(1, 0.4f);
         pauseBtn.SetActive(true);
+    }
+    public void HideScore()
+    {
+        score.GetComponent<Image>().DOFade(0, 0);
     }
 }
