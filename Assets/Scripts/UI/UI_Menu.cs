@@ -11,6 +11,10 @@ public class UI_Menu : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        
+    }
     public void NewGame()
     {
         panel.GetComponent<CanvasGroup>().DOFade(0, 0.3f).OnComplete(() =>
