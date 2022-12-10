@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] Transform firstHoop;
     [SerializeField] CinemachineVirtualCamera vCamera;
     [SerializeField] Transform ball;
+    [SerializeField] SpriteRenderer bound;
     CinemachineComponentBase componentBase;
     public float screenWidth, screenHeight;
     private void Awake()
@@ -19,8 +20,11 @@ public class CameraController : MonoBehaviour
         Instance = this;
         this.RegisterListener(EventID.OnSecondChange, (param) => Enable());
         this.RegisterListener(EventID.OnContactHoop, (param) => Follow());
+        Camera.main.orthographicSize = vCamera.m_Lens.OrthographicSize = bound.bounds.size.x * Screen.height / Screen.width * 0.5f;
         screenHeight = Camera.main.orthographicSize * 2;
         screenWidth = screenHeight * Camera.main.aspect;
+
+
         setCamera();
 
     }
@@ -31,7 +35,7 @@ public class CameraController : MonoBehaviour
         {
             (componentBase as CinemachineFramingTransposer).m_ScreenX = (GameManager.initPositionCamera.x + screenWidth / 2) / screenWidth;
             (componentBase as CinemachineFramingTransposer).m_ScreenY = ((screenHeight / 2 - GameManager.initPositionCamera.y) / screenHeight);
-            (componentBase as CinemachineFramingTransposer).m_BiasX = (componentBase as CinemachineFramingTransposer).m_ScreenX;
+            //(componentBase as CinemachineFramingTransposer).m_BiasX = (componentBase as CinemachineFramingTransposer).m_ScreenX;
         }
     }
     private void Update()

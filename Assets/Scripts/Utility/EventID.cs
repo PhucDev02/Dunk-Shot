@@ -7,5 +7,8 @@ public enum EventID
     OnBounceWall,
     ////
     OnGameOver,
-    OnSecondChange
+    OnSecondChange,
+    ////
+    OnChangeTheme, // Hoop ,button, darkmode
+    OnSwitchDarkmode
 }

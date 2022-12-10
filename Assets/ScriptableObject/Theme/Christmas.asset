@@ -19,6 +19,9 @@ MonoBehaviour:
   downHoopDisable: {fileID: 21300000, guid: 7e1b12bf28ab5ee47a4814c2ef2a9f3a, type: 3}
   darkBackground: {fileID: 21300000, guid: 2f737163ec73fdf4bbc70711ca1614d9, type: 3}
   lightBackground: {fileID: 21300000, guid: 5f4dec4a98c3ff34b96b0e88f3bbdf49, type: 3}
-  foreground: {fileID: 21300000, guid: 5f4dec4a98c3ff34b96b0e88f3bbdf49, type: 3}
-  themeColor: {r: 0.77647066, g: 0.77647066, b: 0.77647066, a: 1}
+  foreground: {fileID: -706698939207081117, guid: a565b7d9ce68a4441bfb2ea0aa86c5e5, type: 3}
+  scoreColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
+  buttonColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   trajectoryColor: {r: 0.8470589, g: 0.30980393, b: 0.16470589, a: 1}
+  scoreDarkColor: {r: 0, g: 0, b: 0, a: 0}
+  buttonDarkColor: {r: 0, g: 0, b: 0, a: 0}

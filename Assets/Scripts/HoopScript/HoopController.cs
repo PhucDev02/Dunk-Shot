@@ -16,20 +16,21 @@ public class HoopController : MonoBehaviour
     public int id;
     [SerializeField] SpriteRenderer topHoop, downHoop;
     [SerializeField] GameObject powerRing;
+    private void OnEnable()
+    {
+        ApplyTheme();
+        //scale at inspector
+        transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
+    }
     void Start()
     {
         angle = Vector3.zero;
         scale = Vector3.one;
         this.RegisterListener(EventID.OnShoot, (param) => Shoot());
         this.RegisterListener(EventID.OnDrag, (param) => Drag());
-    }
-    private void OnEnable()
-    {
+        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
+        //ApplyTheme();
 
-        //scale at inspector    
-        topHoop.sprite = GameManager.Instance.GetTheme().topHoop;
-        downHoop.sprite = GameManager.Instance.GetTheme().downHoop;
-        transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
     }
     private void Shoot()
     {
@@ -121,5 +122,10 @@ public class HoopController : MonoBehaviour
     {
         transform.DORotate(Vector2.zero, 0.2f).SetEase(Ease.InOutExpo);
 
+    }
+    void ApplyTheme()
+    {
+        topHoop.sprite = GameManager.Instance.GetTheme().topHoop;
+        downHoop.sprite = GameManager.Instance.GetTheme().downHoop;
     }
 }

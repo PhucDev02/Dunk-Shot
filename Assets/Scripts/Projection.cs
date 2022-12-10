@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System;
+
 public class Projection : MonoBehaviour
 {
     public static Projection Instance;
     private void Awake()
     {
         Instance = this;
+        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
     }
 
 
@@ -27,6 +30,16 @@ public class Projection : MonoBehaviour
     private float alpha;
     private Color color;
     private float highestVerticlePoint;
+    private void ApplyTheme()
+    {
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("Darkmode") == 0)
+                pointsRenderer[i].color = GameManager.Instance.GetTheme().trajectoryColor;
+            else
+                pointsRenderer[i].color = GameManager.Instance.GetTheme().trajectoryDarkColor;
+        }
+    }
     void Start()
     {
         CreatePhysicScene();
@@ -56,13 +69,14 @@ public class Projection : MonoBehaviour
             points[i].transform.localScale = points[i - 1].transform.lossyScale * 0.98f;
             pointsRenderer[i] = points[i].GetComponent<SpriteRenderer>();
         }
+        ApplyTheme();
         color = pointsRenderer[0].color;
     }
 
 
     public void SimulateTrajectory(BallController ball, Vector2 pos)
     {
-        for(int i=0;i<obstacles.childCount;i++)
+        for (int i = 0; i < obstacles.childCount; i++)
         {
             simulationObstacles[i].transform.position = obstacles.GetChild(i).transform.position;
         }
@@ -85,7 +99,7 @@ public class Projection : MonoBehaviour
     }
     private void setAlphaPoint()
     {
-        alpha = (DragPanel.force.magnitude - 120) / 100 ;
+        alpha = (DragPanel.force.magnitude - 120) / 100;
         color.a = alpha;
         for (int i = 0; i < maxTrajectoryPoint; i++)
         {

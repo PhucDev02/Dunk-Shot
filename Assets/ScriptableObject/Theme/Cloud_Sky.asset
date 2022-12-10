@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e895d3f82d97314b970cb2d1cb92006, type: 3}
+  m_Name: Cloud_Sky
+  m_EditorClassIdentifier: 
+  theme: 2
+  topHoop: {fileID: 21300000, guid: 502375f18cf33ed4aae8e1e40aac3316, type: 3}
+  downHoop: {fileID: 21300000, guid: fcb588bc77c15c14fa62ae9ead5cd5a8, type: 3}
+  topHoopDisable: {fileID: 21300000, guid: ada7ee5d23db49e4cb95dc2ddc4406b1, type: 3}
+  downHoopDisable: {fileID: 21300000, guid: f762ec2107891b34f8d6874187c6a806, type: 3}
+  darkBackground: {fileID: 21300000, guid: 4c28f7ffecba7f34591a086dd7745894, type: 3}
+  lightBackground: {fileID: 21300000, guid: a329ffd2dc4a3064889e2a5ca0f8ef91, type: 3}
+  foreground: {fileID: -7943038343007386152, guid: 659b01dc1cd81e942be42709b2c10e9a, type: 3}
+  scoreColor: {r: 0.19339621, g: 0.50190073, b: 1, a: 1}
+  buttonColor: {r: 0.23474543, g: 0.4193917, b: 0.7924528, a: 0.90588236}
+  trajectoryColor: {r: 0.19215688, g: 0.5019608, b: 1, a: 1}
+  trajectoryDarkColor: {r: 0.27129823, g: 0.12549017, b: 0.99215686, a: 0.8509804}
+  scoreDarkColor: {r: 0.5647059, g: 0.1254902, b: 0.9921569, a: 0.18431373}

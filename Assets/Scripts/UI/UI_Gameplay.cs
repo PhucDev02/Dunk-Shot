@@ -9,12 +9,41 @@ public class UI_Gameplay : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] TextMeshProUGUI score, stars_txt, increaseScore, bounceCnt, streakCnt;
     [SerializeField] GameObject pauseBtn;
+    [SerializeField] Image background;
     public static UI_Gameplay Instance;
     private void Awake()
     {
         Instance = this;
+        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
+        this.RegisterListener(EventID.OnSwitchDarkmode, (param) => ApplyDarkmode());
         pauseBtn.SetActive(false);
         HideScore();
+    }
+    private void Start()
+    {
+        ApplyTheme();
+        ApplyDarkmode();
+    }
+    void ApplyTheme()
+    {
+
+        if (PlayerPrefs.GetInt("Darkmode") == 1)
+            background.sprite = GameManager.Instance.GetTheme().darkBackground;
+        else
+            background.sprite = GameManager.Instance.GetTheme().lightBackground;
+    }
+    void ApplyDarkmode()
+    {
+        if (PlayerPrefs.GetInt("Darkmode") == 1)
+        {
+            background.sprite = GameManager.Instance.GetTheme().darkBackground;
+            score.color = GameManager.Instance.GetTheme().scoreDarkColor;
+        }
+        else
+        {
+            background.sprite = GameManager.Instance.GetTheme().lightBackground;
+            score.color = GameManager.Instance.GetTheme().scoreColor;
+        }
     }
     public void ShowIncreasePoint(int point, int streak, int bounce)
     {
@@ -35,7 +64,7 @@ public class UI_Gameplay : MonoBehaviour
         increaseScore.transform.position = streakCnt.transform.position;
 
         streakCnt.DOFade(1, 0.1f);
-        streakCnt.transform.DOMoveY(streakCnt.transform.position.y + 0.5f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
+        streakCnt.transform.DOMoveY(streakCnt.transform.position.y + 0f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
          {
              streakCnt.DOFade(0, 0.2f);
          });
@@ -68,12 +97,12 @@ public class UI_Gameplay : MonoBehaviour
     }
     public void UnhideButton()
     {
-        score.GetComponent<Image>().DOFade(1, 0);
+        score.DOFade(1, 0);
         pauseBtn.GetComponent<Image>().DOFade(1, 0.4f);
         pauseBtn.SetActive(true);
     }
     public void HideScore()
     {
-        score.GetComponent<Image>().DOFade(0, 0);
+        score.DOFade(0, 0);
     }
 }

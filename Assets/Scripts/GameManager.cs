@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public void SetTheme(string name)
     {
         if (name == "" || name == "Classic")
-            currentTheme = Themes.Classic;
+            currentTheme = Themes.Cloudy_Sky;
         if (name == "Christmas")
             currentTheme = Themes.Christmas;
         if (name == "Cloudy_Sky")

@@ -8,5 +8,6 @@ public class Theme : ScriptableObject
     public Sprite topHoop, downHoop,topHoopDisable,downHoopDisable;
     public Sprite darkBackground, lightBackground;
     public Sprite foreground;
-    public Color themeColor,trajectoryColor;
+    public Color scoreColor,buttonColor,trajectoryColor,trajectoryDarkColor;
+    public Color scoreDarkColor;
 }
