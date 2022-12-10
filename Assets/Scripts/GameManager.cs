@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         SetTheme(PlayerPrefs.GetString("Theme"));
+        ThemeController.Instance.InitThemeShop();
     }
     public Theme GetTheme()
     {
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     public void SetTheme(string name)
     {
         if (name == "" || name == "Classic")
-            currentTheme = Themes.Cloudy_Sky;
+            currentTheme = Themes.Classic;
         if (name == "Christmas")
             currentTheme = Themes.Christmas;
         if (name == "Cloudy_Sky")

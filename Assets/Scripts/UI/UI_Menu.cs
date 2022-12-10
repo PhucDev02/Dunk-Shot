@@ -9,7 +9,6 @@ public class UI_Menu : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject panel;
-    [SerializeField] Image[] buttons;
     [SerializeField] Image darkmodeBtn;
     public static UI_Menu Instance;
     [SerializeField] Sprite darkmodeOn, darkmodeOff;

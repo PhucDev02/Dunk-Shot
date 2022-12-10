@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cloud_Sky
   m_EditorClassIdentifier: 
   theme: 2
+  themeCell: {fileID: 21300000, guid: 0961599a59309b14581586ab28c02e62, type: 3}
   topHoop: {fileID: 21300000, guid: 502375f18cf33ed4aae8e1e40aac3316, type: 3}
   downHoop: {fileID: 21300000, guid: fcb588bc77c15c14fa62ae9ead5cd5a8, type: 3}
   topHoopDisable: {fileID: 21300000, guid: ada7ee5d23db49e4cb95dc2ddc4406b1, type: 3}
@@ -25,3 +26,4 @@ MonoBehaviour:
   trajectoryColor: {r: 0.19215688, g: 0.5019608, b: 1, a: 1}
   trajectoryDarkColor: {r: 0.27129823, g: 0.12549017, b: 0.99215686, a: 0.8509804}
   scoreDarkColor: {r: 0.5647059, g: 0.1254902, b: 0.9921569, a: 0.18431373}
+  price: 100

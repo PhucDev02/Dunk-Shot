@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Christmas
   m_EditorClassIdentifier: 
   theme: 1
+  themeCell: {fileID: 21300000, guid: 32e23e57f3a00b346b57857d99cca2b2, type: 3}
   topHoop: {fileID: 21300000, guid: 4c9ee21b66a7a4a41ae1e31cb935d093, type: 3}
   downHoop: {fileID: 21300000, guid: 6ae4c53880f44c449ac69fd5a77152ce, type: 3}
   topHoopDisable: {fileID: 21300000, guid: 16f38432788d2cf48a7fbe872634c98d, type: 3}
@@ -23,5 +24,6 @@ MonoBehaviour:
   scoreColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
   buttonColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   trajectoryColor: {r: 0.8470589, g: 0.30980393, b: 0.16470589, a: 1}
+  trajectoryDarkColor: {r: 0, g: 0, b: 0, a: 0}
   scoreDarkColor: {r: 0, g: 0, b: 0, a: 0}
-  buttonDarkColor: {r: 0, g: 0, b: 0, a: 0}
+  price: 50
