@@ -53,8 +53,16 @@ public class GameController : MonoBehaviour
                 streak++;
             }
             score += (bounceCnt == 0 ? 1 : 2) * ((streak + 1) > 10 ? 10 : (streak + 1));
+            executeBestScore();
             UI_Gameplay.Instance.ShowIncreasePoint((bounceCnt == 0 ? 1 : 2) * ((streak + 1) > 10 ? 10 : (streak + 1)), streak, bounceCnt);
             bounceCnt = 0;
+        }
+    }
+    private void executeBestScore()
+    {
+        if(score>PlayerPrefs.GetInt("BestScore"))
+        {
+            PlayerPrefs.SetInt("BestScore", score);
         }
     }
     public int GetScore()

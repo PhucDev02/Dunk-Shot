@@ -10,5 +10,6 @@ public enum EventID
     OnSecondChange,
     ////
     OnChangeTheme, // Hoop ,button, darkmode
-    OnSwitchDarkmode
+    OnSwitchDarkmode,
+    OnPurchaseItem
 }

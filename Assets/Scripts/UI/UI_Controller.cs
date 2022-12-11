@@ -15,10 +15,12 @@ public class UI_Controller : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] txt;
     [SerializeField] Image[] panels;
     [SerializeField] Image[] buttons;
+    [SerializeField] TextMeshProUGUI[] tokens, stars;
     private void Awake()
     {
         DOTween.KillAll();
         this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
+        this.RegisterListener(EventID.OnPurchaseItem, (param) => UpdateCurrency());
     }
 
     private void ApplyTheme()
@@ -37,6 +39,7 @@ public class UI_Controller : MonoBehaviour
     {
         ApplyTheme();
         ApplyDarkmode();
+        UpdateCurrency();
         flashTransition.GetComponent<Image>().DOFade(a, 0);
         flashTransition.GetComponent<Image>().DOFade(0, timeFade);
     }
@@ -61,6 +64,18 @@ public class UI_Controller : MonoBehaviour
             else
                 panels[i].color = lightColor;
     }
+    void UpdateCurrency()
+    {
+        for(int i=0;i<tokens.Length;i++)
+        {
+            tokens[i].text = PlayerPrefs.GetInt("Tokens").ToString();
+        }
+        for (int i = 0; i < stars.Length; i++)
+        {
+            stars[i].text = PlayerPrefs.GetInt("Stars").ToString();
+        }
+    }
+
     [SerializeField] Color darkColor, lightColor;
 
 }

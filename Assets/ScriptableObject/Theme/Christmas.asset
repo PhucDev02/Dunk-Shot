@@ -19,11 +19,12 @@ MonoBehaviour:
   topHoopDisable: {fileID: 21300000, guid: 16f38432788d2cf48a7fbe872634c98d, type: 3}
   downHoopDisable: {fileID: 21300000, guid: 7e1b12bf28ab5ee47a4814c2ef2a9f3a, type: 3}
   darkBackground: {fileID: 21300000, guid: 2f737163ec73fdf4bbc70711ca1614d9, type: 3}
-  lightBackground: {fileID: 21300000, guid: 5f4dec4a98c3ff34b96b0e88f3bbdf49, type: 3}
+  lightBackground: {fileID: 21300000, guid: 63dcb32c859040444adc8fa3b945ef6b, type: 3}
   foreground: {fileID: -706698939207081117, guid: a565b7d9ce68a4441bfb2ea0aa86c5e5, type: 3}
+  darkForeground: {fileID: 7601203196480767278, guid: 8b42e087ea7bf4c4087b06992f116634, type: 3}
   scoreColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
   buttonColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   trajectoryColor: {r: 0.8470589, g: 0.30980393, b: 0.16470589, a: 1}
-  trajectoryDarkColor: {r: 0, g: 0, b: 0, a: 0}
-  scoreDarkColor: {r: 0, g: 0, b: 0, a: 0}
+  trajectoryDarkColor: {r: 1, g: 0.59607846, b: 0, a: 1}
+  scoreDarkColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
   price: 50

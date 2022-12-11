@@ -17,12 +17,23 @@ public class ScrollForeground : MonoBehaviour
         }
         distance = foreground[1].transform.position.y - foreground[0].transform.position.y;
 
-        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
-       
+        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyThemeAndDarkmode());
+        this.RegisterListener(EventID.OnSwitchDarkmode, (param) => ApplyThemeAndDarkmode());
+
     }
     private void Start()
     {
-        ApplyTheme();
+        ApplyThemeAndDarkmode();
+    }
+    void ApplyThemeAndDarkmode()
+    {
+        for (int i = 0; i < foreground.Count; i++)
+        {
+            if (PlayerPrefs.GetInt("Darkmode") == 0)
+                foreground[i].GetComponent<SpriteRenderer>().sprite = GameManager.Instance.GetTheme().foreground;
+            else
+                foreground[i].GetComponent<SpriteRenderer>().sprite = GameManager.Instance.GetTheme().darkForeground;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -34,12 +45,5 @@ public class ScrollForeground : MonoBehaviour
             }
             else
                 foreground[1 - i].position = foreground[i].position - Vector3.up * distance;
-    }
-    void ApplyTheme()
-    {
-        for(int i=0;i<foreground.Count;i++)
-        {
-            foreground[i].GetComponent<SpriteRenderer>().sprite = GameManager.Instance.GetTheme().foreground;
-        }
     }
 }

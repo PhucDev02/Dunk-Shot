@@ -14,25 +14,16 @@ public class UI_Gameplay : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
-        this.RegisterListener(EventID.OnSwitchDarkmode, (param) => ApplyDarkmode());
+        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyThemeAndDarkmode());
+        this.RegisterListener(EventID.OnSwitchDarkmode, (param) => ApplyThemeAndDarkmode());
         pauseBtn.SetActive(false);
         HideScore();
     }
     private void Start()
     {
-        ApplyTheme();
-        ApplyDarkmode();
+        ApplyThemeAndDarkmode();
     }
-    void ApplyTheme()
-    {
-
-        if (PlayerPrefs.GetInt("Darkmode") == 1)
-            background.sprite = GameManager.Instance.GetTheme().darkBackground;
-        else
-            background.sprite = GameManager.Instance.GetTheme().lightBackground;
-    }
-    void ApplyDarkmode()
+    void ApplyThemeAndDarkmode()
     {
         if (PlayerPrefs.GetInt("Darkmode") == 1)
         {

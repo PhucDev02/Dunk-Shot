@@ -24,9 +24,16 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        //SetTheme("Classic");
         SetTheme(PlayerPrefs.GetString("Theme"));
+        if (PlayerPrefs.GetInt("Tokens") == 0)
+            SetTokenValue(999);
+
+        SetStarValue(999);
         ThemeController.Instance.InitThemeShop();
+        Logger.Log("Manager Awake");
     }
+    #region theme execute
     public Theme GetTheme()
     {
         foreach (Theme t in themes)
@@ -38,10 +45,19 @@ public class GameManager : MonoBehaviour
         }
         return themes[0];
     }
+    public void SetTheme(Theme theme)
+    {
+        PlayerPrefs.SetString("Theme", Utility.GetThemeString(theme));
+        SetTheme(PlayerPrefs.GetString("Theme"));
+    }
     public void SetTheme(string name)
     {
+        PlayerPrefs.SetString("Theme", name);
         if (name == "" || name == "Classic")
+        {
             currentTheme = Themes.Classic;
+            PlayerPrefs.SetString("Theme", "Classic");
+        }
         if (name == "Christmas")
             currentTheme = Themes.Christmas;
         if (name == "Cloudy_Sky")
@@ -63,7 +79,16 @@ public class GameManager : MonoBehaviour
         if (name == "Lunch")
             currentTheme = Themes.Lunch;
     }
+    #endregion
 
+    private void SetTokenValue(int value)
+    {
+        PlayerPrefs.SetInt("Tokens", value);
+    }
+    private void SetStarValue(int value)
+    {
+        PlayerPrefs.SetInt("Stars", value);
+    }
     ///////////////////////////////// inspector
     public static Vector3 powerRingScale = new Vector3(1.3f, 0.9f, 1);
     public static Vector3 initPositionCamera = new Vector3(-1.26f, -1.51f, 0.19f);

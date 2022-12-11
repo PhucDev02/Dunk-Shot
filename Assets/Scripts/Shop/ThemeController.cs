@@ -10,9 +10,8 @@ public class ThemeController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        PlayerPrefs.SetInt("Classic", 0);
-        PlayerPrefs.SetInt("Cloud_Sky", 1);
-        PlayerPrefs.SetInt("Christmas", 1);
+        this.RegisterListener(EventID.OnChangeTheme, (param) => UpdateUITheme());
+        PlayerPrefs.SetInt("Classic", 1);
     }
     public void InitThemeShop()
     {
@@ -22,38 +21,20 @@ public class ThemeController : MonoBehaviour
             tmp.GetComponent<ThemeDisplay>().theme = GameManager.Instance.themes[i];
         }
     }
-    public void SetLockStatus(Theme theme,int status)
+    public void SetUnlockStatus(Theme theme,int status)
     {
-        PlayerPrefs.SetInt(getThemeString(theme), status);
+        PlayerPrefs.SetInt(Utility.GetThemeString(theme), status);
     }
-    public int GetLockStatus(Theme theme)
+    public int GetUnlockStatus(Theme theme)
     {
-        return PlayerPrefs.GetInt(getThemeString(theme));
+        return PlayerPrefs.GetInt(Utility.GetThemeString(theme));
     }
-    string getThemeString(Theme theme)
+    
+    public void UpdateUITheme()
     {
-        if (theme.theme == Themes.Classic)
-            return "Classic";
-        if (theme.theme == Themes.Christmas)
-            return "Christmas";
-        if (theme.theme == Themes.Cloudy_Sky)
-            return "Cloud_Sky";
-        if (theme.theme == Themes.Notebook)
-            return "Notebook";
-        if (theme.theme == Themes.Vikings)
-            return "Vikings";
-        if (theme.theme == Themes.Circus)
-            return "Circus";
-        if (theme.theme == Themes.Neon)
-            return "Neon";
-        if (theme.theme == Themes.Jungle)
-            return "Jungle";
-        if (theme.theme == Themes.Egypt)
-            return "Egypt";
-        if (theme.theme == Themes.Sakuras)
-            return "Sakuras";
-        if (theme.theme == Themes.Lunch)
-            return "Lunch";
-        return "Classic";
+        foreach(Transform obj in content)
+        {
+            obj.GetComponent<ThemeDisplay>().UpdateChooseStatus();
+        }
     }
 }

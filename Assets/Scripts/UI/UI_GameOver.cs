@@ -3,16 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
     using DG.Tweening;
+using System;
+
 public class UI_GameOver : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject panel;
     [SerializeField] Transform getNewBall, capture, playAgain, setting;
-    [SerializeField] TextMeshProUGUI bestScore, score;
+    [SerializeField] TextMeshProUGUI bestScore, score,currentScore;
     public static UI_GameOver Instance;
     private void Awake()
     {
         Instance = this;
+        this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyThemeAndTheme());
+        this.RegisterListener(EventID.OnSwitchDarkmode, (param) => ApplyThemeAndTheme());
+        this.RegisterListener(EventID.OnGameOver, (param) => UpdateScore());
+        ApplyThemeAndTheme();
+    }
+
+    private void ApplyThemeAndTheme()
+    {
+
+        if (PlayerPrefs.GetInt("Darkmode") == 1)
+        {
+            currentScore.color = GameManager.Instance.GetTheme().scoreDarkColor;
+        }
+        else
+        {
+            currentScore.color = GameManager.Instance.GetTheme().scoreColor;
+        }
+    }
+    private void UpdateScore()
+    {
+        currentScore.text = GameController.Instance.GetScore().ToString();
     }
     private void Start()
     {
@@ -30,6 +53,7 @@ public class UI_GameOver : MonoBehaviour
     }
     public void GameOver()
     {
+        score.text = PlayerPrefs.GetInt("BestScore").ToString();
         panel.SetActive(true);
         bestScore.DOFade(1, 0.5f);
         score.DOFade(1, 0.5f);

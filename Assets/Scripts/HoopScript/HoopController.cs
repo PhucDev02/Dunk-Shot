@@ -18,6 +18,7 @@ public class HoopController : MonoBehaviour
     [SerializeField] GameObject powerRing;
     private void OnEnable()
     {
+        Logger.Log("Hoop able");
         ApplyTheme();
         //scale at inspector
         transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
