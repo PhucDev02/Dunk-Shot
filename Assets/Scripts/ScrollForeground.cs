@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class ScrollForeground : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -30,9 +30,16 @@ public class ScrollForeground : MonoBehaviour
         for (int i = 0; i < foreground.Count; i++)
         {
             if (PlayerPrefs.GetInt("Darkmode") == 0)
+            {
                 foreground[i].GetComponent<SpriteRenderer>().sprite = GameManager.Instance.GetTheme().foreground;
+                foreground[i].GetComponent<SpriteRenderer>().DOFade(GameManager.Instance.GetTheme().alphaLight, 0);
+            }
             else
+            {
                 foreground[i].GetComponent<SpriteRenderer>().sprite = GameManager.Instance.GetTheme().darkForeground;
+                foreground[i].GetComponent<SpriteRenderer>().DOFade(GameManager.Instance.GetTheme().alphaDark, 0);
+
+            }
         }
     }
     // Update is called once per frame

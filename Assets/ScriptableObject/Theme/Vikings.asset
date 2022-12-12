@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e895d3f82d97314b970cb2d1cb92006, type: 3}
+  m_Name: Vikings
+  m_EditorClassIdentifier: 
+  theme: 4
+  themeCell: {fileID: 21300000, guid: 5dcc5a7174abc4f4c9b1c4fa65a320bd, type: 3}
+  topHoop: {fileID: 21300000, guid: e739a0a2d8059d149acec0bf5d23f99c, type: 3}
+  downHoop: {fileID: 21300000, guid: 0a02b2d2183d4f24d82217b9bbcf674d, type: 3}
+  topHoopDisable: {fileID: 21300000, guid: b18159a95eb3e4649b70e8de7be69d9e, type: 3}
+  downHoopDisable: {fileID: 21300000, guid: e229477ba85b2694d8cd10ea62f2ce8e, type: 3}
+  darkBackground: {fileID: 21300000, guid: fe3569c1dacaa8f408126c3600311c74, type: 3}
+  lightBackground: {fileID: 21300000, guid: 3064020769a75c04aa1abe056cb11aac, type: 3}
+  foreground: {fileID: 7681203700871210605, guid: 1d82dede310e70d41a20942c894e92ae, type: 3}
+  darkForeground: {fileID: 7681203700871210605, guid: 1d82dede310e70d41a20942c894e92ae, type: 3}
+  scoreColor: {r: 0.7169812, g: 0.36041993, b: 0, a: 1}
+  buttonColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.6313726}
+  trajectoryColor: {r: 1, g: 0.72639394, b: 0, a: 1}
+  trajectoryDarkColor: {r: 1, g: 0.7254902, b: 0, a: 1}
+  scoreDarkColor: {r: 0.7924528, g: 0.45564196, b: 0.11512991, a: 1}
+  price: 50
+  alphaLight: 1
+  alphaDark: 0.25

@@ -28,3 +28,5 @@ MonoBehaviour:
   trajectoryDarkColor: {r: 1, g: 0.59607846, b: 0, a: 1}
   scoreDarkColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
   price: 50
+  alphaLight: 1
+  alphaDark: 1

@@ -39,6 +39,7 @@ public class Projection : MonoBehaviour
             else
                 pointsRenderer[i].color = GameManager.Instance.GetTheme().trajectoryDarkColor;
         }
+        color = pointsRenderer[0].color;
     }
     void Start()
     {
@@ -70,7 +71,6 @@ public class Projection : MonoBehaviour
             pointsRenderer[i] = points[i].GetComponent<SpriteRenderer>();
         }
         ApplyTheme();
-        color = pointsRenderer[0].color;
     }
 
 

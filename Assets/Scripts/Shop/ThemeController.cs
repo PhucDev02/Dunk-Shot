@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThemeController : MonoBehaviour
 {
     public static ThemeController Instance;
-    [SerializeField] Transform content;
+    [SerializeField] Transform normalTheme,seasonsTheme;
     [SerializeField] GameObject child;
     private void Awake()
     {
@@ -15,11 +15,14 @@ public class ThemeController : MonoBehaviour
     }
     public void InitThemeShop()
     {
-        for(int i=0;i<GameManager.Instance.themes.Length;i++)
+        GameObject tmp;
+        for(int i=0;i<GameManager.Instance.themes.Length-1;i++)
         {
-            var tmp = Instantiate(child, content);
+            tmp = Instantiate(child, normalTheme);
             tmp.GetComponent<ThemeDisplay>().theme = GameManager.Instance.themes[i];
         }
+        tmp = Instantiate(child, seasonsTheme);
+        tmp.GetComponent<ThemeDisplay>().theme = GameManager.Instance.themes[GameManager.Instance.themes.Length-1];
     }
     public void SetUnlockStatus(Theme theme,int status)
     {
@@ -32,8 +35,13 @@ public class ThemeController : MonoBehaviour
     
     public void UpdateUITheme()
     {
-        foreach(Transform obj in content)
+        foreach(Transform obj in normalTheme)
         {
+            obj.GetComponent<ThemeDisplay>().UpdateChooseStatus();
+        }
+        foreach (Transform obj in seasonsTheme)
+        {
+            if(obj.GetComponent<ThemeDisplay>()!=null)
             obj.GetComponent<ThemeDisplay>().UpdateChooseStatus();
         }
     }

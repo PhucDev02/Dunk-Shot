@@ -21,9 +21,12 @@ MonoBehaviour:
   darkBackground: {fileID: 21300000, guid: 2f737163ec73fdf4bbc70711ca1614d9, type: 3}
   lightBackground: {fileID: 21300000, guid: 63dcb32c859040444adc8fa3b945ef6b, type: 3}
   foreground: {fileID: 0}
+  darkForeground: {fileID: 0}
   scoreColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   buttonColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
   trajectoryColor: {r: 1, g: 0.54509807, b: 0, a: 1}
   trajectoryDarkColor: {r: 1, g: 0.54509807, b: 0, a: 1}
   scoreDarkColor: {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
   price: 0
+  alphaLight: 1
+  alphaDark: 1

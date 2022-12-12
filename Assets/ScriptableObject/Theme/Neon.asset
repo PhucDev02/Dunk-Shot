@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e895d3f82d97314b970cb2d1cb92006, type: 3}
+  m_Name: Neon
+  m_EditorClassIdentifier: 
+  theme: 6
+  themeCell: {fileID: 21300000, guid: 9453b79b44c28fd418cf91019696849a, type: 3}
+  topHoop: {fileID: 21300000, guid: 5719cebf6e0780445b024fdd0e8f9a41, type: 3}
+  downHoop: {fileID: 21300000, guid: e9abb8c6237344849bde28542dd04388, type: 3}
+  topHoopDisable: {fileID: 21300000, guid: de832b4653778814fb37463de985996a, type: 3}
+  downHoopDisable: {fileID: 21300000, guid: f5ec21417da71f042888b09e263cebed, type: 3}
+  darkBackground: {fileID: 21300000, guid: 82da64608aaf3fa46a7d4db2cb321845, type: 3}
+  lightBackground: {fileID: 21300000, guid: 573c2e6eb282dfe48bd5bafc589e1e8f, type: 3}
+  foreground: {fileID: 6968998129744454263, guid: 59a1cc3a2607ed04eb12f2c6b315e85b, type: 3}
+  darkForeground: {fileID: 6968998129744454263, guid: 59a1cc3a2607ed04eb12f2c6b315e85b, type: 3}
+  scoreColor: {r: 0.93040305, g: 0.050943315, b: 1, a: 1}
+  buttonColor: {r: 1, g: 0.3339622, b: 0.9711557, a: 1}
+  trajectoryColor: {r: 1, g: 0.5415094, b: 0.87042034, a: 1}
+  trajectoryDarkColor: {r: 1, g: 0.29622638, b: 0.7377833, a: 1}
+  scoreDarkColor: {r: 0.9294118, g: 0.050980397, b: 1, a: 1}
+  price: 50
+  alphaLight: 1
+  alphaDark: 1

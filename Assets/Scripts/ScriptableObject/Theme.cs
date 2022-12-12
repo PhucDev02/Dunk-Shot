@@ -12,4 +12,5 @@ public class Theme : ScriptableObject
     public Color scoreColor,buttonColor,trajectoryColor,trajectoryDarkColor;
     public Color scoreDarkColor;
     public int price;
+    public float alphaLight, alphaDark;
 }
