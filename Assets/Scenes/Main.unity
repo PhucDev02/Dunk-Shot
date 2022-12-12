@@ -239,7 +239,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12.458333, y: 0.3}
+  m_Size: {x: 50, y: 0.3}
   m_EdgeRadius: 0
 --- !u!4 &4051746
 Transform:
@@ -249,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4051744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 999}
+  m_LocalPosition: {x: 0, y: -6.55, z: 999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1242629734}
@@ -837,7 +837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60.80005, y: -61.700012}
+  m_AnchoredPosition: {x: 60.80005, y: -61.700073}
   m_SizeDelta: {x: 39.27, y: 57.800003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &74099862
@@ -8310,7 +8310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &782727807
@@ -16884,7 +16884,7 @@ MonoBehaviour:
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
   m_XDamping: 0
-  m_YDamping: 0.8
+  m_YDamping: 1
   m_ZDamping: 0
   m_TargetMovementOnly: 0
   m_ScreenX: 0.26999998
@@ -16895,7 +16895,7 @@ MonoBehaviour:
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 2
-  m_SoftZoneHeight: 0.39
+  m_SoftZoneHeight: 0.49
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -21636,8 +21636,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000017166}
-  m_SizeDelta: {x: 698, y: 1014}
+  m_AnchoredPosition: {x: 0, y: -113.11}
+  m_SizeDelta: {x: 698, y: 1240.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042227139
 MonoBehaviour:
@@ -22808,6 +22808,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3420872369101578826, guid: f60785eef3fa46a49ae22b333c564504, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3420872369101578829, guid: f60785eef3fa46a49ae22b333c564504, type: 3}
       propertyPath: m_RootOrder
       value: 2

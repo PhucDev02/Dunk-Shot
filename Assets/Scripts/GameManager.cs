@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum Themes
 {
-    Classic,
-    Christmas,
-    Cloudy_Sky,
-    Notebook,
-    Vikings,
-    Circus,
+    Classic,//
+    Christmas,//
+    Cloudy_Sky,//
+    Notebook,//
+    Vikings,//
+    Circus,//
     Neon,
     Jungle,
     Egypt,

@@ -25,14 +25,6 @@ public class BallController : MonoBehaviour
         rigidBody.simulated = false;
         rigidBody.velocity = Vector2.zero;
     }
-    public float CalculateBallSpeed()
-    {
-        return (DragPanel.getForce().magnitude / rigidBody.mass) * Time.fixedDeltaTime;
-    }
-    public float CalculateTimeGetHighest()
-    {
-        return Mathf.Abs(CalculateBallSpeed() * Mathf.Sin((90 - DragPanel.GetAngle()) * Mathf.Deg2Rad) / Physics2D.gravity.magnitude);
-    }
     public void Respawn()
     {
         gameObject.SetActive(true);
@@ -51,8 +43,7 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("DeadBar"))
         {
             rigidBody.velocity = Vector2.zero;
-        rigidBody.velocity = Vector2.zero;
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             this.PostEvent(EventID.OnGameOver);
         }
     }
