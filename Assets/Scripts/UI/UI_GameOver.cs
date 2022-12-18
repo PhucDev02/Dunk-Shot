@@ -18,7 +18,6 @@ public class UI_GameOver : MonoBehaviour
         this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyThemeAndTheme());
         this.RegisterListener(EventID.OnSwitchDarkmode, (param) => ApplyThemeAndTheme());
         this.RegisterListener(EventID.OnGameOver, (param) => UpdateScore());
-        ApplyThemeAndTheme();
     }
 
     private void ApplyThemeAndTheme()
@@ -39,8 +38,13 @@ public class UI_GameOver : MonoBehaviour
     }
     private void Start()
     {
+        ApplyThemeAndTheme();
         ResetTransform();
         panel.SetActive(false);
+    }
+    public void NewGame()
+    {
+        Start();
     }
     public void ResetTransform()
     {

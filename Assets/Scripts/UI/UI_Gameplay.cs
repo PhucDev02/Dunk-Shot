@@ -96,4 +96,11 @@ public class UI_Gameplay : MonoBehaviour
     {
         score.DOFade(0, 0);
     }
+    public void NewGame()
+    {
+        bounceCnt.DOFade(0, 0);
+        increaseScore.DOFade(0, 0);
+        streakCnt.DOFade(0, 0);
+        UpdateScore();
+    }
 }

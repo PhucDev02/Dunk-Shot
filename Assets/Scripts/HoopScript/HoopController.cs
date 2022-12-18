@@ -18,10 +18,18 @@ public class HoopController : MonoBehaviour
     [SerializeField] GameObject powerRing;
     private void OnEnable()
     {
+        reset();
+    }
+    public void reset()
+    {
         Logger.Log("Hoop able");
         ApplyTheme();
         //scale at inspector
+        transform.rotation = Quaternion.identity;
+        isHoldingBall = false;
         transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
+        netController.sensor.enabled = true;
+
     }
     void Start()
     {
@@ -41,6 +49,8 @@ public class HoopController : MonoBehaviour
             ball.transform.position = anchor.position;
             netController.EnableSensor();
             ball.Shoot();
+            BallController.isOnAir = true;
+            netController.OnLaunch();
         }
         else
             netController.OnLaunchFailed();

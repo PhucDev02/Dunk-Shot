@@ -92,4 +92,8 @@ public class GameManager : MonoBehaviour
     ///////////////////////////////// inspector
     public static Vector3 powerRingScale = new Vector3(1.3f, 0.9f, 1);
     public static Vector3 initPositionCamera = new Vector3(-1.26f, -1.51f, 0.19f);
+    public static Vector3 initPosFirstHoop = new Vector3(-1.26f, -0.81f, 0.19f);
+    public static Vector3 initPosSecondHoop = new Vector3(1.185f, 0.694f, 0.188f);
+    public static Vector3 initPosBall = new Vector3(-1.26f, 0, 0);
+
 }

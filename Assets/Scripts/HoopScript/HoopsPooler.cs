@@ -65,7 +65,7 @@ public class HoopsPooler : MonoBehaviour
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].transform.position = randomNewPosition();
-                hoops[i].transform.rotation = Quaternion.identity;
+                //rotation
                 hoops[i].SetActive(true);
                 return;
             }
@@ -86,5 +86,31 @@ public class HoopsPooler : MonoBehaviour
     public void OnSecondChange()
     {
         hoops[idLastHoop].GetComponent<HoopController>().ResetRotation();
+    }
+    private GameObject getHoop()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (!hoops[i].activeInHierarchy)
+            {
+                hoops[i].SetActive(true);
+                return hoops[i];
+            }
+        }
+        return null;
+    }
+    public void NewGame()
+    {
+        idLastHoop = 0;
+        idLowestHoop = 0;
+        isValidShot = false;
+        for (int i = 0; i < transform.childCount; i++)
+            if (hoops[i].activeInHierarchy)
+            {
+                hoops[i].GetComponent<HoopController>().reset();
+                hoops[i].SetActive(false);
+            }
+        getHoop().transform.position = GameManager.initPosFirstHoop;
+        getHoop().transform.position = GameManager.initPosSecondHoop;
     }
 }

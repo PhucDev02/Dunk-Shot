@@ -7,8 +7,8 @@ public class NetController : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] HoopController hoopController;
     [SerializeField] Transform anchor, bottom;
-    [SerializeField] EdgeCollider2D sensor;
-    
+    [SerializeField] public EdgeCollider2D sensor;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hoopController.ContactBall();
@@ -16,8 +16,8 @@ public class NetController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        OnCollisionWithBall();
+        if (collision.relativeVelocity.y > 0)
+            OnCollisionWithBall();
     }
     public void EnableSensor()
     {
@@ -30,26 +30,27 @@ public class NetController : MonoBehaviour
     }
     public void OnLaunchFailed()
     {
-        transform.DOScaleY(1.0f, 0.5f).SetEase(Ease.OutElastic);
+        transform.DOScaleY(1.0f, 0.5f).SetUpdate(true).SetEase(Ease.OutElastic);
     }
     public void OnCollisionWithBall()
     {
-        transform.DOScaleY(0.8f, 0.05f).SetEase(Ease.OutQuad).OnComplete(() =>
+        Debug.Log("a");
+        transform.DOScaleY(0.8f, 0.05f).SetEase(Ease.OutQuad).SetUpdate(true).OnComplete(() =>
         {
-            transform.DOScaleY(1.0f, 0.1f).SetEase(Ease.InQuad);
+            transform.DOScaleY(1.0f, 0.1f).SetUpdate(true).SetEase(Ease.OutBack);
         });
     }
     public void OnContactHoop()
     {
-        transform.DOScaleY(1.2f, 0.05f).SetEase(Ease.OutQuad).OnComplete(() =>
+        transform.DOScaleY(1.2f, 0.05f).SetUpdate(true).SetEase(Ease.OutQuad).OnComplete(() =>
         {
-            transform.DOScaleY(1.0f, 0.1f).SetEase(Ease.InQuad);
+            transform.DOScaleY(1.0f, 0.1f).SetUpdate(true).SetEase(Ease.InQuad);
         });
     }
 
     public void OnLaunch()
     {
-        transform.DOScaleY(1.0f, 0.5f).SetEase(Ease.OutElastic).SetDelay(0.02f);
+        transform.DOScaleY(1.0f, 0.5f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(0.02f);
     }
 
 }

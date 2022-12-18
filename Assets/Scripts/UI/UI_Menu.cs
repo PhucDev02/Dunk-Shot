@@ -39,5 +39,10 @@ public class UI_Menu : MonoBehaviour
         else
             darkmodeBtn.sprite = darkmodeOff;
     }
+    public void NewGame()
+    {
+        panel.SetActive(true);
+        panel.GetComponent<CanvasGroup>().DOFade(1, 0.3f);
+    }
 
 }

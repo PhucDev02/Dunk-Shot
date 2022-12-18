@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rigidBody;
     [SerializeField] new CircleCollider2D collider;
+   public static bool isOnAir=true;
     private void Awake()
     {
         this.RegisterListener(EventID.OnSecondChange, (param) => Respawn());
@@ -17,18 +18,20 @@ public class BallController : MonoBehaviour
         rigidBody.AddForce(DragPanel.getForce());
         transform.SetParent(null);
         rigidBody.angularVelocity = Random.Range(300, 1200);
-
         GameController.Instance.isPerfect = true;
     }
     public void ContactHoop()
     {
+        isOnAir = false;
         rigidBody.simulated = false;
         rigidBody.velocity = Vector2.zero;
     }
     public void Respawn()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.velocity = Vector2.zero;
         gameObject.SetActive(true);
-        transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1.5f;
+        transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1f;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -47,5 +50,11 @@ public class BallController : MonoBehaviour
             this.PostEvent(EventID.OnGameOver);
         }
     }
-
+    public void NewGame()
+    {
+        rigidBody.velocity = Vector2.zero;
+        rigidBody.simulated = true;
+        gameObject.transform.SetParent(null);
+        gameObject.transform.position = GameManager.initPosBall;
+    }
 }

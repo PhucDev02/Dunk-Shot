@@ -11,11 +11,22 @@ public class GameController : MonoBehaviour
     {
         Instance = this;
     }
-    [SerializeField] GameObject ball;
+    [SerializeField] BallController ball;
 
     [SerializeField] private int score, streak, bounceCnt;
     public bool isPerfect;
     public bool IsGameOver;
+    public void NewGame()
+    {
+        Reset();
+        UI_GameOver.Instance.NewGame();
+        UI_SecondChange.Instance.NewGame();
+        UI_Menu.Instance.NewGame();
+        UI_Gameplay.Instance.NewGame();
+        HoopsPooler.Instance.NewGame();
+        ball.NewGame();
+        CameraController.Instance.NewGame();
+    }
     private void Start()
     {
         Reset();
@@ -78,14 +89,14 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            ball.GetComponent<BallController>().Respawn();
+            ball.Respawn();
             HoopsPooler.Instance.OnSecondChange();
         }
     }
     IEnumerator WaitGameOver()
     {
         yield return new WaitForSeconds(0.3f);
-        if (UI_SecondChange.Instance.IsActivated == false && GameController.Instance.score >= 3)
+        if (UI_SecondChange.Instance.IsActivated == false && score >= 3)
         {
             UI_SecondChange.Instance.ActivePanel();
         }

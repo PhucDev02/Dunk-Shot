@@ -11,10 +11,12 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] Transform firstHoop;
     [SerializeField] CinemachineVirtualCamera vCamera;
+    [SerializeField] GameObject vCamPrefab;
     [SerializeField] Transform ball;
     [SerializeField] SpriteRenderer bound;
     CinemachineComponentBase componentBase;
     public float screenWidth, screenHeight;
+    [SerializeField] private Vector3 initCameraPosition;
     private void Awake()
     {
         Instance = this;
@@ -27,6 +29,10 @@ public class CameraController : MonoBehaviour
 
         setCamera();
 
+    }
+    private void Start()
+    {
+        initCameraPosition = vCamera.transform.position;
     }
     private void setCamera()
     {
@@ -41,7 +47,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         if (GameController.Instance.IsGameOver == false)
-            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 1.5f)
+            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 1f)
             {
                 vCamera.m_Follow = null;
             }
@@ -56,4 +62,15 @@ public class CameraController : MonoBehaviour
     {
         vCamera.m_Follow = ball;
     }
+    public void NewGame()
+    {
+        if (vCamera != null)
+            Destroy(vCamera.gameObject);
+        GameObject tmp = Instantiate(vCamPrefab);
+        vCamera =tmp.GetComponent<CinemachineVirtualCamera>();
+        vCamera.transform.position = initCameraPosition;
+        vCamera.m_Follow = firstHoop;
+        setCamera();
+    }
+
 }

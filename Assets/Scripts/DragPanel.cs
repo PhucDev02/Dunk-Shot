@@ -13,7 +13,7 @@ public class DragPanel : MonoBehaviour
     private bool isValid;
     private void OnMouseDown()
     {
-        if (!IsMouseOverUI())
+        if (!IsMouseOverUI() && !BallController.isOnAir)
         {
             isValid = true;
             startPosition = Input.mousePosition;
@@ -24,13 +24,11 @@ public class DragPanel : MonoBehaviour
     }
     private void OnMouseDrag()
     {
+        if (!IsMouseOverUI() && isValid)
         {
-            if (!IsMouseOverUI() && isValid)
-            {
-                endPosition = Input.mousePosition;
-                force = startPosition - endPosition;
-                this.PostEvent(EventID.OnDrag);
-            }
+            endPosition = Input.mousePosition;
+            force = startPosition - endPosition;
+            this.PostEvent(EventID.OnDrag);
         }
     }
     private void OnMouseUp()

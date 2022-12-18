@@ -21,6 +21,7 @@ public class UI_Controller : MonoBehaviour
         DOTween.KillAll();
         this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
         this.RegisterListener(EventID.OnPurchaseItem, (param) => UpdateCurrency());
+        flashTransition.gameObject.SetActive(false);
     }
 
     private void ApplyTheme()
@@ -40,15 +41,23 @@ public class UI_Controller : MonoBehaviour
         ApplyTheme();
         ApplyDarkmode();
         UpdateCurrency();
-        flashTransition.GetComponent<Image>().DOFade(a, 0);
-        flashTransition.GetComponent<Image>().DOFade(0, timeFade);
     }
     public void Reload()
     {
-        flashTransition.GetComponent<Image>().DOFade(a, timeFade).OnComplete(() =>
+        flashTransition.gameObject.SetActive(true);
+        flashTransition.GetComponent<Image>().DOFade(a, timeFade).SetUpdate(true).OnComplete(() =>
         {
-            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+            GameController.Instance.NewGame();
+            flashTransition.GetComponent<Image>().DOFade(a, 0);
+            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(()=> { flashTransition.gameObject.SetActive(false); });
+            //SceneManager.LoadScene(0);
         });
+    }
+    public void HardReload()
+    {
+        Time.timeScale = 1;
+        GameController.Instance.NewGame();
     }
     public void SwitchDarkMode()
     {
@@ -66,7 +75,7 @@ public class UI_Controller : MonoBehaviour
     }
     void UpdateCurrency()
     {
-        for(int i=0;i<tokens.Length;i++)
+        for (int i = 0; i < tokens.Length; i++)
         {
             tokens[i].text = PlayerPrefs.GetInt("Tokens").ToString();
         }
@@ -75,7 +84,14 @@ public class UI_Controller : MonoBehaviour
             stars[i].text = PlayerPrefs.GetInt("Stars").ToString();
         }
     }
-
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+    }
     [SerializeField] Color darkColor, lightColor;
 
 }
