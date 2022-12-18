@@ -7,8 +7,8 @@ public class HoopsPooler : MonoBehaviour
     public static HoopsPooler Instance;
     // Start is called before the first frame update
     [SerializeField] List<GameObject> hoops;
-    private int idLastHoop, idLowestHoop;
-    private bool isValidShot;
+    [SerializeField] private int idLastHoop, idLowestHoop;
+    [SerializeField] private bool isValidShot;
     private void Awake()
     {
         Instance = this;
@@ -104,13 +104,26 @@ public class HoopsPooler : MonoBehaviour
         idLastHoop = 0;
         idLowestHoop = 0;
         isValidShot = false;
+        //for (int i = 0; i < transform.childCount; i++)
+        //    if (hoops[i].activeInHierarchy)
+        //    {
+        //        hoops[i].GetComponent<HoopController>().reset();
+        //        hoops[i].SetActive(false);
+        //    }
+        int dem = 0;
         for (int i = 0; i < transform.childCount; i++)
             if (hoops[i].activeInHierarchy)
             {
                 hoops[i].GetComponent<HoopController>().reset();
-                hoops[i].SetActive(false);
+                if (dem == 0)
+                {
+                    idLastHoop = hoops[i].GetComponent<HoopController>().id;
+                    hoops[i].transform.position = GameManager.initPosFirstHoop;
+                }
+                else
+                    hoops[i].transform.position = GameManager.initPosSecondHoop;
+                dem++;
+                if (dem == 2) return;
             }
-        getHoop().transform.position = GameManager.initPosFirstHoop;
-        getHoop().transform.position = GameManager.initPosSecondHoop;
     }
 }

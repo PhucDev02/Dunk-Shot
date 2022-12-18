@@ -18,7 +18,12 @@ public class HoopController : MonoBehaviour
     [SerializeField] GameObject powerRing;
     private void OnEnable()
     {
-        reset();
+        ApplyTheme();
+        //scale at inspector
+        transform.rotation = Quaternion.identity;
+        isHoldingBall = false;
+        transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
+        netController.sensor.enabled = true;
     }
     public void reset()
     {
@@ -26,9 +31,8 @@ public class HoopController : MonoBehaviour
         //scale at inspector
         transform.rotation = Quaternion.identity;
         isHoldingBall = false;
-        transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
+        transform.DOScale(0.36f, 0f);
         netController.sensor.enabled = true;
-
     }
     void Start()
     {
