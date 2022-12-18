@@ -44,6 +44,7 @@ public class UI_Controller : MonoBehaviour
     }
     public void Reload()
     {
+        DOTween.KillAll();
         flashTransition.gameObject.SetActive(true);
         flashTransition.GetComponent<Image>().DOFade(a, timeFade).SetUpdate(true).OnComplete(() =>
         {

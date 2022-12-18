@@ -22,7 +22,6 @@ public class HoopController : MonoBehaviour
     }
     public void reset()
     {
-        Logger.Log("Hoop able");
         ApplyTheme();
         //scale at inspector
         transform.rotation = Quaternion.identity;
