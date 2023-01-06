@@ -8,7 +8,7 @@ public class UI_Gameplay : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] TextMeshProUGUI score, stars_txt, increaseScore, bounceCnt, streakCnt;
-    [SerializeField] GameObject pauseBtn;
+    [SerializeField] GameObject pauseBtn, holder;
     [SerializeField] Image background;
     public static UI_Gameplay Instance;
     private void Awake()
@@ -22,6 +22,10 @@ public class UI_Gameplay : MonoBehaviour
     private void Start()
     {
         ApplyThemeAndDarkmode();
+    }
+    private void FixedUpdate()
+    {
+        holder.transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 0.5f;
     }
     void ApplyThemeAndDarkmode()
     {
@@ -49,32 +53,45 @@ public class UI_Gameplay : MonoBehaviour
             bounceCnt.text = "Bounce x" + bounce.ToString();
         //
         increaseScore.text = "+" + point.ToString();
-
-        streakCnt.transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 0.5f;
-        bounceCnt.transform.position = streakCnt.transform.position;
-        increaseScore.transform.position = streakCnt.transform.position;
-
-        streakCnt.DOFade(1, 0.1f);
-        streakCnt.transform.DOMoveY(streakCnt.transform.position.y + 0f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
-         {
-             streakCnt.DOFade(0, 0.2f);
-         });
-
-        bounceCnt.DOFade(1, 0.1f);
-        bounceCnt.transform.DOMoveY(bounceCnt.transform.position.y + 0.4f, 0.5f).SetDelay(0.3f).SetEase(Ease.InOutSine).OnComplete(() =>
-        {
-            bounceCnt.DOFade(0, 0.2f);
-        });
+        streakCnt.transform.localPosition = Vector3.zero;
+        bounceCnt.transform.localPosition = Vector3.zero;
+        increaseScore.transform.localPosition = Vector3.zero;
+        // hien pf,bounce,diem
+        animPerfect();
+        animBounce();
+        animPoint();
+    }
+    private void animPoint()
+    {
 
         increaseScore.DOFade(1, 0.1f).SetDelay(0.6f).OnComplete(() =>
         {
             UpdateScore();
-            increaseScore.transform.DOMoveY(increaseScore.transform.position.y + 0.3f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
+            increaseScore.transform.DOLocalMoveY(holder.transform.position.y + 5f, 0.5f).SetEase(Ease.InSine).OnComplete(() =>
             {
+                increaseScore.transform.DOLocalMoveY(holder.transform.position.y + 5f, 0.5f);
                 increaseScore.DOFade(0, 0.2f);
             });
         });
-        // hien pf,bounce,diem
+    }
+    private void animBounce()
+    {
+        bounceCnt.DOFade(1, 0.1f);
+        bounceCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.4f, 0.5f).SetDelay(0.3f).SetEase(Ease.InSine).OnComplete(() =>
+        {
+            bounceCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.4f, 0.5f);
+            bounceCnt.DOFade(0, 0.2f);
+        });
+    }
+    private void animPerfect()
+    {
+
+        streakCnt.DOFade(1, 0.1f);
+        streakCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.3f, 0.5f).SetEase(Ease.InSine).OnComplete(() =>
+        {
+            streakCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.3f, 0.5f);
+            streakCnt.DOFade(0, 0.2f);
+        });
 
     }
     public void UpdateScore()
@@ -98,10 +115,10 @@ public class UI_Gameplay : MonoBehaviour
     }
     public void NewGame()
     {
-        
+
         bounceCnt.DOFade(0, 0);
         increaseScore.DOFade(0, 0);
-        streakCnt.DOFade(0,0);
+        streakCnt.DOFade(0, 0);
         UpdateScore();
     }
 }

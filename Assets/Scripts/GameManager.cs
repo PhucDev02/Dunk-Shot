@@ -89,6 +89,12 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Stars", value);
     }
+    //////////////// ball 
+    public Ball[] balls;
+    public Ball GetBallSelected()
+    {
+        return balls[PlayerPrefs.GetInt("IdBallSelected")];
+    }
     ///////////////////////////////// inspector
     public static Vector3 powerRingScale = new Vector3(1.3f, 0.9f, 1);
     public static Vector3 initPositionCamera = new Vector3(-1.26f, -1.51f, 0.19f);

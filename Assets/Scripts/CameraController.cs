@@ -26,6 +26,7 @@ public class CameraController : MonoBehaviour
         screenHeight = Camera.main.orthographicSize * 2;
         screenWidth = screenHeight * Camera.main.aspect;
 
+        Debug.Log(bound.bounds.size.x);
 
         setCamera();
 
@@ -67,10 +68,11 @@ public class CameraController : MonoBehaviour
         if (vCamera != null)
             Destroy(vCamera.gameObject);
         GameObject tmp = Instantiate(vCamPrefab);
-        vCamera =tmp.GetComponent<CinemachineVirtualCamera>();
+        vCamera = tmp.GetComponent<CinemachineVirtualCamera>();
         vCamera.transform.position = initCameraPosition;
         vCamera.m_Follow = firstHoop;
-        setCamera();
-    }
+        //setCamera();
+        Camera.main.orthographicSize = vCamera.m_Lens.OrthographicSize = bound.bounds.size.x * Screen.height / Screen.width * 0.5f;
 
+    }
 }

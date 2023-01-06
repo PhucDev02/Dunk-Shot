@@ -13,13 +13,17 @@ public class NetController : MonoBehaviour
     {
         hoopController.ContactBall();
         sensor.enabled = false;
+        Logger.Log("ContactBall");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.relativeVelocity.y > 0)
+        if (collision.relativeVelocity.y > 1)
+        {
             OnCollisionWithBall();
+            Logger.Log("Collison vs Net");
+        }
     }
-    public void EnableSensor()
+    public void EnableSensor()  
     {
         StartCoroutine(WaitToEnableSensor());
     }
@@ -30,11 +34,14 @@ public class NetController : MonoBehaviour
     }
     public void OnLaunchFailed()
     {
-        transform.DOScaleY(1.0f, 0.5f).SetUpdate(true).SetEase(Ease.OutElastic);
+        transform.DOScaleY(1.0f, 0.5f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(0.05f);
+    }
+    public void OnLaunch()
+    {
+        transform.DOScaleY(1.0f, 0.5f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(0.1f);
     }
     public void OnCollisionWithBall()
     {
-        Debug.Log("a");
         transform.DOScaleY(0.8f, 0.05f).SetEase(Ease.OutQuad).SetUpdate(true).OnComplete(() =>
         {
             transform.DOScaleY(1.0f, 0.1f).SetUpdate(true).SetEase(Ease.OutBack);
@@ -48,9 +55,5 @@ public class NetController : MonoBehaviour
         });
     }
 
-    public void OnLaunch()
-    {
-        transform.DOScaleY(1.0f, 0.5f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(0.02f);
-    }
 
 }
