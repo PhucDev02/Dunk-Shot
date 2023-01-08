@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Theme[] themes;
     public static GameManager Instance;
     public Themes currentTheme;
+    ///
     private void Awake()
     {
         Instance = this;
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
 
         SetStarValue(999);
         ThemeController.Instance.InitThemeShop();
+        BallShopController.Instance.InitBallShop();
+        for (int i = 0; i < balls.Length; i++)
+            balls[i].id = i;
         Logger.Log("Manager Awake");
     }
     #region theme execute

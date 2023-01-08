@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
         screenHeight = Camera.main.orthographicSize * 2;
         screenWidth = screenHeight * Camera.main.aspect;
 
-        Debug.Log(bound.bounds.size.x);
 
         setCamera();
 

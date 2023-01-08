@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rigidBody;
     [SerializeField] new CircleCollider2D collider;
+    [SerializeField] BallTrail trail;
     public static bool isOnAir = true;
     private void Awake()
     {
@@ -58,5 +59,6 @@ public class BallController : MonoBehaviour
         rigidBody.simulated = true;
         gameObject.transform.SetParent(null);
         gameObject.transform.position = GameManager.initPosBall;
+        trail.DeactiveEffect();
     }
 }

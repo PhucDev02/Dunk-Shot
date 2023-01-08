@@ -11,6 +11,7 @@ public class UI_Gameplay : MonoBehaviour
     [SerializeField] GameObject pauseBtn, holder;
     [SerializeField] Image background;
     public static UI_Gameplay Instance;
+    private float offsetTime;
     private void Awake()
     {
         Instance = this;
@@ -43,15 +44,34 @@ public class UI_Gameplay : MonoBehaviour
     public void ShowIncreasePoint(int point, int streak, int bounce)
     {
         if (streak == 0) streakCnt.text = "";
-        else if (streak == 1) streakCnt.text = "Perfect!";
+        else if (streak == 1)
+            streakCnt.text = "Perfect!";
         else
             streakCnt.text = "Perfect x" + streak.ToString();
+        if (streak == 2)
+            this.PostEvent(EventID.OnPerfectx2);
+        else if (streak >= 3)
+            this.PostEvent(EventID.OnPerfectx3);
         //
         if (bounce == 0) bounceCnt.text = "";
         else if (bounce == 1) bounceCnt.text = "Bounce!";
         else
             bounceCnt.text = "Bounce x" + bounce.ToString();
         //
+        if (streak != 0)
+        {
+            if (bounce != 0)
+                offsetTime = 0;
+            else offsetTime = 0.3f;
+        }
+        else
+        {
+            if (bounce == 0)
+                offsetTime = 0.6f;
+            else
+                offsetTime = 0.3f;
+        }
+
         increaseScore.text = "+" + point.ToString();
         streakCnt.transform.localPosition = Vector3.zero;
         bounceCnt.transform.localPosition = Vector3.zero;
@@ -63,34 +83,31 @@ public class UI_Gameplay : MonoBehaviour
     }
     private void animPoint()
     {
+        UpdateScore();
+        increaseScore.DOFade(0, 0).SetDelay(0.6f - offsetTime).OnComplete(() =>
+          {
+              increaseScore.DOFade(1, 0.2f);
+              increaseScore.transform.DOLocalMoveY(holder.transform.position.y + 50, 1.3f).SetEase(Ease.InOutSine);
+              increaseScore.DOFade(0, 0.2f).SetDelay(0.7f);
+          });
 
-        increaseScore.DOFade(1, 0.1f).SetDelay(0.6f).OnComplete(() =>
-        {
-            UpdateScore();
-            increaseScore.transform.DOLocalMoveY(holder.transform.position.y + 5f, 0.5f).SetEase(Ease.InSine).OnComplete(() =>
-            {
-                increaseScore.transform.DOLocalMoveY(holder.transform.position.y + 5f, 0.5f);
-                increaseScore.DOFade(0, 0.2f);
-            });
-        });
     }
     private void animBounce()
     {
-        bounceCnt.DOFade(1, 0.1f);
-        bounceCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.4f, 0.5f).SetDelay(0.3f).SetEase(Ease.InSine).OnComplete(() =>
-        {
-            bounceCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.4f, 0.5f);
-            bounceCnt.DOFade(0, 0.2f);
-        });
+        bounceCnt.DOFade(0, 0).SetDelay(0.3f - offsetTime).OnComplete(() =>
+          {
+              bounceCnt.DOFade(1, 0.2f);
+              bounceCnt.transform.DOLocalMoveY(holder.transform.position.y + 80, 1.3f).SetEase(Ease.InOutSine);
+              bounceCnt.DOFade(0, 0.2f).SetDelay(0.65f);
+          });
     }
     private void animPerfect()
     {
-
-        streakCnt.DOFade(1, 0.1f);
-        streakCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.3f, 0.5f).SetEase(Ease.InSine).OnComplete(() =>
+        streakCnt.DOFade(0, 0).SetDelay(0).OnComplete(() =>
         {
-            streakCnt.transform.DOLocalMoveY(holder.transform.position.y + 0.3f, 0.5f);
-            streakCnt.DOFade(0, 0.2f);
+            streakCnt.DOFade(1, 0.2f);
+            streakCnt.transform.DOLocalMoveY(holder.transform.position.y + 110, 1.3f).SetEase(Ease.InOutSine);
+            streakCnt.DOFade(0, 0.2f).SetDelay(0.6f);
         });
 
     }

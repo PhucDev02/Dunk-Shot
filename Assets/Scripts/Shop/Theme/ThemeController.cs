@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThemeController : MonoBehaviour
 {
     public static ThemeController Instance;
     [SerializeField] Transform normalTheme,seasonsTheme;
     [SerializeField] GameObject child;
+    [SerializeField] ContentSizeFitter fitter;
     private void Awake()
     {
         Instance = this;
@@ -23,6 +25,7 @@ public class ThemeController : MonoBehaviour
         }
         tmp = Instantiate(child, seasonsTheme);
         tmp.GetComponent<ThemeDisplay>().theme = GameManager.Instance.themes[GameManager.Instance.themes.Length-1];
+        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
     }
     public void SetUnlockStatus(Theme theme,int status)
     {
