@@ -11,6 +11,7 @@ public class PopupManager : MonoBehaviour
         Instance = this;
         this.RegisterListener(EventID.OnShowPopup, (param) => ShowPopup((Ball)(param)));
     }
+    [SerializeField] VideoPopup videoPopup;
     [SerializeField] MissionPopup missionPopup;
     [SerializeField] ChallengePopup challengePopup;
     [SerializeField] SecretPopup secretPopup;
@@ -21,6 +22,10 @@ public class PopupManager : MonoBehaviour
         panel.SetActive(true);
         switch (ball.type)
         {
+            case BallType.Video:
+                videoPopup.AssignPopup(ball);
+                videoPopup.ShowPopup();
+                break;
             case BallType.Mission:
                 missionPopup.AssignPopup(ball);
                 missionPopup.ShowPopup();

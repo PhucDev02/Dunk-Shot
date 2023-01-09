@@ -6,6 +6,10 @@ using TMPro;
 using DG.Tweening;
 public class Popup : MonoBehaviour
 {
+    private void Start()
+    {
+        preview.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+    }
     public void ShowPopup()
     {
         gameObject.SetActive(true);
@@ -15,6 +19,7 @@ public class Popup : MonoBehaviour
     public void HidePopup()
     {
         gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
     }
     [SerializeField] protected Image preview;
     [SerializeField] protected TextMeshProUGUI description;
