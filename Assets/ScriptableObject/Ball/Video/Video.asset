@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95788c99951ffb64294e638c29f3a733, type: 3}
   m_Name: Video
   m_EditorClassIdentifier: 
+  id: 8
   type: 1
   price: 100
   description: iuflbccyasd
@@ -75,4 +76,4 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   spriteBall: {fileID: 21300000, guid: 9f164fcb620d32f4a831aef56b53c541, type: 3}
   spriteFlare: {fileID: 21300000, guid: ae6ffa3a71c55b743a210af274a95955, type: 3}
-  videosCount: 3
+  videosCount: 2

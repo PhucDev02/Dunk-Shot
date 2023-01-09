@@ -38,7 +38,7 @@ public class NetController : MonoBehaviour
     }
     public void OnLaunch()
     {
-        transform.DOScaleY(1.0f, 0.5f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(0.2f);
+        transform.DOScaleY(1.0f, 0.6f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(Time.fixedDeltaTime+0.01f);
     }
     public void OnCollisionWithBall()
     {

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95788c99951ffb64294e638c29f3a733, type: 3}
   m_Name: Earth
   m_EditorClassIdentifier: 
+  id: 3
   type: 0
-  price: 100
+  price: 250
   description: iuflbccyasd
   color:
     serializedVersion: 2

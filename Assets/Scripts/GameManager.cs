@@ -25,17 +25,23 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //SetTheme("Classic");
         SetTheme(PlayerPrefs.GetString("Theme"));
         if (PlayerPrefs.GetInt("Tokens") == 0)
             SetTokenValue(999);
-
-        SetStarValue(999);
-        ThemeController.Instance.InitThemeShop();
-        BallShopController.Instance.InitBallShop();
+        else
+            SetTokenValue(PlayerPrefs.GetInt("Tokens"));
+        if (PlayerPrefs.GetInt("Stars") == 0)
+            SetStarValue(999);
+        else
+            SetStarValue(PlayerPrefs.GetInt("Stars"));
         for (int i = 0; i < balls.Length; i++)
             balls[i].id = i;
+
+        ThemeController.Instance.InitThemeShop();
+        BallShopController.Instance.InitBallShop();
+
         Logger.Log("Manager Awake");
+
     }
     #region theme execute
     public Theme GetTheme()

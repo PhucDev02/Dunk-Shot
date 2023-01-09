@@ -10,6 +10,5 @@ public class SpriteHolder : MonoBehaviour
     {
         Instance = this;
     }
-
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] public Sprite orangeTag,purpleTag;
 }

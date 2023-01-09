@@ -74,9 +74,9 @@ public class HoopsPooler : MonoBehaviour
     private Vector2 randomNewPosition()
     {
         if (hoops[idLastHoop].transform.position.x > 0)
-            return new Vector2(Random.Range(-(CameraController.Instance.screenWidth / 2 - 0.8f), 0), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
+            return new Vector2(Random.Range(-(CameraController.Instance.screenWidth / 2 - 0.8f), -1.0f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
         else
-            return new Vector2(Random.Range(0, CameraController.Instance.screenWidth / 2 - 0.8f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
+            return new Vector2(Random.Range(1.0f, CameraController.Instance.screenWidth / 2 - 0.8f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
 
     }
     public Transform GetLastHoop()

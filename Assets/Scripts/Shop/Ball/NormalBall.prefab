@@ -362,6 +362,7 @@ MonoBehaviour:
   lockStatus: {fileID: 8897116440155845338}
   ballPreview: {fileID: 8897116440376652015}
   price: {fileID: 8897116438499953789}
+  priceTag: {fileID: 8897116440067312465}
 --- !u!1 &8897116440067312467
 GameObject:
   m_ObjectHideFlags: 0

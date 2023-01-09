@@ -13,9 +13,6 @@ public class BallDisplay : MonoBehaviour
     {
         this.RegisterListener(EventID.OnChangeBall, (param) => UpdateSelectStatus());
     }
-    private void Start()
-    {
-    }
     public void Init(Ball ball)
     {
         this.ball = ball;
@@ -30,9 +27,9 @@ public class BallDisplay : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("IdBallSelected") == ball.id)
         {
+            ballPreview.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
             buffer.SetActive(true);
         }
-        Logger.Log("a");
     }
     public void UpdateSelectStatus()
     {
@@ -40,7 +37,30 @@ public class BallDisplay : MonoBehaviour
             if (PlayerPrefs.GetInt("IdBallSelected") == ball.id)
             {
                 buffer.SetActive(true);
+                buffer.GetComponent<Image>().transform.localScale = Vector3.zero;
+                buffer.GetComponent<Image>().transform.DOScale(1, 0.3f).SetEase(Ease.OutExpo).SetUpdate(true);
+                ballPreview.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true).SetDelay(0.11f);
             }
-            else buffer.SetActive(false);
+            else
+            {
+                buffer.SetActive(false);
+                ballPreview.transform.localScale = Vector3.one;
+                ballPreview.transform.DOScale(1, 0.3f).SetEase(Ease.OutExpo).SetUpdate(true).OnComplete(()=> {
+                    ballPreview.transform.DOKill();
+                });
+
+            }
+    }
+    protected void unlock()
+    {
+        Logger.Log("unlock");
+        this.PostEvent(EventID.OnPurchaseItem);
+        PlayerPrefs.SetInt("Ball_" + ball.id, 1);
+        ballPreview.transform.localScale = Vector3.one * 0.8f;
+        ballPreview.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo).SetUpdate(true);
+        lockStatus.SetActive(false);
+        //PlayerPrefs.SetInt("IdBallSelected", ball.id);
+        //this.PostEvent(EventID.OnChangeBall);
+
     }
 }

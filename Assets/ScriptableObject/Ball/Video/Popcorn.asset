@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95788c99951ffb64294e638c29f3a733, type: 3}
   m_Name: Popcorn
   m_EditorClassIdentifier: 
+  id: 7
   type: 1
   price: 100
   description: iuflbccyasd
@@ -75,4 +76,4 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   spriteBall: {fileID: 21300000, guid: 263a2afa508002e4c975b516788d9fc1, type: 3}
   spriteFlare: {fileID: 21300000, guid: 407f974f44bbaff47b1f29184cd2aded, type: 3}
-  videosCount: 3
+  videosCount: 5

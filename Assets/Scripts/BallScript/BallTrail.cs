@@ -22,52 +22,37 @@ public class BallTrail : MonoBehaviour
     }
     private void ApplySkin()
     {
-        try
-        {
+        if (flare != null)
             flare.textureSheetAnimation.SetSprite(0, GameManager.Instance.GetBallSelected().spriteFlare);
 
-            ParticleSystem.ColorOverLifetimeModule color = flare.colorOverLifetime;
-            color.color = GameManager.Instance.GetBallSelected().color;
-            color = smokeFlare.colorOverLifetime;
-            color.color = GameManager.Instance.GetBallSelected().smokeColor;
-            spriteBall.sprite = GameManager.Instance.GetBallSelected().spriteBall;
-        }
-        catch { }
+        ParticleSystem.ColorOverLifetimeModule color = flare.colorOverLifetime;
+        color.color = GameManager.Instance.GetBallSelected().color;
+        color = smokeFlare.colorOverLifetime;
+        color.color = GameManager.Instance.GetBallSelected().smokeColor;
+        spriteBall.sprite = GameManager.Instance.GetBallSelected().spriteBall;
     }
     private void Smoke()
     {
-        try
-        {
+        if (smoke != null)
             smoke.Play();
-        }
-        catch
-        {
-        }
     }
     private void Flare()
     {
-        try
-        {
+        if (smoke != null)
             smoke.Stop();
+        if (flare != null)
             flare.Play();
+        if (smokeFlare != null)
             smokeFlare.Play();
-        }
-        catch
-        {
-
-        }
     }
     public void DeactiveEffect()
     {
-        try
-        {
+        if (smoke != null)
             smoke.Stop();
+        if (flare != null)
             flare.Stop();
+        if (smokeFlare != null)
             smokeFlare.Stop();
-        }
-        catch
-        {
-        }
     }
 
 }

@@ -12,6 +12,7 @@ public class UI_Customize : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        gameObject.SetActive(true);
     }
     private void Start()
     {

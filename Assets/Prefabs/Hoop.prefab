@@ -442,7 +442,7 @@ EdgeCollider2D:
   m_GameObject: {fileID: 2812352083316794386}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e685e1405ce331544bb951142e624bd1, type: 2}
+  m_Material: {fileID: 6200000, guid: bef87d3e7b0a03648a60eea3dbd14130, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -453,11 +453,11 @@ EdgeCollider2D:
   - {x: -1.2199545, y: -0.45712423}
   - {x: -0.843703, y: -0.85706496}
   - {x: -0.46425796, y: -1.1064227}
-  - {x: -0.00096318126, y: -1.2188017}
-  - {x: 0.481062, y: -1.1035817}
-  - {x: 0.82372105, y: -0.86743546}
-  - {x: 1.2254559, y: -0.44633135}
-  - {x: 1.4747626, y: -0.08690537}
+  - {x: 0, y: -1.2188017}
+  - {x: 0.464258, y: -1.106423}
+  - {x: 0.843703, y: -0.857065}
+  - {x: 1.219954, y: -0.4571242}
+  - {x: 1.461432, y: -0.09267748}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -502,7 +502,7 @@ EdgeCollider2D:
   m_GameObject: {fileID: 2812352083316794386}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bef87d3e7b0a03648a60eea3dbd14130, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
