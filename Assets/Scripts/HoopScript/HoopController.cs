@@ -16,14 +16,17 @@ public class HoopController : MonoBehaviour
     public int id;
     [SerializeField] SpriteRenderer topHoop, downHoop;
     [SerializeField] GameObject powerRing;
+    [SerializeField] HoopEffect hoopEffect;
     private void OnEnable()
     {
         ApplyTheme();
         //scale at inspector
         transform.rotation = Quaternion.identity;
         isHoldingBall = false;
+        hoopEffect.Reset();
         transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
         netController.sensor.enabled = true;
+        powerRing.transform.DOScale(Vector2.right*1.3f+Vector2.up*0.9f,0);
     }
     public void reset()
     {
@@ -31,8 +34,11 @@ public class HoopController : MonoBehaviour
         //scale at inspector
         transform.rotation = Quaternion.identity;
         isHoldingBall = false;
+        transform.DOKill();
         transform.DOScale(0.36f, 0f);
+        hoopEffect.Reset();
         netController.sensor.enabled = true;
+        powerRing.transform.DOScale(Vector2.right*1.3f+Vector2.up*0.9f,0);
     }
     void Start()
     {
@@ -46,12 +52,13 @@ public class HoopController : MonoBehaviour
     }
     private void Shoot()
     {
-        if (isHoldingBall == true && DragPanel.force.magnitude > 140)
+        if (isHoldingBall == true && DragPanel.force.magnitude > DragPanel.minMagnitude)
         {
             isHoldingBall = false;
             ball.transform.position = anchor.position;
             netController.EnableSensor();
             ball.Shoot();
+            hoopEffect.ShootEffect();
             BallController.isOnAir = true;
             netController.OnLaunch();
         }
@@ -65,11 +72,18 @@ public class HoopController : MonoBehaviour
         {
             angle.z = DragPanel.GetAngle();
             scale.y = DragPanel.GetScale();
-            if (DragPanel.force.magnitude > 10)
+            if (DragPanel.force.magnitude > 0.1f)
             {
                 transform.rotation = Quaternion.Euler(angle);
-                Projection.Instance.TurnOnTrajectory();
-                Projection.Instance.SimulateTrajectory(ball, ball.transform.position);
+                if (DragPanel.force.magnitude > DragPanel.minMagnitude)
+                {
+                    Projection.Instance.TurnOnTrajectory();
+                    Projection.Instance.SimulateTrajectory(ball, ball.transform.position);
+                }
+                else
+                {
+                    Projection.Instance.TurnOffTrajectory();
+                }
             }
             net.transform.localScale = scale;
 

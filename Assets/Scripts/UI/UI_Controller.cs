@@ -51,7 +51,7 @@ public class UI_Controller : MonoBehaviour
             Time.timeScale = 1;
             GameController.Instance.NewGame();
             flashTransition.GetComponent<Image>().DOFade(a, 0);
-            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(()=> { flashTransition.gameObject.SetActive(false); });
+            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
             //SceneManager.LoadScene(0);
         });
     }
@@ -95,4 +95,16 @@ public class UI_Controller : MonoBehaviour
     }
     [SerializeField] Color darkColor, lightColor;
 
+    //
+    [SerializeField] TextMeshProUGUI fps;
+    private float timer;
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > 1)
+        {
+            fps.text = ((int)(1 / Time.deltaTime)).ToString();
+            timer = 0;
+        }
+    }
 }

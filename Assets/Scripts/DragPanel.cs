@@ -7,16 +7,16 @@ public class DragPanel : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] new BoxCollider2D collider;
-    Vector2 startPosition, endPosition;
+    Vector3 startPosition, endPosition;
     public static Vector2 force;
-    private static float maxNetScale = 1.8f, maxMagnitude = 370, forceCoef = 2f;
+    public static float maxNetScale = 1.8f, maxMagnitude=3, minMagnitude=0.5f, forceCoef = 275; //275
     private bool isValid;
     private void OnMouseDown()
     {
         if (!IsMouseOverUI() && !BallController.isOnAir)
         {
             isValid = true;
-            startPosition = Input.mousePosition;
+            startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             UI_Menu.Instance.Hide();
         }
         else isValid = false;
@@ -26,7 +26,7 @@ public class DragPanel : MonoBehaviour
     {
         if (!IsMouseOverUI() && isValid)
         {
-            endPosition = Input.mousePosition;
+            endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             force = startPosition - endPosition;
             this.PostEvent(EventID.OnDrag);
         }
@@ -35,16 +35,16 @@ public class DragPanel : MonoBehaviour
     {
         //if (!IsMouseOverUI())
         {
+            Logger.Log(maxMagnitude.ToString());
+            Logger.Log(force.magnitude.ToString());
+            //Logger.Log(Vector3.Angle(Vector3.up, force).ToString());
             this.PostEvent(EventID.OnShoot);
             force = Vector2.zero;
         }
     }
     public static float GetAngle()
     {
-        if (force.x < 0)
-            return Vector3.Angle(Vector3.up, force);
-        else
-            return -Vector3.Angle(Vector3.up, force);
+        return force.x < 0 ? Vector3.Angle(Vector3.up, force) : -Vector3.Angle(Vector3.up, force);
     }
     public static float GetScale()
     {

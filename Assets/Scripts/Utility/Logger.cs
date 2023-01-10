@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class Logger : MonoBehaviour
+public class Logger
 {
     // Start is called before the first frame update
     public static bool enable = true;

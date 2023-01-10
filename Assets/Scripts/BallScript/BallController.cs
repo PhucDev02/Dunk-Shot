@@ -8,9 +8,11 @@ public class BallController : MonoBehaviour
     [SerializeField] new CircleCollider2D collider;
     [SerializeField] BallTrail trail;
     public static bool isOnAir = true;
+    private Vector3 startScale;
     private void Awake()
     {
         this.RegisterListener(EventID.OnSecondChange, (param) => Respawn());
+        startScale = transform.lossyScale;
 
     }
     public void Shoot()

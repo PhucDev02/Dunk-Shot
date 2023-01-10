@@ -67,6 +67,7 @@ public class HoopsPooler : MonoBehaviour
                 hoops[i].transform.position = randomNewPosition();
                 //rotation
                 hoops[i].SetActive(true);
+               // ObstacleHoopSpawner.Instance.Spawn(hoops[i].GetComponent<HoopController>());
                 return;
             }
         }
@@ -104,16 +105,16 @@ public class HoopsPooler : MonoBehaviour
         idLastHoop = 0;
         idLowestHoop = 0;
         isValidShot = false;
-        //for (int i = 0; i < transform.childCount; i++)
-        //    if (hoops[i].activeInHierarchy)
-        //    {
-        //        hoops[i].GetComponent<HoopController>().reset();
-        //        hoops[i].SetActive(false);
-        //    }
-        int dem = 0;
         for (int i = 0; i < transform.childCount; i++)
             if (hoops[i].activeInHierarchy)
             {
+                hoops[i].SetActive(false);
+            }
+        int dem = 0;
+        for (int i = 0; i < transform.childCount; i++)
+            if (!hoops[i].activeInHierarchy)
+            {
+                hoops[i].SetActive(true);
                 hoops[i].GetComponent<HoopController>().reset();
                 if (dem == 0)
                 {

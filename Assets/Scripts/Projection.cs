@@ -20,6 +20,7 @@ public class Projection : MonoBehaviour
 
     [SerializeField] private Transform obstacles;
     private List<GameObject> simulationObstacles;
+    private BallController ghostObj = null;
 
     [SerializeField] private int maxTrajectoryPoint;
     [SerializeField] GameObject pointPrefab;
@@ -29,7 +30,6 @@ public class Projection : MonoBehaviour
     private bool isVisible;
     private float alpha;
     private Color color;
-    private float highestVerticlePoint;
     private void ApplyTheme()
     {
         for (int i = 0; i < points.Length; i++)
@@ -70,20 +70,28 @@ public class Projection : MonoBehaviour
             points[i].transform.localScale = points[i - 1].transform.lossyScale * 0.98f;
             pointsRenderer[i] = points[i].GetComponent<SpriteRenderer>();
         }
+        ghostObj = Instantiate(GameObject.FindGameObjectWithTag("Ball").GetComponent<BallController>());
+        ghostObj.GetComponent<SpriteRenderer>().enabled = false;
+        ghostObj.GetComponent<BallTrail>().enabled = false;
+        ghostObj.transform.GetChild(0).gameObject.SetActive(false);
+        ghostObj.transform.GetChild(1).gameObject.SetActive(false);
+        SceneManager.MoveGameObjectToScene(ghostObj.gameObject, simulatorScene);
+        
         ApplyTheme();
     }
 
 
     public void SimulateTrajectory(BallController ball, Vector2 pos)
     {
+        //update obstacles
         for (int i = 0; i < obstacles.childCount; i++)
         {
             simulationObstacles[i].transform.position = obstacles.GetChild(i).transform.position;
         }
 
-        var ghostObj = Instantiate(ball, pos, Quaternion.identity);
+        ghostObj.transform.position = pos;
         ghostObj.gameObject.transform.localScale = ball.transform.lossyScale;
-        SceneManager.MoveGameObjectToScene(ghostObj.gameObject, simulatorScene);
+        ghostObj.ContactHoop();
         setAlphaPoint();
         ghostObj.Shoot();
         for (int i = 0; i < maxTrajectoryPoint * 3; i++)
@@ -92,14 +100,13 @@ public class Projection : MonoBehaviour
             if (i % 3 == 0)
             {
                 points[i / 3].transform.position = ghostObj.transform.position;
-                highestVerticlePoint = Mathf.Max(highestVerticlePoint, ghostObj.transform.position.y);
             }
         }
-        Destroy(ghostObj.gameObject);
+        //Destroy(ghostObj.gameObject);
     }
     private void setAlphaPoint()
     {
-        alpha = (DragPanel.force.magnitude - 120) / 100;
+        alpha = (DragPanel.force.magnitude - DragPanel.minMagnitude) / 0.5f;
         color.a = alpha;
         for (int i = 0; i < maxTrajectoryPoint; i++)
         {
@@ -124,8 +131,8 @@ public class Projection : MonoBehaviour
                 obj.SetActive(true);
         }
     }
-    public float GetHighestVerticlePoint()
+    public void ToggleCheatMode()
     {
-        return highestVerticlePoint;
+        maxTrajectoryPoint = 30;
     }
 }
