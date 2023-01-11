@@ -9,6 +9,7 @@ public class HoopsPooler : MonoBehaviour
     [SerializeField] List<GameObject> hoops;
     [SerializeField] private int idLastHoop, idLowestHoop;
     [SerializeField] private bool isValidShot;
+    private int[] rotation = { 0, 15, 30, 45 };
     private void Awake()
     {
         Instance = this;
@@ -65,9 +66,10 @@ public class HoopsPooler : MonoBehaviour
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].transform.position = randomNewPosition();
-                //rotation
+                hoops[i].transform.rotation = randomNewRotate();
+
                 hoops[i].SetActive(true);
-               // ObstacleHoopSpawner.Instance.Spawn(hoops[i].GetComponent<HoopController>());
+                ObstacleHoopSpawner.Instance.Spawn(hoops[i].GetComponent<HoopController>());
                 return;
             }
         }
@@ -75,9 +77,18 @@ public class HoopsPooler : MonoBehaviour
     private Vector2 randomNewPosition()
     {
         if (hoops[idLastHoop].transform.position.x > 0)
-            return new Vector2(Random.Range(-(CameraController.Instance.screenWidth / 2 - 0.8f), -1.0f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
+            return new Vector2(Random.Range(-(CameraController.Instance.screenWidth / 2 - 1f), -1.0f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
         else
-            return new Vector2(Random.Range(1.0f, CameraController.Instance.screenWidth / 2 - 0.8f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
+            return new Vector2(Random.Range(1.0f, CameraController.Instance.screenWidth / 2 - 1f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
+
+    }
+    private Quaternion randomNewRotate()
+    {
+        if (hoops[idLastHoop].transform.position.x > 0)
+            return Quaternion.Euler(0, 0, rotation[Random.Range(0, 3)]);
+        else
+            return Quaternion.Euler(0, 0, -rotation[Random.Range(0, 3)]);
+
 
     }
     public Transform GetLastHoop()
@@ -108,6 +119,7 @@ public class HoopsPooler : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
             if (hoops[i].activeInHierarchy)
             {
+                hoops[i].GetComponent<HoopController>().reset();
                 hoops[i].SetActive(false);
             }
         int dem = 0;
@@ -115,7 +127,6 @@ public class HoopsPooler : MonoBehaviour
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].SetActive(true);
-                hoops[i].GetComponent<HoopController>().reset();
                 if (dem == 0)
                 {
                     idLastHoop = hoops[i].GetComponent<HoopController>().id;

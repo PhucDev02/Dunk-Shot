@@ -18,5 +18,5 @@ public static class PoolTag
     public static string SHIELD_3 = "Shield3";
     public static string SHIELD_4 = "Shield4";
 
-    public static string BACK_BOARD = "Bouncer";
+    public static string BOUNCER = "Bouncer";
 }

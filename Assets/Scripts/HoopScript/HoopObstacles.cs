@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class HoopObstacles : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<Obstacle> obstacles;
+
+    private void Awake()
     {
-        
+        obstacles = new List<Obstacle>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Renew()
     {
-        
+        foreach (var obstacle in obstacles)
+        {
+            obstacle.Disappear();
+            ObjectPool.Instance.Recall(obstacle.gameObject);
+        }
+
+        obstacles.Clear();
+    }
+
+    public void Add(Obstacle obstacle)
+    {
+        obstacles.Add(obstacle);
+    }
+
+    public void Release()
+    {
+        foreach (var obstacle in obstacles)
+        {
+            obstacle.Disappear();
+        }
+
+        obstacles.Clear();
     }
 }

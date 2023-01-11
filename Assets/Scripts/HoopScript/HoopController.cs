@@ -17,6 +17,8 @@ public class HoopController : MonoBehaviour
     [SerializeField] SpriteRenderer topHoop, downHoop;
     [SerializeField] GameObject powerRing;
     [SerializeField] HoopEffect hoopEffect;
+    [SerializeField] public HoopObstacles hoopObstacles;
+
     private void OnEnable()
     {
         ApplyTheme();
@@ -26,7 +28,7 @@ public class HoopController : MonoBehaviour
         hoopEffect.Reset();
         transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
         netController.sensor.enabled = true;
-        powerRing.transform.DOScale(Vector2.right*1.3f+Vector2.up*0.9f,0);
+        powerRing.transform.DOScale(Vector2.right * 1.3f + Vector2.up * 0.9f, 0);
     }
     public void reset()
     {
@@ -38,7 +40,8 @@ public class HoopController : MonoBehaviour
         transform.DOScale(0.36f, 0f);
         hoopEffect.Reset();
         netController.sensor.enabled = true;
-        powerRing.transform.DOScale(Vector2.right*1.3f+Vector2.up*0.9f,0);
+        powerRing.transform.DOScale(Vector2.right * 1.3f + Vector2.up * 0.9f, 0);
+        hoopObstacles.Renew();
     }
     void Start()
     {
@@ -98,7 +101,7 @@ public class HoopController : MonoBehaviour
             ball.transform.SetParent(transform);
             transform.DORotate(Vector2.zero, 0.2f).SetEase(Ease.InOutExpo);
             netController.OnContactHoop();
-
+            hoopObstacles.Release();
             HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
 

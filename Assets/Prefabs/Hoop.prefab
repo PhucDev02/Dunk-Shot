@@ -663,6 +663,7 @@ MonoBehaviour:
   downHoop: {fileID: 2812352082819388786}
   powerRing: {fileID: 323198203500914258}
   hoopEffect: {fileID: 7306738790161854083}
+  hoopObstacles: {fileID: 5962649236102298847}
 --- !u!114 &5962649236102298847
 MonoBehaviour:
   m_ObjectHideFlags: 0

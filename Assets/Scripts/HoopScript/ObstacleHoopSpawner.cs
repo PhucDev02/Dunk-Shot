@@ -18,7 +18,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         this.hoop = hoop;
         atRight = hoop.transform.position.x > 0f;
 
-        int id = Random.Range(1, 10);
+        int id = Random.Range(1, 20);
 
         switch (id)
         {
@@ -26,7 +26,10 @@ public class ObstacleHoopSpawner : MonoBehaviour
                 SpawnBesideBar();
                 break;
             case 2:
-                SpawnTopBar();
+                SpawnHorizontalTopBar();
+                break;
+            case 8:
+                SpawnVerticalTopBar();
                 break;
             case 3:
                 SpawnHorizontalBar();
@@ -38,10 +41,10 @@ public class ObstacleHoopSpawner : MonoBehaviour
                 SpawnShield();
                 break;
             case 6:
-                SpawnTopBackboard();
+                SpawnTopBouncer();
                 break;
             case 7:
-                SpawnSingleBesideBackboard();
+                SpawnSingleBesideBouncer();
                 break;
             default:
                 break;
@@ -50,40 +53,53 @@ public class ObstacleHoopSpawner : MonoBehaviour
 
     private void SpawnBesideBar()
     {
-        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_4).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_3).GetComponent<Obstacle>();
 
-        float x = Random.Range(1.35f, 1.55f);
-        float y = Random.Range(0.6f, 0.85f);
+        float x = 1f;
+        float y = 0.5f;
         float dir = atRight ? 1 : -1;
 
         obstacle.transform.position = hoop.transform.position + new Vector3(dir * x, y);
         obstacle.Appear();
 
+        hoop.hoopObstacles.Add(obstacle);
         hoop.transform.rotation = Quaternion.identity;
     }
 
-    private void SpawnTopBar()
+    private void SpawnHorizontalTopBar()
+    {
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
+
+        float y = 1.5f;
+        obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
+        obstacle.transform.DORotate(Vector3.forward * 90, 0);
+        obstacle.Appear();
+        hoop.hoopObstacles.Add(obstacle);
+
+        hoop.transform.rotation = Quaternion.identity;
+    }
+    private void SpawnVerticalTopBar()
+    {
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
+
+        float y = 2.5f;
+        obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
+        obstacle.Appear();
+        hoop.hoopObstacles.Add(obstacle);
+
+        hoop.transform.rotation = Quaternion.identity;
+    }
+    private void SpawnHorizontalBar()
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_3).GetComponent<Obstacle>();
 
-        float y = Random.Range(2.4f, 3f);
-
-        obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
-        obstacle.Appear();
-
-        hoop.transform.rotation = Quaternion.identity;
-    }
-
-    private void SpawnHorizontalBar()
-    {
-        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_1).GetComponent<Obstacle>();
-
-        float x = Random.Range(3f, 4f);
+        float x = 1;
         float dir = atRight ? -1 : 1;
 
         obstacle.transform.position = hoop.transform.position + new Vector3(dir * x, 0f);
         obstacle.Appear();
 
+        hoop.hoopObstacles.Add(obstacle);
         hoop.transform.rotation = Quaternion.identity;
     }
 
@@ -91,8 +107,8 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
-        float x = Random.Range(3.2f, 3.5f);
-        float y = Random.Range(-0.5f, -0.2f);
+        float x = Random.Range(1.5f, 2.0f);
+        float y = -0.5f;
         float duration = Random.Range(2.6f, 3f);
         float dir = atRight ? -1 : 1;
 
@@ -100,6 +116,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
         obstacle.Appear();
 
+        hoop.hoopObstacles.Add(obstacle);
         hoop.transform.rotation = Quaternion.identity;
     }
 
@@ -112,31 +129,34 @@ public class ObstacleHoopSpawner : MonoBehaviour
 
         float duration = Random.Range(2.8f, 4f);
 
+        hoop.hoopObstacles.Add(obstacle);
         obstacle.transform.position = hoop.transform.position;
         obstacle.transform.DORotate(Vector3.forward * 360f, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
         obstacle.Appear();
 
     }
 
-    private void SpawnTopBackboard()
+    private void SpawnTopBouncer()
     {
-        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BACK_BOARD).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BOUNCER).GetComponent<Obstacle>();
 
-        float y = Random.Range(2.6f, 3f);
+        float y = 1.5f;
 
+        hoop.hoopObstacles.Add(obstacle);
         obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
         obstacle.Appear();
 
         hoop.transform.rotation = Quaternion.identity;
     }
 
-    private void SpawnSingleBesideBackboard()
+    private void SpawnSingleBesideBouncer()
     {
-        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BACK_BOARD).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BOUNCER).GetComponent<Obstacle>();
 
-        float x = Random.Range(1.85f, 2.1f);
+        float x = 1.3f;
         float dir = atRight ? -1 : 1;
 
+        hoop.hoopObstacles.Add(obstacle);
         obstacle.transform.position = hoop.transform.position + new Vector3(dir * x, 0f);
         obstacle.Appear();
 

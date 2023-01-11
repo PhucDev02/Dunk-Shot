@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2990157779029716797}
   m_Layer: 0
   m_Name: MediumWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.196, y: 2.216}
+  m_Size: {x: 0.14, y: 1.5828571}
   m_Direction: 0
 --- !u!114 &2990157779029716797
 MonoBehaviour:
