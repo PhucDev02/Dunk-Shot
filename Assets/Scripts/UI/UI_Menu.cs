@@ -30,6 +30,14 @@ public class UI_Menu : MonoBehaviour
         });
         UI_Gameplay.Instance.UnhideButton();
     }
+    public void Show()
+    {
+        panel.GetComponent<CanvasGroup>().DOFade(1, 0.3f).OnComplete(() =>
+        {
+            panel.SetActive(true);
+        });
+        UI_Gameplay.Instance.HideButton();
+    }
     private void ApplyDarkmode()
     {
         if(PlayerPrefs.GetInt("Darkmode")==1)

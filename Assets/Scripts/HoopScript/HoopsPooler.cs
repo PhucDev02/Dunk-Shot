@@ -9,7 +9,7 @@ public class HoopsPooler : MonoBehaviour
     [SerializeField] List<GameObject> hoops;
     [SerializeField] private int idLastHoop, idLowestHoop;
     [SerializeField] private bool isValidShot;
-    private int[] rotation = { 0, 15, 30, 45 };
+    private int[] rotation = { 0,0,0, 15, 30, 45 };
     private void Awake()
     {
         Instance = this;
@@ -66,9 +66,8 @@ public class HoopsPooler : MonoBehaviour
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].transform.position = randomNewPosition();
-                hoops[i].transform.rotation = randomNewRotate();
-
                 hoops[i].SetActive(true);
+                hoops[i].transform.eulerAngles = randomNewRotate();
                 ObstacleHoopSpawner.Instance.Spawn(hoops[i].GetComponent<HoopController>());
                 return;
             }
@@ -82,12 +81,12 @@ public class HoopsPooler : MonoBehaviour
             return new Vector2(Random.Range(1.0f, CameraController.Instance.screenWidth / 2 - 1f), hoops[idLastHoop].transform.position.y + Random.Range(2.0f, 3f));
 
     }
-    private Quaternion randomNewRotate()
+    private Vector3 randomNewRotate()
     {
         if (hoops[idLastHoop].transform.position.x > 0)
-            return Quaternion.Euler(0, 0, rotation[Random.Range(0, 3)]);
+            return -Vector3.forward * rotation[Random.Range(0, 6)];
         else
-            return Quaternion.Euler(0, 0, -rotation[Random.Range(0, 3)]);
+            return Vector3.forward * rotation[Random.Range(0, 6)];
 
 
     }
@@ -127,6 +126,7 @@ public class HoopsPooler : MonoBehaviour
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].SetActive(true);
+                hoops[i].GetComponent<HoopController>().reset();
                 if (dem == 0)
                 {
                     idLastHoop = hoops[i].GetComponent<HoopController>().id;

@@ -55,6 +55,32 @@ public class UI_Controller : MonoBehaviour
             //SceneManager.LoadScene(0);
         });
     }
+    public void GoToChallenge(int type)
+    {
+        DOTween.KillAll();
+        flashTransition.gameObject.SetActive(true);
+        UI_Menu.Instance.Hide();
+        flashTransition.GetComponent<Image>().DOFade(a, timeFade).SetUpdate(true).OnComplete(() =>
+        {
+            //wtf thing
+            UI_Challenge.Instance.GoToChallenge(type);
+            flashTransition.GetComponent<Image>().DOFade(a, 0);
+            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
+        });
+    }
+    public void BackToChallenge()
+    {
+        DOTween.KillAll();
+        flashTransition.gameObject.SetActive(true);
+        UI_Menu.Instance.Show();
+        flashTransition.GetComponent<Image>().DOFade(a, timeFade).SetUpdate(true).OnComplete(() =>
+        {
+            //wtf thing
+            UI_Challenge.Instance.BackToChallenge();
+            flashTransition.GetComponent<Image>().DOFade(a, 0);
+            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
+        });
+    }
     public void HardReload()
     {
         Time.timeScale = 1;

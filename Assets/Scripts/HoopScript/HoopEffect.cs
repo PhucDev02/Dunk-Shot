@@ -45,7 +45,6 @@ public class HoopEffect : MonoBehaviour
     }
     public void Reset()
     {
-        Debug.Log("a");
         ring1.transform.localScale = v1;
         ring2.transform.localScale = v2;
         ring3.transform.localScale = v3;

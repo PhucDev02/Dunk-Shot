@@ -106,7 +106,7 @@ public class Projection : MonoBehaviour
     }
     private void setAlphaPoint()
     {
-        alpha = (DragPanel.force.magnitude - DragPanel.minMagnitude) / 0.5f;
+        alpha = (DragPanel.force.magnitude - DragPanel.minMagnitude) / 0.1f;
         color.a = alpha;
         for (int i = 0; i < maxTrajectoryPoint; i++)
         {

@@ -28,8 +28,6 @@ public class CameraController : MonoBehaviour
 
 
         setCamera();
-      // DragPanel.maxMagnitude = Camera.main.orthographicSize / 2;
-      //  DragPanel.minMagnitude = DragPanel.maxMagnitude / 2.5f;
     }
     private void Start()
     {

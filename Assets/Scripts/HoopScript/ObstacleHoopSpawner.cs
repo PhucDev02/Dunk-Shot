@@ -18,7 +18,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         this.hoop = hoop;
         atRight = hoop.transform.position.x > 0f;
 
-        int id = Random.Range(1, 20);
+        int id = Random.Range(1, 16);
 
         switch (id)
         {
@@ -82,7 +82,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
-        float y = 2.5f;
+        float y = 1.5f;
         obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
         obstacle.Appear();
         hoop.hoopObstacles.Add(obstacle);
@@ -113,7 +113,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         float dir = atRight ? -1 : 1;
 
         obstacle.transform.position = hoop.transform.position + new Vector3(dir * x, y);
-        obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
         obstacle.Appear();
 
         hoop.hoopObstacles.Add(obstacle);
@@ -127,11 +127,12 @@ public class ObstacleHoopSpawner : MonoBehaviour
         Debug.Log("SPAWN " + obstacleTag);
         Obstacle obstacle = ObjectPool.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
 
-        float duration = Random.Range(2.8f, 4f);
+        float duration = Random.Range(0.2f, 0.4f);
 
-        hoop.hoopObstacles.Add(obstacle);
         obstacle.transform.position = hoop.transform.position;
-        obstacle.transform.DORotate(Vector3.forward * 360f, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.Fast).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
+        //obstacle.transform.DORotate(Vector3.forward * 360f, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        hoop.hoopObstacles.Add(obstacle); 
         obstacle.Appear();
 
     }

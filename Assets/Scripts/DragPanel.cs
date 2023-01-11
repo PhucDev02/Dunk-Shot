@@ -9,7 +9,7 @@ public class DragPanel : MonoBehaviour
     [SerializeField] new BoxCollider2D collider;
     Vector3 startPosition, endPosition;
     public static Vector2 force;
-    public static float maxNetScale = 1.8f, maxMagnitude=3, minMagnitude=0.5f, forceCoef = 275; //275
+    public static float maxNetScale = 1.8f, maxMagnitude=3, minMagnitude=1.5f, forceCoef = 290; //275
     private bool isValid;
     private void OnMouseDown()
     {
@@ -35,8 +35,6 @@ public class DragPanel : MonoBehaviour
     {
         //if (!IsMouseOverUI())
         {
-            Logger.Log(maxMagnitude.ToString());
-            Logger.Log(force.magnitude.ToString());
             //Logger.Log(Vector3.Angle(Vector3.up, force).ToString());
             this.PostEvent(EventID.OnShoot);
             force = Vector2.zero;
