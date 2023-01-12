@@ -55,13 +55,13 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_3).GetComponent<Obstacle>();
 
+        obstacle.ApplyTheme(); 
         float x = 1f;
         float y = 0.5f;
         float dir = atRight ? 1 : -1;
 
         obstacle.transform.position = hoop.transform.position + new Vector3(dir * x, y);
         obstacle.Appear();
-
         hoop.hoopObstacles.Add(obstacle);
         hoop.transform.rotation = Quaternion.identity;
     }
@@ -70,6 +70,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
+        obstacle.ApplyTheme();
         float y = 1.5f;
         obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
         obstacle.transform.DORotate(Vector3.forward * 90, 0);
@@ -82,6 +83,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
+        obstacle.ApplyTheme(); 
         float y = 1.5f;
         obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
         obstacle.Appear();
@@ -92,7 +94,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
     private void SpawnHorizontalBar()
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_3).GetComponent<Obstacle>();
-
+        obstacle.ApplyTheme();
         float x = 1;
         float dir = atRight ? -1 : 1;
 
@@ -107,6 +109,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
+        obstacle.ApplyTheme(); 
         float x = Random.Range(1.5f, 2.0f);
         float y = -0.5f;
         float duration = Random.Range(2.6f, 3f);
@@ -127,6 +130,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         Debug.Log("SPAWN " + obstacleTag);
         Obstacle obstacle = ObjectPool.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
 
+        obstacle.ApplyTheme();
         float duration = Random.Range(0.2f, 0.4f);
 
         obstacle.transform.position = hoop.transform.position;
@@ -141,6 +145,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BOUNCER).GetComponent<Obstacle>();
 
+        obstacle.ApplyTheme(); 
         float y = 1.5f;
 
         hoop.hoopObstacles.Add(obstacle);
@@ -154,6 +159,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BOUNCER).GetComponent<Obstacle>();
 
+        obstacle.ApplyTheme(); 
         float x = 1.3f;
         float dir = atRight ? -1 : 1;
 

@@ -30,3 +30,12 @@ MonoBehaviour:
   price: 100
   alphaLight: 0.8
   alphaDark: 0.5
+  shield1: {fileID: 21300000, guid: d9d971bf3fa07d943a5ae0b558ad2e8e, type: 3}
+  shield2: {fileID: 21300000, guid: d2f0b8358b0fbb741af7de1048c13120, type: 3}
+  shield3: {fileID: 21300000, guid: 776a5d4a4d1bb0f42bfbb49b39bdef74, type: 3}
+  shield4: {fileID: 21300000, guid: bc011e22a1d63c446bcebed20f676443, type: 3}
+  wall1: {fileID: 21300000, guid: e1c15fc832f8a2f41bed0fe2d9ae837b, type: 3}
+  wall2: {fileID: 21300000, guid: 19c32a7ad08d2fb48a232b940818da08, type: 3}
+  wall3: {fileID: 21300000, guid: 1ff4f4632dcbb6a4b9a17da80ab942ea, type: 3}
+  wall4: {fileID: 21300000, guid: 8e868d6982ccd8e459cc98c446a6276d, type: 3}
+  bouncer: {fileID: 21300000, guid: 2b54a8bbad7f8d44d88c9d75f021925d, type: 3}

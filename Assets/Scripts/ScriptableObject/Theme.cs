@@ -13,4 +13,15 @@ public class Theme : ScriptableObject
     public Color scoreDarkColor;
     public int price;
     public float alphaLight, alphaDark;
+    //
+    [Header("Obstacle")]
+    public Sprite shield1;
+    public Sprite shield2;
+    public Sprite shield3;
+    public Sprite shield4;
+    public Sprite wall1;
+    public Sprite wall2;
+    public Sprite wall3;
+    public Sprite wall4;
+    public Sprite bouncer;
 }

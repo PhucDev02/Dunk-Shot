@@ -10,6 +10,7 @@ public enum EventID
     ////
     OnGameOver,
     OnSecondChange,
+    OnContactVictoryHoop,
     ////
     OnChangeTheme, // Hoop ,button, darkmode
     OnChangeBall,

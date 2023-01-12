@@ -29,11 +29,39 @@ public class Obstacle : MonoBehaviour
     private void Start()
     {
         ApplyTheme();
-
     }
     public void ApplyTheme()
     {
-
+        switch(type)
+        {
+            case ObstacleType.Shield1:
+                sprite.sprite = GameManager.Instance.GetTheme().shield1;
+                break;
+            case ObstacleType.Shield2:
+                sprite.sprite = GameManager.Instance.GetTheme().shield2;
+                break;
+            case ObstacleType.Shield3:
+                sprite.sprite = GameManager.Instance.GetTheme().shield3;
+                break;
+            case ObstacleType.Shield4:
+                sprite.sprite = GameManager.Instance.GetTheme().shield4;
+                break;
+            case ObstacleType.Wall1:
+                sprite.sprite = GameManager.Instance.GetTheme().wall1;
+                break;
+            case ObstacleType.Wall2:
+                sprite.sprite = GameManager.Instance.GetTheme().wall2;
+                break;
+            case ObstacleType.Wall3:
+                sprite.sprite = GameManager.Instance.GetTheme().wall3;
+                break;
+            case ObstacleType.Wall4:
+                sprite.sprite = GameManager.Instance.GetTheme().wall4;
+                break;
+            default:
+                sprite.sprite = GameManager.Instance.GetTheme().bouncer;
+                break;
+        }
     }
     public void Reset()
     {

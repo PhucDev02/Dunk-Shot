@@ -26,7 +26,7 @@ public class UI_Gameplay : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        holder.transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 0.5f;
+            holder.transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 0.5f;
     }
     void ApplyThemeAndDarkmode()
     {

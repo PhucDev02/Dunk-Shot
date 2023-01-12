@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
     }
     private void Start()
     {
-        initCameraPosition = vCamera.transform.position;
+        //initCameraPosition = vCamera.transform.position;
     }
     private void setCamera()
     {
@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         if (GameController.Instance.IsGameOver == false)
-            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 1f)
+            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 2.0f)
             {
                 vCamera.m_Follow = null;
             }
@@ -67,10 +67,9 @@ public class CameraController : MonoBehaviour
             Destroy(vCamera.gameObject);
         GameObject tmp = Instantiate(vCamPrefab);
         vCamera = tmp.GetComponent<CinemachineVirtualCamera>();
-        vCamera.transform.position = initCameraPosition;
+        Camera.main.transform.position=vCamera.transform.position = initCameraPosition;
         vCamera.m_Follow = firstHoop;
         //setCamera();
         Camera.main.orthographicSize = vCamera.m_Lens.OrthographicSize = bound.bounds.size.x * Screen.height / Screen.width * 0.5f;
-
     }
 }

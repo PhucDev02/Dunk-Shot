@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 public class UI_Challenge : MonoBehaviour
 {
     public static UI_Challenge Instance;
@@ -10,12 +11,15 @@ public class UI_Challenge : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] GameObject challengeCanvas;
     [SerializeField] GameObject descriptionPanel, pausePanel;
+    [SerializeField] GameObject scoreHUD;
+    [SerializeField] GameObject[] headerChallenge;
     // description
     [Header("Description")]
     [SerializeField] Image reward;
     [SerializeField] Image banner;
     [SerializeField] Image playbtn;
     [SerializeField] TextMeshProUGUI challengeName, description;
+    [SerializeField] Image closeBtn;
     //top element
     [Header("Top Element")]
     [SerializeField] Image board;
@@ -68,20 +72,34 @@ public class UI_Challenge : MonoBehaviour
     //NoAim 6
     public void GoToChallenge(int type)
     {
+        GameController.Instance.challengeMode = true;
         AssignChallenge(type);
+        PlayAnim();
         panel.SetActive(false);
         descriptionPanel.SetActive(true);
         challengeCanvas.SetActive(true);
+        scoreHUD.SetActive(false);
     }
     public void BackToChallenge()
     {
+        GameController.Instance.challengeMode = false;
+        HideHeader();
         panel.SetActive(true);
         pausePanel.SetActive(false);
         challengeCanvas.SetActive(false);
+        scoreHUD.SetActive(true);
+    }
+    public void HideHeader()
+    {
+        for (int i = 0; i < headerChallenge.Length; i++)
+        {
+            headerChallenge[i].SetActive(false);
+        }
     }
     public void AssignChallenge(int type)
     {
-        switch(type)
+        headerChallenge[type - 1].SetActive(true);
+        switch (type)
         {
             case 1:
                 banner.sprite = newBall;
@@ -114,7 +132,7 @@ public class UI_Challenge : MonoBehaviour
                 descriptionPause.color = green;
                 playbtn.sprite = scoreBtn;
                 restartBtn.sprite = scoreBtn;
-                restartBtn.color = green;
+                board.color = green;
                 break;
             case 5:
                 banner.sprite = bounce;
@@ -133,5 +151,15 @@ public class UI_Challenge : MonoBehaviour
                 board.color = lightRed;
                 break;
         }
+    }
+    public void PlayAnim()
+    {
+        playbtn.transform.DOScale(1.1f, 0.8f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        closeBtn.transform.localScale = Vector3.zero;
+        closeBtn.transform.DOScale(1, 0.5f).SetDelay(1.5f).SetEase(Ease.OutCubic);
+    }
+    public void StopAnim()
+    {
+        playbtn.transform.DOKill();
     }
 }

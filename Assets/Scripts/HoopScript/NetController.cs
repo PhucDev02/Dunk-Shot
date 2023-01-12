@@ -6,21 +6,18 @@ public class NetController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] HoopController hoopController;
-    [SerializeField] Transform anchor, bottom;
     [SerializeField] public EdgeCollider2D sensor;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hoopController.ContactBall();
         sensor.enabled = false;
-        Logger.Log("ContactBall");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.relativeVelocity.y > 1)
         {
             OnCollisionWithBall();
-            Logger.Log("Collison vs Net");
         }
     }
     public void EnableSensor()  

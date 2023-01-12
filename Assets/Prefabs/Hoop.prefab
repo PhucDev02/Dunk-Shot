@@ -557,8 +557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoopController: {fileID: 2812352083952762583}
-  anchor: {fileID: 2254778810640326938}
-  bottom: {fileID: 5959816230521320009}
   sensor: {fileID: 7232005060987543542}
 --- !u!114 &3518673847572377242
 MonoBehaviour:

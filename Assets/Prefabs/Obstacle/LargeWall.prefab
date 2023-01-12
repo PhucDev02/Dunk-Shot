@@ -113,4 +113,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 7
-  sprite: {fileID: 7848058589883500650, guid: a89d4dd79d59491418b5019e1c7b3d1b, type: 3}
+  sprite: {fileID: 7848058589883500650}

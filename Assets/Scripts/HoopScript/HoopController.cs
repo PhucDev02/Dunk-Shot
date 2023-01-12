@@ -104,7 +104,6 @@ public class HoopController : MonoBehaviour
             hoopObstacles.Release();
             HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
-
             if (GameController.Instance.GetScore() != 0 && HoopsPooler.Instance.IsValidShot())
                 EffectContact();
         }

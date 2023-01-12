@@ -13,10 +13,11 @@ public class GameController : MonoBehaviour
     }
     [SerializeField] BallController ball;
 
-    [SerializeField] private int score, streak ;
+    [SerializeField] private int score, streak;
     public bool isPerfect;
     public int bounceCnt;
     public bool IsGameOver;
+    public bool challengeMode = false;
     public void NewGame()
     {
         Reset();
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
         ball.NewGame();
         CameraController.Instance.NewGame();
     }
+
     private void Start()
     {
         Reset();
@@ -72,7 +74,7 @@ public class GameController : MonoBehaviour
     }
     private void executeBestScore()
     {
-        if(score>PlayerPrefs.GetInt("BestScore"))
+        if (score > PlayerPrefs.GetInt("BestScore"))
         {
             PlayerPrefs.SetInt("BestScore", score);
         }
@@ -83,7 +85,7 @@ public class GameController : MonoBehaviour
     }
     private void OnGameOver()
     {
-        if(score!=0)
+        if (score != 0)
         {
             IsGameOver = true;
             StartCoroutine(WaitGameOver());
@@ -107,5 +109,7 @@ public class GameController : MonoBehaviour
     private void ActiveSecondChange()
     {
         IsGameOver = false;
+        streak = 0;
+        bounceCnt = 0;
     }
 }
