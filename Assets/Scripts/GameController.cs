@@ -32,8 +32,10 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         challengeMode = false;
         Reset();
+        NewGame();
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
         this.RegisterListener(EventID.OnBounceSide, (param) => OnBounceSide());
         this.RegisterListener(EventID.OnBounceWall, (param) => OnBounceWall());

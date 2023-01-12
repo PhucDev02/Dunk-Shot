@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         if (GameController.Instance.IsGameOver == false)
-            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 2.0f)
+            if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 4.0f)
             {
                 vCamera.m_Follow = null;
             }

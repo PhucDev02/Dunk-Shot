@@ -7883,7 +7883,7 @@ MonoBehaviour:
   m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
-    m_Style: 1
+    m_Style: 0
     m_Time: 2
     m_CustomCurve:
       serializedVersion: 2
@@ -20617,6 +20617,10 @@ MonoBehaviour:
     Size: 1
     Expandable: 1
     ListObject: []
+  - Prefab: {fileID: 2812352083952762585, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+    Size: 1
+    Expandable: 1
+    ListObject: []
 --- !u!4 &1352903071
 Transform:
   m_ObjectHideFlags: 0
@@ -20918,10 +20922,6 @@ MonoBehaviour:
   idLastHoop: 0
   idLowestHoop: 0
   isValidShot: 0
- endlessMode: {fileID: 94143050}
-  challengeMode: {fileID: 0}
-  challengeTest: {fileID: 4933470054901738317, guid: 0fb89e82e6dd2204f94775923e1c9f71, type: 3}
-  endlessPrefab: {fileID: 5096550051460445376, guid: c5bfd4e14e1760a47aa4f797963ff395, type: 3}
 --- !u!1 &1405307672
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,26 +30,6 @@ public class HoopsPooler : MonoBehaviour
             hoops.Add(transform.GetChild(i).gameObject);
             hoops[i].GetComponent<HoopController>().id = i;
         }
-        //hoops.Clear();
-        //if (GameController.Instance.challengeMode)
-        //{
-        //    endlessMode.gameObject.SetActive(false);
-        //    challengeMode = Instantiate(testChallenge, transform).transform;
-        //    for (int i = 0; i < challengeMode.childCount - 1; i++)
-        //    {
-        //        hoops.Add(challengeMode.GetChild(i).gameObject);
-        //        hoops[i].GetComponent<HoopController>().id = i;
-        //        //hoops[i].SetActive(true);
-        //    }
-        //}
-        //else
-        //{
-        //    for (int i = 0; i < endlessMode.childCount; i++)
-        //    {
-        //        hoops.Add(endlessMode.GetChild(i).gameObject);
-        //        hoops[i].GetComponent<HoopController>().id = i;
-        //    }
-        //}
     }
     private void disableLowerHoops()
     {
