@@ -36,6 +36,7 @@ public class BallController : MonoBehaviour
         {
             rigidBody = GetComponent<Rigidbody2D>();
             rigidBody.velocity = Vector2.zero;
+            rigidBody.simulated = true;
             rigidBody.angularVelocity = 0;
             transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1.2f;
         }

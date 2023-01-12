@@ -10,7 +10,8 @@ public class HoopsPooler : MonoBehaviour
     [SerializeField] private int idLastHoop, idLowestHoop;
     [SerializeField] private bool isValidShot;
     [SerializeField] Transform endlessMode, challengeMode;
-    [SerializeField] GameObject testChallenge;
+    [SerializeField] GameObject challengeTest,endlessPrefab;
+
     private int[] rotation = { 0, 0, 0, 15, 30, 45 };
     private void Awake()
     {
@@ -31,8 +32,10 @@ public class HoopsPooler : MonoBehaviour
         hoops.Clear();
         if (GameController.Instance.challengeMode)
         {
-            endlessMode.gameObject.SetActive(false);
-            challengeMode = Instantiate(testChallenge, transform).transform;
+            //release bong
+            GameController.Instance.RespawnBall();
+            if (endlessMode != null) Destroy(endlessMode.gameObject);
+            challengeMode = Instantiate(challengeTest, transform).transform;
             for (int i = 0; i < challengeMode.childCount - 1; i++)
             {
                 hoops.Add(challengeMode.GetChild(i).gameObject);
@@ -42,6 +45,8 @@ public class HoopsPooler : MonoBehaviour
         }
         else
         {
+            endlessMode = Instantiate(endlessPrefab, transform).transform;
+            if (challengeMode != null) Destroy(challengeMode.gameObject);
             for (int i = 0; i < endlessMode.childCount; i++)
             {
                 hoops.Add(endlessMode.GetChild(i).gameObject);

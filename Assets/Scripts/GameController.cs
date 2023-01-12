@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         challengeMode = false;
+        ball.NewGame();
         Reset();
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
         this.RegisterListener(EventID.OnBounceSide, (param) => OnBounceSide());

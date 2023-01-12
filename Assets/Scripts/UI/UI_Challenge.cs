@@ -85,6 +85,7 @@ public class UI_Challenge : MonoBehaviour
     {
         GameController.Instance.challengeMode = false;
         HoopsPooler.Instance.LoadHoop();
+        GameController.Instance.NewGame();
         HideHeader();
         panel.SetActive(true);
         pausePanel.SetActive(false);

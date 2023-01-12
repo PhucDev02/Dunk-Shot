@@ -20951,7 +20951,8 @@ MonoBehaviour:
   isValidShot: 0
   endlessMode: {fileID: 94143050}
   challengeMode: {fileID: 0}
-  testChallenge: {fileID: 4933470054901738317, guid: 0fb89e82e6dd2204f94775923e1c9f71, type: 3}
+  challengeTest: {fileID: 4933470054901738317, guid: 0fb89e82e6dd2204f94775923e1c9f71, type: 3}
+  endlessPrefab: {fileID: 5096550051460445376, guid: c5bfd4e14e1760a47aa4f797963ff395, type: 3}
 --- !u!1 &1405307672
 GameObject:
   m_ObjectHideFlags: 0
@@ -30792,9 +30793,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1244906348}
-        m_TargetAssemblyTypeName: UI_Controller, Assembly-CSharp
-        m_MethodName: ContinueGame
+      - m_Target: {fileID: 1385173484}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: RespawnBall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
