@@ -50,8 +50,8 @@ public class UI_Controller : MonoBehaviour
         {
             Time.timeScale = 1;
             GameController.Instance.NewGame();
-            flashTransition.GetComponent<Image>().DOFade(a, 0);
-            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
+            flashTransition.GetComponent<Image>().DOFade(a, 0).SetUpdate(true);
+            flashTransition.GetComponent<Image>().DOFade(0, timeFade).SetUpdate(true).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
             //SceneManager.LoadScene(0);
         });
     }
@@ -64,8 +64,8 @@ public class UI_Controller : MonoBehaviour
         {
             //wtf thing
             UI_Challenge.Instance.GoToChallenge(type);
-            flashTransition.GetComponent<Image>().DOFade(a, 0);
-            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
+            flashTransition.GetComponent<Image>().DOFade(a, 0).SetUpdate(true);
+            flashTransition.GetComponent<Image>().DOFade(0, timeFade).SetUpdate(true).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
         });
     }
     public void BackToChallenge()

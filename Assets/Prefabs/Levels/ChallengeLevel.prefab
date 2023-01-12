@@ -308,6 +308,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.259
       objectReference: {fileID: 0}
@@ -354,6 +366,10 @@ PrefabInstance:
     - target: {fileID: 2812352083952762585, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
       propertyPath: m_Name
       value: Hoop (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762585, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
@@ -460,6 +476,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762582, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.185
       objectReference: {fileID: 0}
@@ -510,6 +538,10 @@ PrefabInstance:
     - target: {fileID: 2812352083952762585, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
       propertyPath: m_Name
       value: Hoop (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762585, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d620b8832ee2eda41a3ce5460fb1f863, type: 3}
@@ -658,6 +690,10 @@ PrefabInstance:
     - target: {fileID: 2812352083952762585, guid: 8ee5755ccb9249c4d8fb25ab03142302, type: 3}
       propertyPath: m_Name
       value: VIctoryHoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812352083952762585, guid: 8ee5755ccb9249c4d8fb25ab03142302, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ee5755ccb9249c4d8fb25ab03142302, type: 3}

@@ -37,10 +37,8 @@ public class BallController : MonoBehaviour
             rigidBody = GetComponent<Rigidbody2D>();
             rigidBody.velocity = Vector2.zero;
             rigidBody.angularVelocity = 0;
-            //gameObject.SetActive(true);
             transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1.2f;
         }
-        //catch { }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

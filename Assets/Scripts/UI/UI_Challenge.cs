@@ -73,6 +73,7 @@ public class UI_Challenge : MonoBehaviour
     public void GoToChallenge(int type)
     {
         GameController.Instance.challengeMode = true;
+        HoopsPooler.Instance.LoadHoop();
         AssignChallenge(type);
         PlayAnim();
         panel.SetActive(false);
@@ -83,6 +84,7 @@ public class UI_Challenge : MonoBehaviour
     public void BackToChallenge()
     {
         GameController.Instance.challengeMode = false;
+        HoopsPooler.Instance.LoadHoop();
         HideHeader();
         panel.SetActive(true);
         pausePanel.SetActive(false);
@@ -108,6 +110,7 @@ public class UI_Challenge : MonoBehaviour
                 board.color = orange;
                 playbtn.sprite = newBallBtn;
                 restartBtn.sprite = newBallBtn;
+                rewardPause.sprite = mysteriousBall;
                 //name
                 break;
             case 2:
@@ -154,9 +157,9 @@ public class UI_Challenge : MonoBehaviour
     }
     public void PlayAnim()
     {
-        playbtn.transform.DOScale(1.1f, 0.8f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        playbtn.transform.DOScale(1.1f, 0.8f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
         closeBtn.transform.localScale = Vector3.zero;
-        closeBtn.transform.DOScale(1, 0.5f).SetDelay(1.5f).SetEase(Ease.OutCubic);
+        closeBtn.transform.DOScale(1, 0.5f).SetDelay(1.5f).SetEase(Ease.OutCubic).SetUpdate(true);
     }
     public void StopAnim()
     {

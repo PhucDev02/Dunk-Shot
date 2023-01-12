@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public bool isPerfect;
     public int bounceCnt;
     public bool IsGameOver;
-    public bool challengeMode = false;
+    public bool challengeMode;
     public void NewGame()
     {
         Reset();
@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        challengeMode = false;
         Reset();
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
         this.RegisterListener(EventID.OnBounceSide, (param) => OnBounceSide());
@@ -74,7 +75,7 @@ public class GameController : MonoBehaviour
     }
     private void executeBestScore()
     {
-        if (score > PlayerPrefs.GetInt("BestScore"))
+        if (score > PlayerPrefs.GetInt("BestScore") && challengeMode == false)
         {
             PlayerPrefs.SetInt("BestScore", score);
         }
@@ -111,5 +112,10 @@ public class GameController : MonoBehaviour
         IsGameOver = false;
         streak = 0;
         bounceCnt = 0;
+    }
+    public void RespawnBall()
+    {
+        ball.Respawn();
+        ball.transform.SetParent(null);
     }
 }
