@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
             //(componentBase as CinemachineFramingTransposer).m_BiasX = (componentBase as CinemachineFramingTransposer).m_ScreenX;
         }
     }
-    private void Update()
+    private void LateUpdate()
     {
         if (GameController.Instance.IsGameOver == false)
             if (ball.position.y < HoopsPooler.Instance.GetLowestPositionHoop() - 4.0f)

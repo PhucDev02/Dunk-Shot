@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 120;
         challengeMode = false;
         Reset();
         NewGame();

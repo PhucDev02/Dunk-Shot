@@ -64,6 +64,8 @@ public class HoopController : MonoBehaviour
             hoopEffect.ShootEffect();
             BallController.isOnAir = true;
             netController.OnLaunch();
+            if (GameController.Instance.challengeMode)
+                ResetRotation();
         }
         else
             netController.OnLaunchFailed();

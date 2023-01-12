@@ -50,7 +50,8 @@ public class HoopsPooler : MonoBehaviour
         {
             idLastHoop = id;
             isValidShot = true;
-            SpawnNewHoop();
+            if (!GameController.Instance.challengeMode)
+                SpawnNewHoop();
         }
         else isValidShot = false;
     }

@@ -5,7 +5,7 @@
 public static class PoolTag
 {
     public static string BALL = "Ball";
-    public static string BASKET = "Basket";
+    public static string HOOP = "Hoop";
     public static string BASKET_TRAJECTORY = "BasketTrajectory";
 
     public static string BAR_1 = "SmallWall";

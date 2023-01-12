@@ -9,35 +9,30 @@ public class DragPanel : MonoBehaviour
     [SerializeField] new BoxCollider2D collider;
     Vector3 startPosition, endPosition;
     public static Vector2 force;
-    public static float maxNetScale = 1.8f, maxMagnitude=3, minMagnitude=1.5f, forceCoef = 290; //275
+    public static float maxNetScale = 1.8f, maxMagnitude = 3, minMagnitude = 1.5f, forceCoef = 290; //275
     private bool isValid;
-    private void OnMouseDown()
+
+    private void Update()
     {
-        if (!IsMouseOverUI() && !BallController.isOnAir)
+        if (Input.GetMouseButtonDown(0) && !IsMouseOverUI() && !BallController.isOnAir)
         {
             isValid = true;
             startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             UI_Menu.Instance.Hide();
+            Debug.Log("a");
         }
-        else isValid = false;
 
-    }
-    private void OnMouseDrag()
-    {
-        if (!IsMouseOverUI() && isValid)
+        if (Input.GetMouseButtonUp(0) && !IsMouseOverUI())
+        {
+            this.PostEvent(EventID.OnShoot);
+            force = Vector2.zero;
+            isValid = false;
+        }
+        if (isValid)
         {
             endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             force = startPosition - endPosition;
             this.PostEvent(EventID.OnDrag);
-        }
-    }
-    private void OnMouseUp()
-    {
-        //if (!IsMouseOverUI())
-        {
-            //Logger.Log(Vector3.Angle(Vector3.up, force).ToString());
-            this.PostEvent(EventID.OnShoot);
-            force = Vector2.zero;
         }
     }
     public static float GetAngle()

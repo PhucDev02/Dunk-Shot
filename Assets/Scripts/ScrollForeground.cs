@@ -54,7 +54,7 @@ public class ScrollForeground : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         velocity = (camera.position.y - lastPos.y) / Time.fixedDeltaTime;
         lastPos = camera.position;
