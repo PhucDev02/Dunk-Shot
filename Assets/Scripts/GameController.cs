@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public bool isPerfect;
     public int bounceCnt;
     public bool IsGameOver;
-    public bool challengeMode = false;
+    public bool challengeMode ;
     public void NewGame()
     {
         Reset();
@@ -32,11 +32,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-<<<<<<< HEAD
         challengeMode = false;
-        ball.NewGame();
-=======
->>>>>>> parent of 14d93d4 (backup for stupid challenge)
         Reset();
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
         this.RegisterListener(EventID.OnBounceSide, (param) => OnBounceSide());

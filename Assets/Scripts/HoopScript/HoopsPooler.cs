@@ -9,14 +9,7 @@ public class HoopsPooler : MonoBehaviour
     [SerializeField] List<GameObject> hoops;
     [SerializeField] private int idLastHoop, idLowestHoop;
     [SerializeField] private bool isValidShot;
-<<<<<<< HEAD
-    [SerializeField] Transform endlessMode, challengeMode;
-    [SerializeField] GameObject challengeTest,endlessPrefab;
-
     private int[] rotation = { 0, 0, 0, 15, 30, 45 };
-=======
-    private int[] rotation = { 0,0,0, 15, 30, 45 };
->>>>>>> parent of 14d93d4 (backup for stupid challenge)
     private void Awake()
     {
         Instance = this;
@@ -28,35 +21,35 @@ public class HoopsPooler : MonoBehaviour
         idLowestHoop = 0;
         isValidShot = false;
         hoops = new List<GameObject>();
+        LoadHoop();
+    }
+    public void LoadHoop()
+    {
         for (int i = 0; i < transform.childCount; i++)
         {
-<<<<<<< HEAD
-            //release bong
-            GameController.Instance.RespawnBall();
-            if (endlessMode != null) Destroy(endlessMode.gameObject);
-            challengeMode = Instantiate(challengeTest, transform).transform;
-            for (int i = 0; i < challengeMode.childCount - 1; i++)
-            {
-                hoops.Add(challengeMode.GetChild(i).gameObject);
-                hoops[i].GetComponent<HoopController>().id = i;
-                //hoops[i].SetActive(true);
-            }
-        }
-        else
-        {
-            endlessMode = Instantiate(endlessPrefab, transform).transform;
-            if (challengeMode != null) Destroy(challengeMode.gameObject);
-            for (int i = 0; i < endlessMode.childCount; i++)
-            {
-                hoops.Add(endlessMode.GetChild(i).gameObject);
-                hoops[i].GetComponent<HoopController>().id = i;
-            }
-=======
             hoops.Add(transform.GetChild(i).gameObject);
             hoops[i].GetComponent<HoopController>().id = i;
->>>>>>> parent of 14d93d4 (backup for stupid challenge)
         }
-        this.RegisterListener(EventID.OnContactHoop, (param) => disableLowerHoops());
+        //hoops.Clear();
+        //if (GameController.Instance.challengeMode)
+        //{
+        //    endlessMode.gameObject.SetActive(false);
+        //    challengeMode = Instantiate(testChallenge, transform).transform;
+        //    for (int i = 0; i < challengeMode.childCount - 1; i++)
+        //    {
+        //        hoops.Add(challengeMode.GetChild(i).gameObject);
+        //        hoops[i].GetComponent<HoopController>().id = i;
+        //        //hoops[i].SetActive(true);
+        //    }
+        //}
+        //else
+        //{
+        //    for (int i = 0; i < endlessMode.childCount; i++)
+        //    {
+        //        hoops.Add(endlessMode.GetChild(i).gameObject);
+        //        hoops[i].GetComponent<HoopController>().id = i;
+        //    }
+        //}
     }
     private void disableLowerHoops()
     {
@@ -98,6 +91,7 @@ public class HoopsPooler : MonoBehaviour
                 hoops[i].transform.position = randomNewPosition();
                 hoops[i].SetActive(true);
                 hoops[i].transform.eulerAngles = randomNewRotate();
+                disableLowerHoops();
                 ObstacleHoopSpawner.Instance.Spawn(hoops[i].GetComponent<HoopController>());
                 return;
             }

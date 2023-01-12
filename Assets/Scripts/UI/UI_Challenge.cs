@@ -83,11 +83,7 @@ public class UI_Challenge : MonoBehaviour
     public void BackToChallenge()
     {
         GameController.Instance.challengeMode = false;
-<<<<<<< HEAD
-        HoopsPooler.Instance.LoadHoop();
         GameController.Instance.NewGame();
-=======
->>>>>>> parent of 14d93d4 (backup for stupid challenge)
         HideHeader();
         panel.SetActive(true);
         pausePanel.SetActive(false);
