@@ -9,15 +9,18 @@ public class HoopsPooler : MonoBehaviour
     [SerializeField] List<GameObject> hoops;
     [SerializeField] private int idLastHoop, idLowestHoop;
     [SerializeField] private bool isValidShot;
+<<<<<<< HEAD
     [SerializeField] Transform endlessMode, challengeMode;
     [SerializeField] GameObject challengeTest,endlessPrefab;
 
     private int[] rotation = { 0, 0, 0, 15, 30, 45 };
+=======
+    private int[] rotation = { 0,0,0, 15, 30, 45 };
+>>>>>>> parent of 14d93d4 (backup for stupid challenge)
     private void Awake()
     {
         Instance = this;
         this.RegisterListener(EventID.OnSecondChange, (param) => OnSecondChange());
-        this.RegisterListener(EventID.OnContactHoop, (param) => disableLowerHoops());
     }
     void Start()
     {
@@ -25,13 +28,9 @@ public class HoopsPooler : MonoBehaviour
         idLowestHoop = 0;
         isValidShot = false;
         hoops = new List<GameObject>();
-        LoadHoop();
-    }
-    public void LoadHoop()
-    {
-        hoops.Clear();
-        if (GameController.Instance.challengeMode)
+        for (int i = 0; i < transform.childCount; i++)
         {
+<<<<<<< HEAD
             //release bong
             GameController.Instance.RespawnBall();
             if (endlessMode != null) Destroy(endlessMode.gameObject);
@@ -52,17 +51,21 @@ public class HoopsPooler : MonoBehaviour
                 hoops.Add(endlessMode.GetChild(i).gameObject);
                 hoops[i].GetComponent<HoopController>().id = i;
             }
+=======
+            hoops.Add(transform.GetChild(i).gameObject);
+            hoops[i].GetComponent<HoopController>().id = i;
+>>>>>>> parent of 14d93d4 (backup for stupid challenge)
         }
+        this.RegisterListener(EventID.OnContactHoop, (param) => disableLowerHoops());
     }
     private void disableLowerHoops()
     {
-        for (int i = 0; i < endlessMode.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             if (hoops[i].activeInHierarchy)
             {
                 if (hoops[i].transform.position.y < hoops[idLastHoop].transform.position.y)
-                    if (!GameController.Instance.challengeMode)
-                        hoops[i].GetComponent<HoopController>().Disappear();
+                    hoops[i].GetComponent<HoopController>().Disappear();
                 if (hoops[i].transform.position.y < hoops[idLowestHoop].transform.position.y)
                     idLowestHoop = i;
             }
@@ -70,12 +73,11 @@ public class HoopsPooler : MonoBehaviour
     }
     public void SetIdLastHoop(int id)
     {
-        if (id != idLastHoop && hoops[id].transform.position.y >= hoops[idLastHoop].transform.position.y)
+        if (id != idLastHoop)
         {
             idLastHoop = id;
             isValidShot = true;
-            if (!GameController.Instance.challengeMode)
-                SpawnNewHoop();
+            SpawnNewHoop();
         }
         else isValidShot = false;
     }
@@ -89,7 +91,7 @@ public class HoopsPooler : MonoBehaviour
     }
     private void SpawnNewHoop()
     {
-        for (int i = 0; i < endlessMode.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             if (!hoops[i].activeInHierarchy)
             {
@@ -128,7 +130,7 @@ public class HoopsPooler : MonoBehaviour
     }
     private GameObject getHoop()
     {
-        for (int i = 0; i < endlessMode.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             if (!hoops[i].activeInHierarchy)
             {
@@ -143,14 +145,14 @@ public class HoopsPooler : MonoBehaviour
         idLastHoop = 0;
         idLowestHoop = 0;
         isValidShot = false;
-        for (int i = 0; i < endlessMode.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
             if (hoops[i].activeInHierarchy)
             {
                 hoops[i].GetComponent<HoopController>().reset();
                 hoops[i].SetActive(false);
             }
         int dem = 0;
-        for (int i = 0; i < endlessMode.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].SetActive(true);

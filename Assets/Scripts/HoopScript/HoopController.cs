@@ -45,7 +45,6 @@ public class HoopController : MonoBehaviour
     }
     void Start()
     {
-        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallController>();
         angle = Vector3.zero;
         scale = Vector3.one;
         this.RegisterListener(EventID.OnShoot, (param) => Shoot());
@@ -65,8 +64,6 @@ public class HoopController : MonoBehaviour
             hoopEffect.ShootEffect();
             BallController.isOnAir = true;
             netController.OnLaunch();
-            if (GameController.Instance.challengeMode)
-                ResetRotation();
         }
         else
             netController.OnLaunchFailed();
@@ -153,7 +150,7 @@ public class HoopController : MonoBehaviour
     }
     public void ResetRotation()
     {
-        transform.DORotate(Vector2.zero, 0.25f).SetEase(Ease.InOutExpo);
+        transform.DORotate(Vector2.zero, 0.2f).SetEase(Ease.InOutExpo);
 
     }
     void ApplyTheme()
