@@ -21764,6 +21764,7 @@ GameObject:
   - component: {fileID: 1455844975}
   - component: {fileID: 1455844977}
   - component: {fileID: 1455844976}
+  - component: {fileID: 1455844978}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -21888,6 +21889,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orangeTag: {fileID: 21300000, guid: 3f09b4b4e0160684789a188f8b583a87, type: 3}
   purpleTag: {fileID: 21300000, guid: 0c24fc86f668cd9409e4ecf96aaf5243, type: 3}
+--- !u!114 &1455844978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455844972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739caa73d592a5b4faa72848a8b06924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newBallLevels: []
+  collectLevels: []
+  timeLevels: []
+  scoreLevels: []
+  bounceLevels: []
+  noAimLevels: []
+  path: 
 --- !u!1 &1475267526
 GameObject:
   m_ObjectHideFlags: 0
