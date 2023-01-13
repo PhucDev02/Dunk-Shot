@@ -20,7 +20,7 @@ public class ChallengeManager : MonoBehaviour
     }
     private void Start()
     {
-        this.RegisterListener(EventID.OnContactVictoryHoop, (param) => SetLevelComplete());
+        this.RegisterListener(EventID.OnCompleteChallenge, (param) => SetLevelComplete());
 
         for (int i = 0; i < newBallLevels.Length; i++)
             newBallLevels[i].id = i;
@@ -49,6 +49,7 @@ public class ChallengeManager : MonoBehaviour
     public NoAimLevel[] noAimLevels;
 
     public string path;
+    public int type;
     public void SetChallengeLevel(int type)
     {
         switch (type)

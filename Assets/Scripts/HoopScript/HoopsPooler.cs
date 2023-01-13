@@ -26,13 +26,10 @@ public class HoopsPooler : MonoBehaviour
     public void LoadHoop()
     {
         GameObject tmp = null;
+        ObjectPool.Instance.RecallAll();
         for (int i = 0; i < transform.childCount; i++)
         {
-            Logger.Log("a");
-            //DestroyImmediate(transform.GetChild(i).GetComponentInChildren<HoopController>());
-            //DestroyImmediate(transform.GetChild(i).GetChild(2).GetComponentInChildren<NetController>());
             Destroy(transform.GetChild(i).gameObject);
-            //transform.GetChild(i).gameObject.SetActive(false);
         }
         hoops.Clear();
         if (!GameController.Instance.challengeMode)

@@ -81,7 +81,6 @@ public class UI_Challenge : MonoBehaviour
         challengeCanvas.SetActive(true);
         scoreHUD.SetActive(false);
         AssignChallenge(type);
-        ChallengeManager.Instance.SetChallengeLevel(type);
         GameController.Instance.RespawnBall();
         HoopsPooler.Instance.LoadHoop();
     }
@@ -111,7 +110,10 @@ public class UI_Challenge : MonoBehaviour
             AssignChallenge(lastType);
             return;
         }
-        else lastType = type;
+        else
+        {
+            lastType = type;
+        }
         headerChallenge[type - 1].SetActive(true);
         switch (type)
         {
@@ -132,6 +134,7 @@ public class UI_Challenge : MonoBehaviour
                 playbtn.sprite = collectBtn;
                 restartBtn.sprite = collectBtn;
                 board.color = turquoise;
+                rewardPause.sprite = token;
                 break;
             case 3:
                 banner.sprite = time;
@@ -139,6 +142,7 @@ public class UI_Challenge : MonoBehaviour
                 descriptionPause.color = blue;
                 playbtn.sprite = timeBtn;
                 restartBtn.sprite = timeBtn;
+                rewardPause.sprite = token;
                 board.color = blue;
                 break;
             case 4:
@@ -148,6 +152,7 @@ public class UI_Challenge : MonoBehaviour
                 playbtn.sprite = scoreBtn;
                 restartBtn.sprite = scoreBtn;
                 board.color = green;
+                rewardPause.sprite = token;
                 break;
             case 5:
                 banner.sprite = bounce;
@@ -156,6 +161,7 @@ public class UI_Challenge : MonoBehaviour
                 playbtn.sprite = bounceBtn;
                 restartBtn.sprite = bounceBtn;
                 board.color = pink;
+                rewardPause.sprite = token;
                 break;
             default: //noAim
                 banner.sprite = noAim;
@@ -164,8 +170,11 @@ public class UI_Challenge : MonoBehaviour
                 playbtn.sprite = noAimBtn;
                 restartBtn.sprite = noAimBtn;
                 board.color = lightRed;
+                rewardPause.sprite = token;
                 break;
         }
+        Debug.Log(lastType);
+        ChallengeManager.Instance.SetChallengeLevel(lastType);
     }
     public void PlayAnim()
     {

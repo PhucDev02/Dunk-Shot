@@ -7,6 +7,7 @@ public class VictoryHoop : MonoBehaviour
     [SerializeField] Transform anchor, powerRing;
     [SerializeField] GameObject blikas;
     [SerializeField] SpriteRenderer top, down,net;
+    [SerializeField] new GameObject light;
     public int id;
     bool isContacted = false;
     GameObject ball;
@@ -15,7 +16,7 @@ public class VictoryHoop : MonoBehaviour
         ball = collision.gameObject;
         effect();
         isContacted = true;
-        this.PostEvent(EventID.OnContactVictoryHoop);
+        this.PostEvent(EventID.OnCompleteChallenge);
         UI_Controller.Instance.BackToChallenge();
     }
     private void Update()
