@@ -7,7 +7,9 @@ public class NetController : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] HoopController hoopController;
     [SerializeField] public EdgeCollider2D sensor;
-
+    private void Start()
+    {
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hoopController.ContactBall();
@@ -20,7 +22,7 @@ public class NetController : MonoBehaviour
             OnCollisionWithBall();
         }
     }
-    public void EnableSensor()  
+    public void EnableSensor()
     {
         StartCoroutine(WaitToEnableSensor());
     }
@@ -35,7 +37,7 @@ public class NetController : MonoBehaviour
     }
     public void OnLaunch()
     {
-        transform.DOScaleY(1.0f, 0.6f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(Time.fixedDeltaTime+0.01f);
+        transform.DOScaleY(1.0f, 0.6f).SetUpdate(true).SetEase(Ease.OutElastic).SetDelay(Time.fixedDeltaTime + 0.01f);
     }
     public void OnCollisionWithBall()
     {

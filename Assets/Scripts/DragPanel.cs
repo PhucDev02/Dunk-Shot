@@ -11,7 +11,7 @@ public class DragPanel : MonoBehaviour
     public static float maxNetScale = 1.8f, maxMagnitude = 3, minMagnitude = 1.5f, forceCoef = 290; //275
     private bool isValid;
 
-    private void Update()
+    private void LateUpdate()
     {
         if (Input.GetMouseButtonDown(0) && !IsMouseOverUI() && !BallController.isOnAir)
         {
@@ -20,7 +20,7 @@ public class DragPanel : MonoBehaviour
             UI_Menu.Instance.Hide();
         }
 
-        if (Input.GetMouseButtonUp(0) && !IsMouseOverUI())
+        if (Input.GetMouseButtonUp(0) && isValid==true)
         {
             this.PostEvent(EventID.OnShoot);
             force = Vector2.zero;

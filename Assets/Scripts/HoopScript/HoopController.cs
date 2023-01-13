@@ -18,14 +18,23 @@ public class HoopController : MonoBehaviour
     [SerializeField] GameObject powerRing;
     [SerializeField] HoopEffect hoopEffect;
     [SerializeField] public HoopObstacles hoopObstacles;
-
+    private bool isHit;
+    private void OnDisable()
+    {
+        isHit = false;
+        this.RemoveListener(EventID.OnDrag, (param) => Drag());
+        this.RemoveListener(EventID.OnShoot, (param) => Shoot());
+    }
     private void OnEnable()
     {
-        ApplyTheme();
+        this.RegisterListener(EventID.OnShoot, (param) => Shoot());
+        this.RegisterListener(EventID.OnDrag, (param) => Drag()); ApplyTheme();
+
         //scale at inspector
         transform.rotation = Quaternion.identity;
         isHoldingBall = false;
         hoopEffect.Reset();
+        transform.localScale = Vector3.zero;
         transform.DOScale(0.36f, 0.4f).SetEase(Ease.OutBack);
         netController.sensor.enabled = true;
         powerRing.transform.DOScale(Vector2.right * 1.3f + Vector2.up * 0.9f, 0);
@@ -48,23 +57,25 @@ public class HoopController : MonoBehaviour
         ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallController>();
         angle = Vector3.zero;
         scale = Vector3.one;
-        this.RegisterListener(EventID.OnShoot, (param) => Shoot());
-        this.RegisterListener(EventID.OnDrag, (param) => Drag());
         this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
         //ApplyTheme();
 
     }
     private void Shoot()
     {
+        if (netController == null)
+            return ;
         if (isHoldingBall == true && DragPanel.force.magnitude > DragPanel.minMagnitude)
         {
             isHoldingBall = false;
-            ball.transform.position = anchor.position;
+            //ball.transform.position = anchor.position;
+            Debug.Log(net == null);
+            Debug.Log(netController == null);
             netController.EnableSensor();
             ball.Shoot();
-            hoopEffect.ShootEffect();
             BallController.isOnAir = true;
             netController.OnLaunch();
+            hoopEffect.ShootEffect();
             if (GameController.Instance.challengeMode)
                 ResetRotation();
         }
@@ -74,13 +85,16 @@ public class HoopController : MonoBehaviour
     }
     private void Drag()
     {
+        Debug.Log(net == null);
+        Debug.Log(netController == null);
         if (isHoldingBall)
         {
             angle.z = DragPanel.GetAngle();
             scale.y = DragPanel.GetScale();
             if (DragPanel.force.magnitude > 0.1f)
             {
-                transform.rotation = Quaternion.Euler(angle);
+                if (this != null)
+                    transform.rotation = Quaternion.Euler(angle);
                 if (DragPanel.force.magnitude > DragPanel.minMagnitude)
                 {
                     Projection.Instance.TurnOnTrajectory();
@@ -91,8 +105,8 @@ public class HoopController : MonoBehaviour
                     Projection.Instance.TurnOffTrajectory();
                 }
             }
-            net.transform.localScale = scale;
-
+            if (net != null)
+                net.transform.localScale = scale;
         }
     }
     public void ContactBall()
@@ -105,10 +119,12 @@ public class HoopController : MonoBehaviour
             transform.DORotate(Vector2.zero, 0.2f).SetEase(Ease.InOutExpo);
             netController.OnContactHoop();
             hoopObstacles.Release();
+            ball.transform.position = anchor.position;
             HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
-            if (GameController.Instance.GetScore() != 0 && HoopsPooler.Instance.IsValidShot())
+            if (GameController.Instance.GetScore() != 0 &&isHit==false)
                 EffectContact();
+            isHit = true;
         }
     }
     private void EffectContact()
@@ -148,7 +164,8 @@ public class HoopController : MonoBehaviour
     {
         if (isHoldingBall)
         {
-            ball.transform.SetPositionAndRotation(anchor.position, Quaternion.identity);
+            //ball.transform.SetPositionAndRotation(anchor.position, Quaternion.identity);
+            ball.transform.position = anchor.position;
         }
     }
     public void ResetRotation()

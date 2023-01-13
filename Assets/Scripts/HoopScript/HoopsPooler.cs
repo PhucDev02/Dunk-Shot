@@ -28,7 +28,10 @@ public class HoopsPooler : MonoBehaviour
         GameObject tmp = null;
         for (int i = 0; i < transform.childCount; i++)
         {
+            //DestroyImmediate(transform.GetChild(i).GetComponentInChildren<HoopController>());
+            //DestroyImmediate(transform.GetChild(i).GetChild(2).GetComponentInChildren<NetController>());
             Destroy(transform.GetChild(i).gameObject);
+            //transform.GetChild(i).gameObject.SetActive(false);
         }
         hoops.Clear();
         if (!GameController.Instance.challengeMode)
@@ -43,7 +46,7 @@ public class HoopsPooler : MonoBehaviour
             hoops[i].GetComponent<HoopController>().id = i;
         }
 
-        hoops.Add(Instantiate(tmp.transform.GetChild(tmp.transform.childCount-1).gameObject, transform));
+        hoops.Add(Instantiate(tmp.transform.GetChild(tmp.transform.childCount - 1).gameObject, transform));
         if (tmp.transform.childCount <= 3)
             hoops[tmp.transform.childCount - 1].GetComponent<HoopController>().id = tmp.transform.childCount - 1;
         else
@@ -139,10 +142,12 @@ public class HoopsPooler : MonoBehaviour
         idLastHoop = 0;
         idLowestHoop = 0;
         isValidShot = false;
+        //LoadHoop();
         for (int i = 0; i < transform.childCount; i++)
             if (hoops[i].activeInHierarchy)
             {
-                hoops[i].GetComponent<HoopController>().Reset();
+                if (hoops[i].GetComponent<MonoBehaviour>() is HoopController)
+                    hoops[i].GetComponent<HoopController>().Reset();
                 hoops[i].SetActive(false);
             }
         int dem = 0;
@@ -164,6 +169,6 @@ public class HoopsPooler : MonoBehaviour
     }
     public void NewChallengeGame()
     {
-
+        LoadHoop();
     }
 }

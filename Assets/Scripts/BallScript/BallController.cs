@@ -63,6 +63,7 @@ public class BallController : MonoBehaviour
     }
     public void NewGame()
     {
+        rigidBody.angularVelocity = 0;
         rigidBody.velocity = Vector2.zero;
         rigidBody.simulated = true;
         gameObject.transform.SetParent(null);
