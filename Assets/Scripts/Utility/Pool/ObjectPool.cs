@@ -82,7 +82,10 @@ public class ObjectPool : MonoBehaviour
         {
             (instance as Obstacle).Reset();
         }
-
+        if (instance is HoopController)
+        {
+            (instance as HoopController).Reset();
+        }
         obj.transform.parent = transform;
         obj.SetActive(false);
     }

@@ -30,7 +30,7 @@ public class HoopController : MonoBehaviour
         netController.sensor.enabled = true;
         powerRing.transform.DOScale(Vector2.right * 1.3f + Vector2.up * 0.9f, 0);
     }
-    public void reset()
+    public void Reset()
     {
         ApplyTheme();
         //scale at inspector
@@ -45,6 +45,7 @@ public class HoopController : MonoBehaviour
     }
     void Start()
     {
+        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallController>();
         angle = Vector3.zero;
         scale = Vector3.one;
         this.RegisterListener(EventID.OnShoot, (param) => Shoot());

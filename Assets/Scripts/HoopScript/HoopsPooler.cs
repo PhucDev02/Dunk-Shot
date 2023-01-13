@@ -25,11 +25,29 @@ public class HoopsPooler : MonoBehaviour
     }
     public void LoadHoop()
     {
+        GameObject tmp = null;
         for (int i = 0; i < transform.childCount; i++)
         {
-            hoops.Add(transform.GetChild(i).gameObject);
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        hoops.Clear();
+        if (!GameController.Instance.challengeMode)
+        {
+            tmp = Resources.Load("Prefabs/Levels/EndlessMode") as GameObject;
+        }
+        else
+            tmp = Resources.Load("Prefabs/Levels/ChallengeLevel") as GameObject;
+        for (int i = 0; i < tmp.transform.childCount - 1; i++)
+        {
+            hoops.Add(Instantiate(tmp.transform.GetChild(i).gameObject, transform));
             hoops[i].GetComponent<HoopController>().id = i;
         }
+
+        hoops.Add(Instantiate(tmp.transform.GetChild(tmp.transform.childCount-1).gameObject, transform));
+        if (tmp.transform.childCount <= 3)
+            hoops[tmp.transform.childCount - 1].GetComponent<HoopController>().id = tmp.transform.childCount - 1;
+        else
+            hoops[tmp.transform.childCount - 1].GetComponent<VictoryHoop>().id = tmp.transform.childCount - 1;
     }
     private void disableLowerHoops()
     {
@@ -65,6 +83,7 @@ public class HoopsPooler : MonoBehaviour
     }
     private void SpawnNewHoop()
     {
+        Logger.Log("spawn");
         for (int i = 0; i < transform.childCount; i++)
         {
             if (!hoops[i].activeInHierarchy)
@@ -115,7 +134,7 @@ public class HoopsPooler : MonoBehaviour
         }
         return null;
     }
-    public void NewGame()
+    public void NewEndlessGame()
     {
         idLastHoop = 0;
         idLowestHoop = 0;
@@ -123,7 +142,7 @@ public class HoopsPooler : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
             if (hoops[i].activeInHierarchy)
             {
-                hoops[i].GetComponent<HoopController>().reset();
+                hoops[i].GetComponent<HoopController>().Reset();
                 hoops[i].SetActive(false);
             }
         int dem = 0;
@@ -131,7 +150,7 @@ public class HoopsPooler : MonoBehaviour
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].SetActive(true);
-                hoops[i].GetComponent<HoopController>().reset();
+                hoops[i].GetComponent<HoopController>().Reset();
                 if (dem == 0)
                 {
                     idLastHoop = hoops[i].GetComponent<HoopController>().id;
@@ -142,5 +161,9 @@ public class HoopsPooler : MonoBehaviour
                 dem++;
                 if (dem == 2) return;
             }
+    }
+    public void NewChallengeGame()
+    {
+
     }
 }

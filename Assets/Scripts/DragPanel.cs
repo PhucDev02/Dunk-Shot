@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class DragPanel : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] new BoxCollider2D collider;
     Vector3 startPosition, endPosition;
     public static Vector2 force;
     public static float maxNetScale = 1.8f, maxMagnitude = 3, minMagnitude = 1.5f, forceCoef = 290; //275
@@ -19,7 +18,6 @@ public class DragPanel : MonoBehaviour
             isValid = true;
             startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             UI_Menu.Instance.Hide();
-            Debug.Log("a");
         }
 
         if (Input.GetMouseButtonUp(0) && !IsMouseOverUI())

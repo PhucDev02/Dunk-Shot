@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         //initCameraPosition = vCamera.transform.position;
+        //firstHoop = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
     private void setCamera()
     {

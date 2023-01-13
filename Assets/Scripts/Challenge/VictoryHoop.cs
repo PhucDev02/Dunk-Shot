@@ -7,6 +7,7 @@ public class VictoryHoop : MonoBehaviour
     [SerializeField] Transform anchor, powerRing;
     [SerializeField] GameObject blikas;
     [SerializeField] SpriteRenderer top, down,net;
+    public int id;
     bool isContacted = false;
     GameObject ball;
     private void OnTriggerEnter2D(Collider2D collision)

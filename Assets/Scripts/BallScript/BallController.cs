@@ -39,6 +39,7 @@ public class BallController : MonoBehaviour
             rigidBody.simulated = true;
             rigidBody.angularVelocity = 0;
             //gameObject.SetActive(true);
+            transform.SetParent(null);
             transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1.2f;
         }
         //catch { }

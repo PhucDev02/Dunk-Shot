@@ -25,8 +25,8 @@ public class GameController : MonoBehaviour
         UI_SecondChange.Instance.NewGame();
         UI_Menu.Instance.NewGame();
         UI_Gameplay.Instance.NewGame();
-        HoopsPooler.Instance.NewGame();
         ball.NewGame();
+        HoopsPooler.Instance.NewEndlessGame();
         CameraController.Instance.NewGame();
     }
 
@@ -114,5 +114,9 @@ public class GameController : MonoBehaviour
         IsGameOver = false;
         streak = 0;
         bounceCnt = 0;
+    }
+    public void RespawnBall()
+    {
+        ball.Respawn();
     }
 }

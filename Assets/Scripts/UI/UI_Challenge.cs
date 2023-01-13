@@ -79,6 +79,8 @@ public class UI_Challenge : MonoBehaviour
         descriptionPanel.SetActive(true);
         challengeCanvas.SetActive(true);
         scoreHUD.SetActive(false);
+        GameController.Instance.RespawnBall();
+        HoopsPooler.Instance.LoadHoop();
     }
     public void BackToChallenge()
     {
@@ -89,6 +91,7 @@ public class UI_Challenge : MonoBehaviour
         pausePanel.SetActive(false);
         challengeCanvas.SetActive(false);
         scoreHUD.SetActive(true);
+        GameController.Instance.RespawnBall();
     }
     public void HideHeader()
     {
