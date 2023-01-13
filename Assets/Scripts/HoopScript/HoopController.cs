@@ -83,8 +83,8 @@ public class HoopController : MonoBehaviour
     }
     private void Drag()
     {
-        Debug.Log(net == null);
-        Debug.Log(netController == null);
+        if (netController == null)
+            return;
         if (isHoldingBall)
         {
             angle.z = DragPanel.GetAngle();

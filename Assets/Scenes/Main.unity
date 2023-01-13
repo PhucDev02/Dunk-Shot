@@ -21901,8 +21901,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739caa73d592a5b4faa72848a8b06924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newBallLevels: []
-  collectLevels: []
+  newBallLevels:
+  - {fileID: 11400000, guid: 5daa01425a6b7d546876bc4a018d1260, type: 2}
+  - {fileID: 11400000, guid: 5116867efd174dd40be17646662464db, type: 2}
+  collectLevels:
+  - {fileID: 0}
   timeLevels: []
   scoreLevels: []
   bounceLevels: []

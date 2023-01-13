@@ -114,6 +114,7 @@ public class ChallengeManager : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log(path);
     }
     public void SetLevelComplete()
     {
