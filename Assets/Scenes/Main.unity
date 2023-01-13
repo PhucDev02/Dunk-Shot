@@ -20708,8 +20708,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404172410}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20.944345, y: -2.336526, z: -51.66818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21905,11 +21905,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5daa01425a6b7d546876bc4a018d1260, type: 2}
   - {fileID: 11400000, guid: 5116867efd174dd40be17646662464db, type: 2}
   collectLevels:
-  - {fileID: 0}
-  timeLevels: []
-  scoreLevels: []
-  bounceLevels: []
-  noAimLevels: []
+  - {fileID: 11400000, guid: 94d1cf0997bc26c48a2481362fcc6241, type: 2}
+  - {fileID: 11400000, guid: ca770145296487a49b74884becb51753, type: 2}
+  timeLevels:
+  - {fileID: 11400000, guid: 8d597947bf71b844dac246f76bfad7a1, type: 2}
+  - {fileID: 11400000, guid: 2490e45b30afb93488b0194b21be47e4, type: 2}
+  scoreLevels:
+  - {fileID: 11400000, guid: 01d7094bc8d78c840b8e4c94fb347c6c, type: 2}
+  - {fileID: 11400000, guid: cc48e29dcb64a604696b7f8474ff8114, type: 2}
+  bounceLevels:
+  - {fileID: 11400000, guid: 8feb04ffd3232e8468a49b5ed1dad7a5, type: 2}
+  - {fileID: 11400000, guid: 8e6778cc93de04e48a891aa1b3718152, type: 2}
+  noAimLevels:
+  - {fileID: 11400000, guid: bec6f170ddf2f444a90a31a255a61040, type: 2}
+  - {fileID: 11400000, guid: 815ca308e81850d41b54e6fa346f4c10, type: 2}
   path: 
 --- !u!1 &1475267526
 GameObject:
