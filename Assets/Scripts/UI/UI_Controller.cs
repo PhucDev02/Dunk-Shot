@@ -16,8 +16,11 @@ public class UI_Controller : MonoBehaviour
     [SerializeField] Image[] panels;
     [SerializeField] Image[] buttons;
     [SerializeField] TextMeshProUGUI[] tokens, stars;
+
+    public static UI_Controller Instance;
     private void Awake()
     {
+        Instance = this;
         DOTween.KillAll();
         this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
         this.RegisterListener(EventID.OnPurchaseItem, (param) => UpdateCurrency());

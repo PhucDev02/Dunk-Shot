@@ -16,6 +16,7 @@ public class VictoryHoop : MonoBehaviour
         effect();
         isContacted = true;
         this.PostEvent(EventID.OnContactVictoryHoop);
+        UI_Controller.Instance.BackToChallenge();
     }
     private void Update()
     {
