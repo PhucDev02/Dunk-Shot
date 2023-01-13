@@ -52,6 +52,7 @@ public class ChallengeManager : MonoBehaviour
     public int type;
     public void SetChallengeLevel(int type)
     {
+        this.type = type;
         switch (type)
         {
             case 1:
@@ -121,5 +122,13 @@ public class ChallengeManager : MonoBehaviour
     {
         string[] tmp = path.Split('/');
         PlayerPrefs.SetInt(tmp[tmp.Length - 2] + tmp[tmp.Length - 1], 1);
+    }
+    public void ExecuteCompleteChallenge()
+    {
+        //switch(type)
+        //{
+        //    case 1:
+        //        new
+        //}
     }
 }

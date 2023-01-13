@@ -16,8 +16,7 @@ public class VictoryHoop : MonoBehaviour
         ball = collision.gameObject;
         effect();
         isContacted = true;
-        this.PostEvent(EventID.OnCompleteChallenge);
-        UI_Controller.Instance.BackToChallenge();
+        ChallengeManager.Instance.ExecuteCompleteChallenge();
     }
     private void Update()
     {

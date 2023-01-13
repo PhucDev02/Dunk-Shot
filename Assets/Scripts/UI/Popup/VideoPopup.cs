@@ -19,6 +19,8 @@ public class VideoPopup : Popup
     public void Watch()
     {
         int tmp = PlayerPrefs.GetInt("Ball_" + ball.id + "_VideoWatched");
+        tmp += 1;
+        if (tmp >= ball.videosCount) tmp = ball.videosCount - 1;
         PlayerPrefs.SetInt("Ball_" + ball.id + "_VideoWatched", tmp + 1);
         tmp += 1;
         this.PostEvent(EventID.OnWatchAds, ball);

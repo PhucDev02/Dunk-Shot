@@ -16,6 +16,7 @@ public class PopupManager : MonoBehaviour
     [SerializeField] ChallengePopup challengePopup;
     [SerializeField] SecretPopup secretPopup;
     [SerializeField] FortunePopup fortunePopup;
+    [SerializeField]
     public void ShowPopup(Ball ball)
     {
         Logger.Log("showPopup");
