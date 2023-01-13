@@ -28,6 +28,7 @@ public class HoopsPooler : MonoBehaviour
         GameObject tmp = null;
         for (int i = 0; i < transform.childCount; i++)
         {
+            Logger.Log("a");
             //DestroyImmediate(transform.GetChild(i).GetComponentInChildren<HoopController>());
             //DestroyImmediate(transform.GetChild(i).GetChild(2).GetComponentInChildren<NetController>());
             Destroy(transform.GetChild(i).gameObject);
@@ -149,13 +150,14 @@ public class HoopsPooler : MonoBehaviour
         idLastHoop = 0;
         idLowestHoop = 0;
         isValidShot = false;
-        for (int i = 0; i < transform.childCount; i++)
-            if (hoops[i].activeInHierarchy)
-            {
-                if (hoops[i].GetComponent<MonoBehaviour>() is HoopController)
-                    hoops[i].GetComponent<HoopController>().Reset();
-                hoops[i].SetActive(false);
-            }
+        //for (int i = 0; i < transform.childCount; i++)
+        //    if (hoops[i].activeInHierarchy)
+        //    {
+        //        if (hoops[i].GetComponent<MonoBehaviour>() is HoopController)
+        //            hoops[i].GetComponent<HoopController>().Reset();
+        //        hoops[i].SetActive(false);
+        //    }
+        LoadHoop();
         int dem = 0;
         for (int i = 0; i < transform.childCount; i++)
             if (!hoops[i].activeInHierarchy)
