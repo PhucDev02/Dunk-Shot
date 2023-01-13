@@ -22,8 +22,6 @@ public class HoopController : MonoBehaviour
     private void OnDisable()
     {
         isHit = false;
-        this.RemoveListener(EventID.OnDrag, (param) => Drag());
-        this.RemoveListener(EventID.OnShoot, (param) => Shoot());
     }
     private void OnEnable()
     {
@@ -64,7 +62,7 @@ public class HoopController : MonoBehaviour
     private void Shoot()
     {
         if (netController == null)
-            return ;
+            return;
         if (isHoldingBall == true && DragPanel.force.magnitude > DragPanel.minMagnitude)
         {
             isHoldingBall = false;
@@ -122,33 +120,36 @@ public class HoopController : MonoBehaviour
             ball.transform.position = anchor.position;
             HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
-            if (GameController.Instance.GetScore() != 0 &&isHit==false)
+            if (GameController.Instance.GetScore() != 0)
                 EffectContact();
-            isHit = true;
         }
     }
-    private void EffectContact()
+    public void EffectContact()
     {
-        topHoop.sprite = GameManager.Instance.GetTheme().topHoopDisable;
-        downHoop.sprite = GameManager.Instance.GetTheme().downHoopDisable;
-        powerRing.transform.localScale = GameManager.powerRingScale;
-        powerRing.GetComponent<SpriteRenderer>().DOFade(1, 0);
-        powerRing.SetActive(true);
-        if (GameController.Instance.isPerfect)
+        if (isHit == false)
         {
-            powerRing.transform.DOScale(powerRing.transform.localScale * 2.6f, 0.5f).SetEase(Ease.OutCubic);
-            powerRing.GetComponent<SpriteRenderer>().DOFade(0, 0.5f).OnComplete(() =>
+            isHit = true;
+            topHoop.sprite = GameManager.Instance.GetTheme().topHoopDisable;
+            downHoop.sprite = GameManager.Instance.GetTheme().downHoopDisable;
+            powerRing.transform.localScale = GameManager.powerRingScale;
+            powerRing.GetComponent<SpriteRenderer>().DOFade(1, 0);
+            powerRing.SetActive(true);
+            if (GameController.Instance.isPerfect)
             {
-                powerRing.SetActive(false);
-            });
-        }
-        else
-        {
-            powerRing.transform.DOScale(powerRing.transform.localScale * 2.0f, 0.5f);
-            powerRing.GetComponent<SpriteRenderer>().DOFade(0, 0.5f).OnComplete(() =>
+                powerRing.transform.DOScale(powerRing.transform.localScale * 2.6f, 0.5f).SetEase(Ease.OutCubic);
+                powerRing.GetComponent<SpriteRenderer>().DOFade(0, 0.5f).OnComplete(() =>
+                {
+                    powerRing.SetActive(false);
+                });
+            }
+            else
             {
-                powerRing.SetActive(false);
-            });
+                powerRing.transform.DOScale(powerRing.transform.localScale * 2.0f, 0.5f);
+                powerRing.GetComponent<SpriteRenderer>().DOFade(0, 0.5f).OnComplete(() =>
+                {
+                    powerRing.SetActive(false);
+                });
+            }
         }
     }
     public void Disappear()
@@ -177,5 +178,11 @@ public class HoopController : MonoBehaviour
     {
         topHoop.sprite = GameManager.Instance.GetTheme().topHoop;
         downHoop.sprite = GameManager.Instance.GetTheme().downHoop;
+    }
+    public void SetFirstHoopInChallenge()
+    {
+        isHit = true;
+        topHoop.sprite = GameManager.Instance.GetTheme().topHoopDisable;
+        downHoop.sprite = GameManager.Instance.GetTheme().downHoopDisable;
     }
 }

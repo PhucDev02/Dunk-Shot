@@ -70,15 +70,18 @@ public class UI_Challenge : MonoBehaviour
     //Score,4
     //Bounce,5
     //NoAim 6
+    private int lastType;
     public void GoToChallenge(int type)
     {
         GameController.Instance.challengeMode = true;
-        AssignChallenge(type);
         PlayAnim();
         panel.SetActive(false);
         descriptionPanel.SetActive(true);
+        pausePanel.SetActive(false);
         challengeCanvas.SetActive(true);
         scoreHUD.SetActive(false);
+        AssignChallenge(type);
+        ChallengeManager.Instance.SetChallengeLevel(type);
         GameController.Instance.RespawnBall();
         HoopsPooler.Instance.LoadHoop();
     }
@@ -102,6 +105,13 @@ public class UI_Challenge : MonoBehaviour
     }
     public void AssignChallenge(int type)
     {
+        if (type == -1)
+        {
+            descriptionPanel.SetActive(false);
+            AssignChallenge(lastType);
+            return;
+        }
+        else lastType = type;
         headerChallenge[type - 1].SetActive(true);
         switch (type)
         {
@@ -112,6 +122,7 @@ public class UI_Challenge : MonoBehaviour
                 board.color = orange;
                 playbtn.sprite = newBallBtn;
                 restartBtn.sprite = newBallBtn;
+                rewardPause.sprite = mysteriousBall;
                 //name
                 break;
             case 2:

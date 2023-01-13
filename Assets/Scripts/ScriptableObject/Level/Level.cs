@@ -6,6 +6,6 @@ public class Level : ScriptableObject
 {
     public GameObject prefab;
     public ChallengeType type;
-    public string id;
+    public int id;
     public int totalHoops;
 }

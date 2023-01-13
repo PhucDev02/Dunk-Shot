@@ -42,6 +42,12 @@ public class UI_Controller : MonoBehaviour
         ApplyDarkmode();
         UpdateCurrency();
     }
+    public void NoTksButton()
+    {
+        if (GameController.Instance.challengeMode)
+            BackToChallenge();
+        else Reload();
+    }
     public void Reload()
     {
         DOTween.KillAll();

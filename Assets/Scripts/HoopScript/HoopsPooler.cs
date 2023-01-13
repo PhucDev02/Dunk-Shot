@@ -39,7 +39,7 @@ public class HoopsPooler : MonoBehaviour
             tmp = Resources.Load("Prefabs/Levels/EndlessMode") as GameObject;
         }
         else
-            tmp = Resources.Load("Prefabs/Levels/ChallengeLevel") as GameObject;
+            tmp = Resources.Load(ChallengeManager.Instance.path) as GameObject;
         for (int i = 0; i < tmp.transform.childCount - 1; i++)
         {
             hoops.Add(Instantiate(tmp.transform.GetChild(i).gameObject, transform));
@@ -47,30 +47,22 @@ public class HoopsPooler : MonoBehaviour
         }
 
         hoops.Add(Instantiate(tmp.transform.GetChild(tmp.transform.childCount - 1).gameObject, transform));
-        if (tmp.transform.childCount <= 3)
+        if (!GameController.Instance.challengeMode)
             hoops[tmp.transform.childCount - 1].GetComponent<HoopController>().id = tmp.transform.childCount - 1;
         else
-            hoops[tmp.transform.childCount - 1].GetComponent<VictoryHoop>().id = tmp.transform.childCount - 1;
-    }
-    private void disableLowerHoops()
-    {
-        for (int i = 0; i < transform.childCount; i++)
         {
-            if (hoops[i].activeInHierarchy)
-            {
-                if (hoops[i].transform.position.y < hoops[idLastHoop].transform.position.y)
-                    hoops[i].GetComponent<HoopController>().Disappear();
-                if (hoops[i].transform.position.y < hoops[idLowestHoop].transform.position.y)
-                    idLowestHoop = i;
-            }
+            hoops[tmp.transform.childCount - 1].GetComponent<VictoryHoop>().id = tmp.transform.childCount - 1;
+            hoops[0].GetComponent<HoopController>().SetFirstHoopInChallenge();
         }
     }
+
     public void SetIdLastHoop(int id)
     {
         if (id != idLastHoop)
         {
             idLastHoop = id;
             isValidShot = true;
+            disableLowerHoops();
             if (!GameController.Instance.challengeMode)
                 SpawnNewHoop();
         }
@@ -94,9 +86,24 @@ public class HoopsPooler : MonoBehaviour
                 hoops[i].transform.position = randomNewPosition();
                 hoops[i].SetActive(true);
                 hoops[i].transform.eulerAngles = randomNewRotate();
-                disableLowerHoops();
                 ObstacleHoopSpawner.Instance.Spawn(hoops[i].GetComponent<HoopController>());
                 return;
+            }
+        }
+    }
+    private void disableLowerHoops()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (hoops[i].activeInHierarchy)
+            {
+                if (hoops[i].transform.position.y < hoops[idLastHoop].transform.position.y)
+                    if (!GameController.Instance.challengeMode)
+                        hoops[i].GetComponent<HoopController>().Disappear();
+                    else
+                        hoops[i].GetComponent<HoopController>().EffectContact();
+                if (hoops[i].transform.position.y < hoops[idLowestHoop].transform.position.y)
+                    idLowestHoop = i;
             }
         }
     }
@@ -142,7 +149,6 @@ public class HoopsPooler : MonoBehaviour
         idLastHoop = 0;
         idLowestHoop = 0;
         isValidShot = false;
-        //LoadHoop();
         for (int i = 0; i < transform.childCount; i++)
             if (hoops[i].activeInHierarchy)
             {
