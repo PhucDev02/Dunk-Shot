@@ -176,8 +176,11 @@ public class HoopController : MonoBehaviour
     }
     void ApplyTheme()
     {
-        topHoop.sprite = GameManager.Instance.GetTheme().topHoop;
-        downHoop.sprite = GameManager.Instance.GetTheme().downHoop;
+        if (topHoop != null)
+        {
+            topHoop.sprite = GameManager.Instance.GetTheme().topHoop;
+            downHoop.sprite = GameManager.Instance.GetTheme().downHoop;
+        }
     }
     public void SetFirstHoopInChallenge()
     {

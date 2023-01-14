@@ -109,7 +109,20 @@ public class UI_Controller : MonoBehaviour
             else
                 panels[i].color = lightColor;
     }
-    void UpdateCurrency()
+   public void UpdateCurrency(int starsCount,int tokensCount)
+    {
+        PlayerPrefs.SetInt("Tokens", tokensCount);
+        PlayerPrefs.SetInt("Stars", starsCount);
+        for (int i = 0; i < tokens.Length; i++)
+        {
+            tokens[i].text = tokensCount.ToString();
+        }
+        for (int i = 0; i < stars.Length; i++)
+        {
+            stars[i].text = stars.ToString();
+        }
+    }
+    public void UpdateCurrency()
     {
         for (int i = 0; i < tokens.Length; i++)
         {

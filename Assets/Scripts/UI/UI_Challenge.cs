@@ -49,8 +49,8 @@ public class UI_Challenge : MonoBehaviour
     [SerializeField] Sprite noAimBtn;
     //
     [Header("Reward")]
-    [SerializeField] Sprite token;
-    [SerializeField] Sprite mysteriousBall;
+    [SerializeField] public Sprite token;
+    [SerializeField] public Sprite mysteriousBall;
     //
     [Header("Color")]
     [SerializeField] Color orange;
@@ -70,6 +70,42 @@ public class UI_Challenge : MonoBehaviour
     //Score,4
     //Bounce,5
     //NoAim 6
+    public Sprite GetSpriteChallenge(int type)
+    {
+        switch (type)
+        {
+            case 1:
+                return newBallBtn;
+            case 2:
+                return collectBtn;
+            case 3:
+                return timeBtn;
+            case 4:
+                return scoreBtn;
+            case 5:
+                return bounceBtn;
+            default:
+                return noAimBtn;
+        }
+    }
+    public Color GetChallengeColor(int type)
+    {
+        switch (type)
+        {
+            case 1:
+                return orange;
+            case 2:
+                return turquoise;
+            case 3:
+                return blue;
+            case 4:
+                return green;
+            case 5:
+                return pink;
+            default:
+                return lightRed;
+        }
+    }
     private int lastType;
     public void GoToChallenge(int type)
     {

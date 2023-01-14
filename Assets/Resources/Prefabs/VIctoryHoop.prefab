@@ -404,7 +404,7 @@ MonoBehaviour:
   top: {fileID: 2812352083994902778}
   down: {fileID: 2812352082819388786}
   net: {fileID: 2812352083316794384}
-  light: {fileID: 0}
+  light: {fileID: 6670082265361895668}
   id: 0
 --- !u!68 &4288945887216236276
 EdgeCollider2D:
@@ -659,7 +659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7039389445342680975
 Transform:
   m_ObjectHideFlags: 0

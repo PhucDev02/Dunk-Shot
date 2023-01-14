@@ -16,7 +16,33 @@ public class PopupManager : MonoBehaviour
     [SerializeField] ChallengePopup challengePopup;
     [SerializeField] SecretPopup secretPopup;
     [SerializeField] FortunePopup fortunePopup;
-    [SerializeField]
+    [SerializeField] UnlockPopup unlockPopup;
+    [SerializeField] WinTokenChallengePopup winTokenPopup;
+    [SerializeField] WinNewBallPopup winBallPopup;
+    [SerializeField] FailedPopup failedPopup;
+    public void ShowFailedPopup(int type)
+    {
+        Debug.Log("fail");
+        failedPopup.AssignPopup(type);
+        failedPopup.ShowPopup();
+    }
+    public void ShowWinBallPopup(Ball ball)
+    {
+        winBallPopup.AssignPopup(ball);
+        winBallPopup.ShowPopup();
+    }
+    public void ShowWinTokenPopup(int type)
+    {
+        panel.SetActive(false);
+        winTokenPopup.AssignPopup(type);
+        winTokenPopup.ShowPopup();
+    }    
+    public void ShowUnlockPopup(Ball ball)
+    {
+        panel.SetActive(true);
+        unlockPopup.AssignPopup(ball);
+        unlockPopup.ShowPopup();
+    }
     public void ShowPopup(Ball ball)
     {
         Logger.Log("showPopup");

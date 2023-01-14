@@ -16,6 +16,12 @@ public class VictoryHoop : MonoBehaviour
         ball = collision.gameObject;
         effect();
         isContacted = true;
+        StartCoroutine(waitToExecute());
+    }
+
+    IEnumerator waitToExecute()
+    {
+        yield return new WaitForSeconds(0.5f);
         ChallengeManager.Instance.ExecuteCompleteChallenge();
     }
     private void Update()
@@ -48,5 +54,9 @@ public class VictoryHoop : MonoBehaviour
                 powerRing.gameObject.SetActive(false);
             });
         }
+
+        //
+        light.SetActive(true);
+        light.transform.transform.DORotate(Vector3.forward * 360, 4f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
     }
 }

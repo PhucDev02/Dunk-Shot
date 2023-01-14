@@ -123,12 +123,37 @@ public class ChallengeManager : MonoBehaviour
         string[] tmp = path.Split('/');
         PlayerPrefs.SetInt(tmp[tmp.Length - 2] + tmp[tmp.Length - 1], 1);
     }
-    public void ExecuteCompleteChallenge()
+    public int ExecuteCompleteChallenge()
     {
-        //switch(type)
-        //{
-        //    case 1:
-        //        new
-        //}
+        switch (type)
+        {
+            case 1:
+                for (int i = 0; i < GameManager.Instance.balls.Length; i++)
+                {
+                    if (GameManager.Instance.balls[i].type == BallType.Challenge)
+                    {
+                        Debug.Log("b");
+                        if (BallShopController.Instance.GetUnlockStatus(GameManager.Instance.balls[i].id) == 0)
+                        {
+                            Debug.Log("a");
+                            BallShopController.Instance.UnlockBall(GameManager.Instance.balls[i].id);
+                            PopupManager.Instance.ShowWinBallPopup(GameManager.Instance.balls[i]);
+                            SetLevelComplete();
+                            return 1;
+                        }
+                    }
+                }
+                break;
+            //case 2:
+            //    break;
+            //case 3: //Time
+            //    return 1;
+            default:
+                PopupManager.Instance.ShowWinTokenPopup(type);
+                UI_Controller.Instance.UpdateCurrency(PlayerPrefs.GetInt("Stars"), PlayerPrefs.GetInt("Tokens") + 20);
+                SetLevelComplete();
+                break;
+        }
+        return 0;
     }
 }

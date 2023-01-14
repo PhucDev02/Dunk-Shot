@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public bool isPerfect;
     public int bounceCnt;
     public bool IsGameOver;
-    public bool challengeMode ;
+    public bool challengeMode;
     public void NewGame()
     {
         Reset();
@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
         isPerfect = false;
 
     }
-    private void UpdateScore()
+    public void UpdateScore()
     {
         if (HoopsPooler.Instance.IsValidShot())
         {
@@ -102,11 +102,14 @@ public class GameController : MonoBehaviour
     IEnumerator WaitGameOver()
     {
         yield return new WaitForSeconds(0.3f);
-        if (UI_SecondChange.Instance.IsActivated == false && score >= 3)
-        {
-            UI_SecondChange.Instance.ActivePanel();
-        }
-        else UI_GameOver.Instance.GameOver();
+        if (!challengeMode)
+            if (UI_SecondChange.Instance.IsActivated == false && score >= 3)
+            {
+                UI_SecondChange.Instance.ActivePanel();
+            }
+            else UI_GameOver.Instance.GameOver();
+        else
+            PopupManager.Instance.ShowFailedPopup(ChallengeManager.Instance.type);
         UI_Gameplay.Instance.HideButton();
     }
     private void ActiveSecondChange()

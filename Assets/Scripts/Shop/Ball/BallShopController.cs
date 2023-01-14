@@ -55,4 +55,8 @@ public class BallShopController : MonoBehaviour
     {
         return PlayerPrefs.GetInt("Ball_" + id.ToString());
     }
+    public void UnlockBall(int id)
+    {
+        PlayerPrefs.SetInt("Ball_"+id, 1);
+    }
 }

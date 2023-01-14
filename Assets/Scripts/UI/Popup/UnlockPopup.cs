@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnlockPopup : MonoBehaviour
+public class UnlockPopup : Popup
 {
-    // Start is called before the first frame update
-    void Start()
+    private Ball ball;
+    public override void AssignPopup(Ball ball)
     {
-        
+        base.AssignPopup(ball);
+        this.ball = ball;
+        preview.sprite = ball.spriteBall;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void OnClickEquip()
     {
-        
+        PlayerPrefs.SetInt("IdBallSelected", ball.id);
+        this.PostEvent(EventID.OnChangeBall);
+        gameObject.SetActive(false);
     }
 }

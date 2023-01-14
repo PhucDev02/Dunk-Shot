@@ -52,7 +52,7 @@ public class ThemeDisplay : MonoBehaviour
     }
     private void unlock()
     {
-        this.PostEvent(EventID.OnPurchaseItem);
+        UI_Controller.Instance.UpdateCurrency();
         ThemeController.Instance.SetUnlockStatus(theme, 1);
         lockStatus.SetActive(false);
         cover.SetActive(false);
