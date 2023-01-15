@@ -8,6 +8,7 @@ public class FailedPopup : MonoBehaviour
 {
     public Image buttonImg, reward;
     public TextMeshProUGUI description;
+    public Transform board;
     public void ShowPopup()
     {
         gameObject.SetActive(true);
@@ -24,11 +25,11 @@ public class FailedPopup : MonoBehaviour
     }
     private void OnEnable()
     {
-        transform.localScale = Vector3.zero;
-        transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+        board.localScale = Vector3.zero;
+        board.DOScale(1, 0.5f).SetEase(Ease.OutBack);
     }
     private void OnDisable()
     {
-        transform.DOKill();
+        board.DOKill();
     }
 }

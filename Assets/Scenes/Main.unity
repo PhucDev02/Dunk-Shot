@@ -1154,6 +1154,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 123317261}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &60554096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2549,7 +2561,6 @@ GameObject:
   - component: {fileID: 123317262}
   - component: {fileID: 123317264}
   - component: {fileID: 123317263}
-  - component: {fileID: 123317266}
   - component: {fileID: 123317265}
   m_Layer: 5
   m_Name: FailedPopup
@@ -2557,7 +2568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &123317262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2631,21 +2642,7 @@ MonoBehaviour:
   buttonImg: {fileID: 60554096}
   reward: {fileID: 456995187}
   description: {fileID: 839139593}
---- !u!114 &123317266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123317261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7175a26ed5c11234193e01edfdd6c4bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonImg: {fileID: 0}
-  reward: {fileID: 0}
-  description: {fileID: 0}
+  board: {fileID: 1437393677}
 --- !u!1 &124568143
 GameObject:
   m_ObjectHideFlags: 0
@@ -9792,7 +9789,7 @@ MonoBehaviour:
   unlockPopup: {fileID: 685338532}
   winTokenPopup: {fileID: 1349803028}
   winBallPopup: {fileID: 310982451}
-  failedPopup: {fileID: 123317266}
+  failedPopup: {fileID: 123317265}
 --- !u!114 &613258901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11911,6 +11908,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UI_Controller, Assembly-CSharp
         m_MethodName: BackToChallenge
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 123317261}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18370,7 +18379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1117973206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21142,6 +21151,7 @@ MonoBehaviour:
   closeBtn: {fileID: 414640788}
   board: {fileID: 1976995337}
   challengeNameTopElm: {fileID: 1040273937}
+  hoopPassed: {fileID: 504976312}
   descriptionPause: {fileID: 1961855174}
   rewardPause: {fileID: 450369750}
   restartBtn: {fileID: 916371532}
@@ -24358,6 +24368,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9fd6331874f90cc4c81d08e2e377180a, type: 2}
   - {fileID: 11400000, guid: 1db2e3ace1793ab4cb1063f00e580b55, type: 2}
   net: {fileID: 21300000, guid: d06dc3591aa3f9a4ca52b3a6be6f3a07, type: 3}
+  goldenNet: {fileID: 21300000, guid: 31c0ac0335bef004daeac61c56b69cf6, type: 3}
 --- !u!4 &1455844974
 Transform:
   m_ObjectHideFlags: 0
@@ -34972,10 +34983,6 @@ PrefabInstance:
     - target: {fileID: 3420872369101578830, guid: f60785eef3fa46a49ae22b333c564504, type: 3}
       propertyPath: m_Name
       value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 3420872369101578831, guid: f60785eef3fa46a49ae22b333c564504, type: 3}
-      propertyPath: m_Radius
-      value: 0.285
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f60785eef3fa46a49ae22b333c564504, type: 3}

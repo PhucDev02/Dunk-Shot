@@ -120,6 +120,11 @@ public class GameController : MonoBehaviour
     }
     public void RespawnBall()
     {
+        if (challengeMode)
+        {
+            CameraController.Instance.NewGame();
+            HoopsPooler.Instance.Reset();
+        }
         ball.Respawn();
     }
 }

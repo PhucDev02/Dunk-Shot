@@ -7,7 +7,7 @@ public class HoopsPooler : MonoBehaviour
     public static HoopsPooler Instance;
     // Start is called before the first frame update
     [SerializeField] List<GameObject> hoops;
-    [SerializeField] private int idLastHoop, idLowestHoop;
+    [SerializeField] public int idLastHoop, idLowestHoop;
     [SerializeField] private bool isValidShot;
     private int[] rotation = { 0, 0, 0, 15, 30, 45 };
     private void Awake()
@@ -17,14 +17,19 @@ public class HoopsPooler : MonoBehaviour
     }
     void Start()
     {
-        idLastHoop = 0;
-        idLowestHoop = 0;
-        isValidShot = false;
+        Reset();
         hoops = new List<GameObject>();
         LoadHoop();
     }
+    public void Reset()
+    {
+        idLastHoop = 0;
+        idLowestHoop = 0;
+        isValidShot = false;
+    }
     public void LoadHoop()
     {
+        Reset();
         GameObject tmp = null;
         ObjectPool.Instance.RecallAll();
         for (int i = 0; i < transform.childCount; i++)
@@ -38,7 +43,7 @@ public class HoopsPooler : MonoBehaviour
         }
         else
             tmp = Resources.Load(ChallengeManager.Instance.path) as GameObject;
-        for (int i = 0; i < tmp.transform.childCount - 1; i++)
+        for (int i = 0; i < tmp.transform.childCount - 1; i++) // -1 to except victoryhoop
         {
             hoops.Add(Instantiate(tmp.transform.GetChild(i).gameObject, transform));
             hoops[i].GetComponent<HoopController>().id = i;
@@ -77,7 +82,7 @@ public class HoopsPooler : MonoBehaviour
     private void SpawnNewHoop()
     {
         Logger.Log("spawn");
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < hoops.Count; i++)
         {
             if (!hoops[i].activeInHierarchy)
             {
@@ -91,7 +96,7 @@ public class HoopsPooler : MonoBehaviour
     }
     private void disableLowerHoops()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < hoops.Count; i++)
         {
             if (hoops[i].activeInHierarchy)
             {
@@ -132,7 +137,7 @@ public class HoopsPooler : MonoBehaviour
     }
     private GameObject getHoop()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < hoops.Count; i++)
         {
             if (!hoops[i].activeInHierarchy)
             {
@@ -156,7 +161,7 @@ public class HoopsPooler : MonoBehaviour
         //    }
         LoadHoop();
         int dem = 0;
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < hoops.Count; i++)
             if (!hoops[i].activeInHierarchy)
             {
                 hoops[i].SetActive(true);

@@ -116,8 +116,8 @@ public class ChallengeManager : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log(path);
     }
+
     public void SetLevelComplete()
     {
         string[] tmp = path.Split('/');
@@ -132,10 +132,8 @@ public class ChallengeManager : MonoBehaviour
                 {
                     if (GameManager.Instance.balls[i].type == BallType.Challenge)
                     {
-                        Debug.Log("b");
                         if (BallShopController.Instance.GetUnlockStatus(GameManager.Instance.balls[i].id) == 0)
                         {
-                            Debug.Log("a");
                             BallShopController.Instance.UnlockBall(GameManager.Instance.balls[i].id);
                             PopupManager.Instance.ShowWinBallPopup(GameManager.Instance.balls[i]);
                             SetLevelComplete();

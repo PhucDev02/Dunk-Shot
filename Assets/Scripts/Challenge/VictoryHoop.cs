@@ -11,6 +11,10 @@ public class VictoryHoop : MonoBehaviour
     public int id;
     bool isContacted = false;
     GameObject ball;
+    private void Start()
+    {
+       net.sprite= GameManager.Instance.goldenNet;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ball = collision.gameObject;

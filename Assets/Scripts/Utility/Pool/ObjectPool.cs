@@ -92,7 +92,6 @@ public class ObjectPool : MonoBehaviour
 
     public void RecallAll()
     {
-        Debug.Log("ObjectPooler recall all!");
 
         foreach (var pool in Pools)
         {

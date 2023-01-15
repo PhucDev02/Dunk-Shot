@@ -22,7 +22,6 @@ public class PopupManager : MonoBehaviour
     [SerializeField] FailedPopup failedPopup;
     public void ShowFailedPopup(int type)
     {
-        Debug.Log("fail");
         failedPopup.AssignPopup(type);
         failedPopup.ShowPopup();
     }

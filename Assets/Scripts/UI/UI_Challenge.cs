@@ -23,7 +23,7 @@ public class UI_Challenge : MonoBehaviour
     //top element
     [Header("Top Element")]
     [SerializeField] Image board;
-    [SerializeField] TextMeshProUGUI challengeNameTopElm;
+    [SerializeField] TextMeshProUGUI challengeNameTopElm,hoopPassed;
     //pause
     [Header("Pause popup")]
     [SerializeField] TextMeshProUGUI descriptionPause;
@@ -209,8 +209,8 @@ public class UI_Challenge : MonoBehaviour
                 rewardPause.sprite = token;
                 break;
         }
-        Debug.Log(lastType);
         ChallengeManager.Instance.SetChallengeLevel(lastType);
+        UI_Gameplay.Instance.SetUpUIChallenge(lastType);
     }
     public void PlayAnim()
     {

@@ -132,10 +132,49 @@ public class UI_Gameplay : MonoBehaviour
     }
     public void NewGame()
     {
-
+        bounceCnt.gameObject.SetActive(true);
+        increaseScore.gameObject.SetActive(true);
+        streakCnt.gameObject.SetActive(true);
         bounceCnt.DOFade(0, 0);
         increaseScore.DOFade(0, 0);
         streakCnt.DOFade(0, 0);
         UpdateScore();
+    }
+    public void SetUpUIChallenge(int type)
+    {
+        switch(type)
+        {
+            case 1:
+                bounceCnt.gameObject.SetActive(false);
+                increaseScore.gameObject.SetActive(false);
+                streakCnt.gameObject.SetActive(true);
+                break;
+            case 2:
+                bounceCnt.gameObject.SetActive(true);
+                increaseScore.gameObject.SetActive(false);
+                streakCnt.gameObject.SetActive(true);
+                break;
+            case 3:
+                bounceCnt.gameObject.SetActive(false);
+                increaseScore.gameObject.SetActive(false);
+                streakCnt.gameObject.SetActive(true);
+                break;
+            case 4:
+                bounceCnt.gameObject.SetActive(true);
+                increaseScore.gameObject.SetActive(true);
+                streakCnt.gameObject.SetActive(true);
+                break;
+            case 5:
+                bounceCnt.gameObject.SetActive(true);
+                increaseScore.gameObject.SetActive(false);
+                streakCnt.gameObject.SetActive(true);
+                break;
+            default:
+                bounceCnt.gameObject.SetActive(false);
+                increaseScore.gameObject.SetActive(false);
+                streakCnt.gameObject.SetActive(true);
+                break;
+
+        }
     }
 }

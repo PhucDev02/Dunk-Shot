@@ -110,5 +110,5 @@ public class GameManager : MonoBehaviour
     public static Vector3 initPosFirstHoop = new Vector3(-1.26f, -0.81f, 0.19f);
     public static Vector3 initPosSecondHoop = new Vector3(1.185f, 0.694f, 0.188f);
     public static Vector3 initPosBall = new Vector3(-1.26f, 0.255f, 0);
-    public Sprite net;
+    public Sprite net,goldenNet;
 }

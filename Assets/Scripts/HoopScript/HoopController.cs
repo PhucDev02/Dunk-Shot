@@ -118,6 +118,7 @@ public class HoopController : MonoBehaviour
             netController.OnContactHoop();
             hoopObstacles.Release();
             ball.transform.position = anchor.position;
+            ball.transform.localScale = Vector3.one * 2.777777f;
             HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
             if (GameController.Instance.GetScore() != 0)
@@ -161,7 +162,7 @@ public class HoopController : MonoBehaviour
         );
     }
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (isHoldingBall)
         {

@@ -34,12 +34,7 @@ public class BallController : MonoBehaviour
     {
        if(this!=null)
         {
-            rigidBody = GetComponent<Rigidbody2D>();
-            rigidBody.velocity = Vector2.zero;
-            rigidBody.simulated = true;
-            rigidBody.angularVelocity = 0;
-            //gameObject.SetActive(true);
-            transform.SetParent(null);
+            Reset();
             transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1.2f;
         }
         //catch { }
@@ -63,11 +58,16 @@ public class BallController : MonoBehaviour
     }
     public void NewGame()
     {
-        rigidBody.angularVelocity = 0;
+        Reset();
+        gameObject.transform.position = GameManager.initPosBall;
+    }
+    public void Reset()
+    {
+        rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.velocity = Vector2.zero;
         rigidBody.simulated = true;
-        gameObject.transform.SetParent(null);
-        gameObject.transform.position = GameManager.initPosBall;
+        rigidBody.angularVelocity = 0;
+        transform.SetParent(null);
         trail.DeactiveEffect();
     }
 }
