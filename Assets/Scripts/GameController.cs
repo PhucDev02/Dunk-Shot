@@ -89,7 +89,8 @@ public class GameController : MonoBehaviour
     {
         if (score != 0)
         {
-            IsGameOver = true;
+            if (!challengeMode)
+                IsGameOver = true;
             StartCoroutine(WaitGameOver());
         }
         else
