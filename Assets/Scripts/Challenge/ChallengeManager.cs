@@ -123,6 +123,7 @@ public class ChallengeManager : MonoBehaviour
     {
         string[] tmp = path.Split('/');
         PlayerPrefs.SetInt(tmp[tmp.Length - 2] + tmp[tmp.Length - 1], 1);
+        UI_Challenge.Instance.UpdateProgress();
     }
     public int ExecuteCompleteChallenge()
     {

@@ -64,6 +64,10 @@ public class UI_Challenge : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        UpdateProgress();
+    }
     //NewBall, 1
     //Collect, 2
     //Time, 3
@@ -137,7 +141,7 @@ public class UI_Challenge : MonoBehaviour
                 description.text = "Complete in " + ((TimeLevel)ChallengeManager.Instance.lastLevel).seconds + " seconds";
                 break;
             case 4:
-                description.text = "Complete with score "+ ((ScoreLevel)ChallengeManager.Instance.lastLevel).totolScore;
+                description.text = "Complete with score " + ((ScoreLevel)ChallengeManager.Instance.lastLevel).totolScore;
                 break;
             case 5:
                 description.text = "Complete with " + ((BounceLevel)ChallengeManager.Instance.lastLevel).totolBounce + " bounces";
@@ -165,6 +169,91 @@ public class UI_Challenge : MonoBehaviour
         {
             headerChallenge[i].SetActive(false);
         }
+    }
+    [Header("Fill")]
+    [SerializeField] Image newBallFill;
+    [SerializeField] Image collectFill;
+    [SerializeField] Image timeFill;
+    [SerializeField] Image scoreFill;
+    [SerializeField] Image bounceFill;
+    [SerializeField] Image noAimFill;
+    [Header("Progress Text")]
+    [SerializeField] TextMeshProUGUI newBallTxt;
+    [SerializeField] TextMeshProUGUI collectTxt;
+    [SerializeField] TextMeshProUGUI timeTxt;
+    [SerializeField] TextMeshProUGUI scoreTxt;
+    [SerializeField] TextMeshProUGUI bounceTxt;
+    [SerializeField] TextMeshProUGUI noAimTxt;
+    public void UpdateProgress()
+    {
+        int tmp = 0;
+        for (int i = 0; i < ChallengeManager.Instance.newBallLevels.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("NewBall" + i) == 1)
+            {
+                tmp += 1;
+            }
+        }
+        newBallTxt.text = ((100 * tmp) / ChallengeManager.Instance.newBallLevels.Length) + "%";
+        newBallFill.fillAmount = 1.0f * tmp / ChallengeManager.Instance.newBallLevels.Length;
+
+        tmp = 0;
+        for (int i = 0; i < ChallengeManager.Instance.collectLevels.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("Collect" + i) == 1)
+            {
+                tmp += 1;
+            }
+        }
+        collectTxt.text = ((100 * tmp) / ChallengeManager.Instance.collectLevels.Length) + "%";
+        collectFill.fillAmount = 1.0f * tmp / ChallengeManager.Instance.collectLevels.Length;
+
+        tmp = 0;
+        for (int i = 0; i < ChallengeManager.Instance.timeLevels.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("Time" + i) == 1)
+            {
+                tmp += 1;
+            }
+        }
+        timeTxt.text = ((100 * tmp) / ChallengeManager.Instance.timeLevels.Length) + "%";
+        timeFill.fillAmount = 1.0f * tmp / ChallengeManager.Instance.timeLevels.Length;
+
+
+        tmp = 0;
+        for (int i = 0; i < ChallengeManager.Instance.scoreLevels.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("Score" + i) == 1)
+            {
+                tmp += 1;
+            }
+        }
+        scoreTxt.text = ((100 * tmp) / ChallengeManager.Instance.scoreLevels.Length) + "%";
+        scoreFill.fillAmount = 1.0f * tmp / ChallengeManager.Instance.scoreLevels.Length;
+
+
+        tmp = 0;
+        for (int i = 0; i < ChallengeManager.Instance.bounceLevels.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("Bounce" + i) == 1)
+            {
+                tmp += 1;
+            }
+        }
+        bounceTxt.text = ((100 * tmp) / ChallengeManager.Instance.bounceLevels.Length) + "%";
+        bounceFill.fillAmount = 1.0f * tmp / ChallengeManager.Instance.bounceLevels.Length;
+
+        tmp = 0;
+        for (int i = 0; i < ChallengeManager.Instance.noAimLevels.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("NoAim" + i) == 1)
+            {
+                tmp += 1;
+            }
+        }
+        noAimTxt.text = ((100 * tmp) / ChallengeManager.Instance.noAimLevels.Length) + "%";
+        noAimFill.fillAmount = 1.0f * tmp / ChallengeManager.Instance.noAimLevels.Length;
+
     }
     public void AssignChallenge(int type)
     {

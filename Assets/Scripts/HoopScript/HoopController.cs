@@ -95,13 +95,13 @@ public class HoopController : MonoBehaviour
                     transform.rotation = Quaternion.Euler(angle);
                 if (DragPanel.force.magnitude > DragPanel.minMagnitude)
                 {
-                    if (GameController.Instance.challengeMode && ChallengeManager.Instance.type == 6)
-                        Projection.Instance.TurnOffTrajectory();
-                    else
+                    if (!GameController.Instance.challengeMode || ChallengeManager.Instance.type != 6)
                     {
                         Projection.Instance.TurnOnTrajectory();
                         Projection.Instance.SimulateTrajectory(ball, ball.transform.position);
                     }
+                    else
+                        Projection.Instance.TurnOffTrajectory();
                 }
                 else
                 {
