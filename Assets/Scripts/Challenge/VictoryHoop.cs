@@ -6,19 +6,18 @@ public class VictoryHoop : MonoBehaviour
 {
     [SerializeField] Transform anchor, powerRing;
     [SerializeField] GameObject blikas;
-    [SerializeField] SpriteRenderer top, down,net;
+    [SerializeField] SpriteRenderer top, down, net;
     [SerializeField] new GameObject light;
     public int id;
     bool isContacted = false;
     GameObject ball;
     private void Start()
     {
-       net.sprite= GameManager.Instance.goldenNet;
+        net.sprite = GameManager.Instance.goldenNet;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ball = collision.gameObject;
-        effect();
         isContacted = true;
         StartCoroutine(waitToExecute());
     }
@@ -26,7 +25,7 @@ public class VictoryHoop : MonoBehaviour
     IEnumerator waitToExecute()
     {
         yield return new WaitForSeconds(0.5f);
-        ChallengeManager.Instance.ExecuteCompleteChallenge();
+        effect(ChallengeManager.Instance.ExecuteCompleteChallenge());
     }
     private void Update()
     {
@@ -35,7 +34,7 @@ public class VictoryHoop : MonoBehaviour
             ball.transform.position = anchor.position;
         }
     }
-    private void effect()
+    private void effect(int complete)
     {
         top.sprite = GameManager.Instance.themes[0].topHoopDisable;
         down.sprite = GameManager.Instance.themes[0].downHoopDisable;
@@ -60,7 +59,10 @@ public class VictoryHoop : MonoBehaviour
         }
 
         //
-        light.SetActive(true);
-        light.transform.transform.DORotate(Vector3.forward * 360, 4f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+        if (complete == 1)
+        {
+            light.SetActive(true);
+            light.transform.transform.DORotate(Vector3.forward * 360, 4f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+        }
     }
 }

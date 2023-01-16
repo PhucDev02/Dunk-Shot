@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour
     }
     private void executeBestScore()
     {
-        if (score > PlayerPrefs.GetInt("BestScore"))
+        if (score > PlayerPrefs.GetInt("BestScore")&&!challengeMode)
         {
             PlayerPrefs.SetInt("BestScore", score);
         }
@@ -109,7 +109,20 @@ public class GameController : MonoBehaviour
             }
             else UI_GameOver.Instance.GameOver();
         else
-            PopupManager.Instance.ShowFailedPopup(ChallengeManager.Instance.type);
+        {
+            switch (ChallengeManager.Instance.type)
+            {
+                case 1:
+                    NewBallGameplay.Instance.DecreaseLife();
+                    break;
+                case 6:
+                    NewBallGameplay.Instance.DecreaseLife();
+                    break;
+                default:
+                    PopupManager.Instance.ShowFailedPopup(ChallengeManager.Instance.type);
+                    break;
+            }
+        }
         UI_Gameplay.Instance.HideButton();
     }
     private void ActiveSecondChange()
@@ -125,6 +138,10 @@ public class GameController : MonoBehaviour
             CameraController.Instance.NewGame();
             HoopsPooler.Instance.Reset();
         }
+        ball.Respawn();
+    }
+    public void RespawnAboveLastHoop()
+    {
         ball.Respawn();
     }
 }

@@ -35,6 +35,7 @@ public class PopupManager : MonoBehaviour
         panel.SetActive(false);
         winTokenPopup.AssignPopup(type);
         winTokenPopup.ShowPopup();
+        UI_Controller.Instance.UpdateCurrency(PlayerPrefs.GetInt("Stars"), PlayerPrefs.GetInt("Tokens") + 20);
     }    
     public void ShowUnlockPopup(Ball ball)
     {

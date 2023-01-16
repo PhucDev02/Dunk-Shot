@@ -7,6 +7,8 @@ public enum EventID
     OnBounceWall,
     OnPerfectx2,
     OnPerfectx3,
+    // 
+    OnEffectHoop,
     ////
     OnGameOver,
     OnSecondChange,

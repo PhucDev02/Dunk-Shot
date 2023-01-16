@@ -16,6 +16,7 @@ public class FailedPopup : MonoBehaviour
     public void AssignPopup(int type)
     {
         description.color = UI_Challenge.Instance.GetChallengeColor(type);
+        description.text = "Hoops completed " + GameplayChallengeManager.Instance.passedHoop + "/" + ChallengeManager.Instance.lastLevel.totalHoops;
         buttonImg.sprite = UI_Challenge.Instance.GetSpriteChallenge(type);
         if (type == 1)
         {

@@ -156,6 +156,7 @@ public class HoopController : MonoBehaviour
                     powerRing.SetActive(false);
                 });
             }
+            this.PostEvent(EventID.OnEffectHoop);
         }
     }
     public void Disappear()
