@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4933470054901738317, guid: 0fb89e82e6dd2204f94775923e1c9f71, type: 3}
   type: 0
-  id: 0
-  totalHoops: 10
+  id: 1
+  totalHoops: 7
+  description: Score 8 hoops

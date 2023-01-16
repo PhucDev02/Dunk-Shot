@@ -57,6 +57,7 @@ public class HoopsPooler : MonoBehaviour
             hoops[tmp.transform.childCount - 1].GetComponent<VictoryHoop>().id = tmp.transform.childCount - 1;
             hoops[0].GetComponent<HoopController>().SetFirstHoopInChallenge();
         }
+        GameController.Instance.RespawnBall();
     }
 
     public void SetIdLastHoop(int id)

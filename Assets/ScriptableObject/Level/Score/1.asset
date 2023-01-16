@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   type: 3
-  id: 0
-  totalHoops: 2
-  totolScore: 5
+  id: 1
+  totalHoops: 7
+  description: Complete with score 10
+  totolScore: 10

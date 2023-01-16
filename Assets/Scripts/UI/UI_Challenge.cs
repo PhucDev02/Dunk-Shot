@@ -23,7 +23,7 @@ public class UI_Challenge : MonoBehaviour
     //top element
     [Header("Top Element")]
     [SerializeField] Image board;
-    [SerializeField] TextMeshProUGUI challengeNameTopElm,hoopPassed;
+    [SerializeField] TextMeshProUGUI challengeNameTopElm, hoopPassed;
     //pause
     [Header("Pause popup")]
     [SerializeField] TextMeshProUGUI descriptionPause;
@@ -117,8 +117,36 @@ public class UI_Challenge : MonoBehaviour
         challengeCanvas.SetActive(true);
         scoreHUD.SetActive(false);
         AssignChallenge(type);
+
         GameController.Instance.RespawnBall();
         HoopsPooler.Instance.LoadHoop();
+    }
+    public void SetText(int type)
+    {
+        challengeName.text = "Challenge " + (ChallengeManager.Instance.lastLevel.id + 1);
+        challengeNameTopElm.text = "Challenge " + (ChallengeManager.Instance.lastLevel.id + 1);
+        switch (type)
+        {
+            case 1:
+                description.text = "Score " + ChallengeManager.Instance.lastLevel.totalHoops + " hoops";
+                break;
+            case 2:
+                description.text = "Collect all tokens";
+                break;
+            case 3:
+                description.text = "Complete in " + ((TimeLevel)ChallengeManager.Instance.lastLevel).seconds + " seconds";
+                break;
+            case 4:
+                description.text = "Complete with score "+ ((ScoreLevel)ChallengeManager.Instance.lastLevel).totolScore;
+                break;
+            case 5:
+                description.text = "Complete with " + ((BounceLevel)ChallengeManager.Instance.lastLevel).totolBounce + " bounces";
+                break;
+            default:
+                description.text = "Complete with no aim";
+                break;
+        }
+
     }
     public void BackToChallenge()
     {
@@ -211,10 +239,11 @@ public class UI_Challenge : MonoBehaviour
         }
         ChallengeManager.Instance.SetChallengeLevel(lastType);
         UI_Gameplay.Instance.SetUpUIChallenge(lastType);
+        SetText(lastType);
     }
     public void PlayAnim()
     {
-        playbtn.transform.DOScale(1.1f, 0.8f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        playbtn.transform.DOScale(1.05f, 0.8f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         closeBtn.transform.localScale = Vector3.zero;
         closeBtn.transform.DOScale(1, 0.5f).SetDelay(1.5f).SetEase(Ease.OutCubic);
     }

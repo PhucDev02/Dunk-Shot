@@ -15,5 +15,6 @@ MonoBehaviour:
   prefab: {fileID: 0}
   type: 2
   id: 0
-  totalHoops: 0
-  seconds: 5
+  totalHoops: 8
+  description: Complete in 10 seconds
+  seconds: 10

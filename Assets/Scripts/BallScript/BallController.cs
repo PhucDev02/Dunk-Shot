@@ -64,6 +64,7 @@ public class BallController : MonoBehaviour
     public void Reset()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        collider.enabled = true;
         rigidBody.velocity = Vector2.zero;
         rigidBody.simulated = true;
         rigidBody.angularVelocity = 0;

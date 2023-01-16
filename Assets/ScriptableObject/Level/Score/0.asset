@@ -15,5 +15,6 @@ MonoBehaviour:
   prefab: {fileID: 0}
   type: 3
   id: 0
-  totalHoops: 2
-  totolScore: 5
+  totalHoops: 8
+  description: Complete with score 15
+  totolScore: 15

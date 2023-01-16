@@ -35,21 +35,16 @@ public class ChallengeManager : MonoBehaviour
         for (int i = 0; i < noAimLevels.Length; i++)
             noAimLevels[i].id = i;
     }
-    [Header("New Ball")]
     public NewBallLevel[] newBallLevels;
-    [Header("Collect")]
     public CollectLevel[] collectLevels;
-    [Header("Time")]
     public TimeLevel[] timeLevels;
-    [Header("Score")]
     public ScoreLevel[] scoreLevels;
-    [Header("Bounce")]
     public BounceLevel[] bounceLevels;
-    [Header("No Aim")]
     public NoAimLevel[] noAimLevels;
 
     public string path;
     public int type;
+    public Level lastLevel;
     public void SetChallengeLevel(int type)
     {
         this.type = type;
@@ -61,6 +56,7 @@ public class ChallengeManager : MonoBehaviour
                     if (PlayerPrefs.GetInt("NewBall" + i) == 0)
                     {
                         path = "Prefabs/Levels/NewBall/" + i;
+                        lastLevel = newBallLevels[i];
                         break;
                     }
                 }
@@ -71,6 +67,7 @@ public class ChallengeManager : MonoBehaviour
                     if (PlayerPrefs.GetInt("Collect" + i) == 0)
                     {
                         path = "Prefabs/Levels/Collect/" + i;
+                        lastLevel = collectLevels[i];
                         break;
                     }
                 }
@@ -81,6 +78,7 @@ public class ChallengeManager : MonoBehaviour
                     if (PlayerPrefs.GetInt("Time" + i) == 0)
                     {
                         path = "Prefabs/Levels/Time/" + i;
+                        lastLevel = timeLevels[i];
                         break;
                     }
                 }
@@ -91,6 +89,7 @@ public class ChallengeManager : MonoBehaviour
                     if (PlayerPrefs.GetInt("Score" + i) == 0)
                     {
                         path = "Prefabs/Levels/Score/" + i;
+                        lastLevel = scoreLevels[i];
                         break;
                     }
                 }
@@ -101,6 +100,7 @@ public class ChallengeManager : MonoBehaviour
                     if (PlayerPrefs.GetInt("Bounce" + i) == 0)
                     {
                         path = "Prefabs/Levels/Bounce/" + i;
+                        lastLevel = bounceLevels[i];
                         break;
                     }
                 }
@@ -111,6 +111,7 @@ public class ChallengeManager : MonoBehaviour
                     if (PlayerPrefs.GetInt("NoAim" + i) == 0)
                     {
                         path = "Prefabs/Levels/NoAim/" + i;
+                        lastLevel = noAimLevels[i];
                         break;
                     }
                 }

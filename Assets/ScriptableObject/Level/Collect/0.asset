@@ -15,5 +15,6 @@ MonoBehaviour:
   prefab: {fileID: 0}
   type: 1
   id: 0
-  totalHoops: 10
+  totalHoops: 8
+  description: Collect all tokens
   totalTokens: 20
