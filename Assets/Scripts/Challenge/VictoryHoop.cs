@@ -19,14 +19,9 @@ public class VictoryHoop : MonoBehaviour
     {
         ball = collision.gameObject;
         isContacted = true;
-        StartCoroutine(waitToExecute());
-    }
-
-    IEnumerator waitToExecute()
-    {
-        yield return new WaitForSeconds(0.5f);
         effect(ChallengeManager.Instance.ExecuteCompleteChallenge());
     }
+
     private void Update()
     {
         if (isContacted)

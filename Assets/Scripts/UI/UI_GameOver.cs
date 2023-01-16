@@ -48,6 +48,13 @@ public class UI_GameOver : MonoBehaviour
     }
     public void ResetTransform()
     {
+        bestScore.DOKill();
+        score.DOKill();
+        getNewBall.DOKill();
+        capture.DOKill();
+        playAgain.DOKill();
+        setting.DOKill();
+
         bestScore.DOFade(0, 0);
         score.DOFade(0, 0);
         getNewBall.DOScale(0.2f, 0);

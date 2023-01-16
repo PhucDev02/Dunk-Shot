@@ -23,9 +23,9 @@ public class WinTokenChallengePopup : MonoBehaviour
     private void OnEnable()
     {
         light.transform.DOKill();
-        light.transform.transform.DORotate(Vector3.forward * 360, 4.0f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+        light.transform.transform.DORotate(Vector3.forward * 360, 4.0f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear).SetDelay(0.5f);
         board.localScale = Vector3.zero;
-        board.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+        board.DOScale(1, 0.5f).SetEase(Ease.OutBack).SetDelay(0.5f);
     }
     private void OnDisable()
     {

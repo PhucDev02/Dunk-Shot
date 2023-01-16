@@ -2535,6 +2535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 123152518}
+  - component: {fileID: 123152519}
   m_Layer: 5
   m_Name: BounceChallenge
   m_TagString: Untagged
@@ -2562,6 +2563,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 272.33, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &123152519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123152517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ac8e310ec277f4295b8de3928b7a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceTxt: {fileID: 1098889679}
 --- !u!1 &123317261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3882,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 195497954}
+  - component: {fileID: 195497955}
   m_Layer: 5
   m_Name: ScoreChallenge
   m_TagString: Untagged
@@ -3895,6 +3910,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 272.33, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &195497955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195497953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1c23fabd96ff54eb670b41c12400c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTxt: {fileID: 683271328}
 --- !u!1 &196689294
 GameObject:
   m_ObjectHideFlags: 0
@@ -13557,6 +13585,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1117973210}
+        m_TargetAssemblyTypeName: GameplayChallengeManager, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &814492198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15438,6 +15478,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1117973210}
+        m_TargetAssemblyTypeName: GameplayChallengeManager, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -19339,6 +19391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e960c40123ee6104dbca04cfb1887309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passedHoop: 0
+  bounceCount: 0
 --- !u!1 &1124074801
 GameObject:
   m_ObjectHideFlags: 0
@@ -22322,6 +22376,18 @@ MonoBehaviour:
       - m_Target: {fileID: 310982451}
         m_TargetAssemblyTypeName: WinNewBallPopup, Assembly-CSharp
         m_MethodName: OnClickEquip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1117973210}
+        m_TargetAssemblyTypeName: GameplayChallengeManager, Assembly-CSharp
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29088,7 +29154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.399994, y: -18.100006}
+  m_AnchoredPosition: {x: -12.399963, y: -18.100006}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1764487086
@@ -34603,6 +34669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2072143945}
   - component: {fileID: 2072143946}
+  - component: {fileID: 2072143947}
   m_Layer: 5
   m_Name: NoAimChallenge
   m_TagString: Untagged
@@ -34658,6 +34725,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2072143947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072143944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54d242958eebda48a0cdc6123f6496c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifes: 3
+  lifeImg1: {fileID: 654626981}
+  lifeImg2: {fileID: 883504147}
+  lifeImg3: {fileID: 1430393507}
 --- !u!1 &2074902894
 GameObject:
   m_ObjectHideFlags: 0

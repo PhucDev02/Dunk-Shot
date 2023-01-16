@@ -171,6 +171,7 @@ public class HoopsPooler : MonoBehaviour
                 {
                     idLastHoop = hoops[i].GetComponent<HoopController>().id;
                     hoops[i].transform.position = GameManager.initPosFirstHoop;
+                    hoops[i].GetComponent<HoopController>().SetFirstHoop();
                 }
                 else
                     hoops[i].transform.position = GameManager.initPosSecondHoop;

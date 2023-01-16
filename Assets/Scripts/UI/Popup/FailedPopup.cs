@@ -28,7 +28,7 @@ public class FailedPopup : MonoBehaviour
     private void OnEnable()
     {
         board.localScale = Vector3.zero;
-        board.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+        board.DOScale(1, 0.5f).SetEase(Ease.OutBack).SetDelay(0.5f);
     }
     private void OnDisable()
     {

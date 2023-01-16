@@ -15,6 +15,7 @@ public class BounceGameplay : MonoBehaviour
     [SerializeField] TextMeshProUGUI bounceTxt;
     public void Reset()
     {
+        GameplayChallengeManager.Instance.bounceCount = 0;
         bounceTxt.text = GameplayChallengeManager.Instance.bounceCount + "/" + ((BounceLevel)ChallengeManager.Instance.lastLevel).totolBounce;
     }
     public void UpdateBounce()

@@ -36,7 +36,6 @@ public class GameController : MonoBehaviour
         challengeMode = false;
         Reset();
         NewGame();
-        this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
         this.RegisterListener(EventID.OnBounceSide, (param) => OnBounceSide());
         this.RegisterListener(EventID.OnBounceWall, (param) => OnBounceWall());
         this.RegisterListener(EventID.OnGameOver, (param) => OnGameOver());
@@ -77,7 +76,7 @@ public class GameController : MonoBehaviour
     }
     private void executeBestScore()
     {
-        if (score > PlayerPrefs.GetInt("BestScore")&&!challengeMode)
+        if (score > PlayerPrefs.GetInt("BestScore") && !challengeMode)
         {
             PlayerPrefs.SetInt("BestScore", score);
         }
@@ -103,11 +102,14 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         if (!challengeMode)
+        {
             if (UI_SecondChange.Instance.IsActivated == false && score >= 3)
             {
                 UI_SecondChange.Instance.ActivePanel();
             }
-            else UI_GameOver.Instance.GameOver();
+            else if (score != 0)
+                UI_GameOver.Instance.GameOver();
+        }
         else
         {
             switch (ChallengeManager.Instance.type)

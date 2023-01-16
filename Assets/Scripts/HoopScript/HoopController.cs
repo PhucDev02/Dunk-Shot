@@ -67,8 +67,6 @@ public class HoopController : MonoBehaviour
         {
             isHoldingBall = false;
             //ball.transform.position = anchor.position;
-            Debug.Log(net == null);
-            Debug.Log(netController == null);
             netController.EnableSensor();
             ball.Shoot();
             BallController.isOnAir = true;
@@ -126,14 +124,15 @@ public class HoopController : MonoBehaviour
             ball.transform.localScale = Vector3.one * 2.777777f;
             HoopsPooler.Instance.SetIdLastHoop(id);
             this.PostEvent(EventID.OnContactHoop);
-            if (GameController.Instance.GetScore() != 0)
-                EffectContact();
+
+            EffectContact();
         }
     }
     public void EffectContact()
     {
         if (isHit == false)
         {
+            GameController.Instance.UpdateScore();
             isHit = true;
             topHoop.sprite = GameManager.Instance.GetTheme().topHoopDisable;
             downHoop.sprite = GameManager.Instance.GetTheme().downHoopDisable;
@@ -194,5 +193,9 @@ public class HoopController : MonoBehaviour
         isHit = true;
         topHoop.sprite = GameManager.Instance.GetTheme().topHoopDisable;
         downHoop.sprite = GameManager.Instance.GetTheme().downHoopDisable;
+    }
+    public void SetFirstHoop()
+    {
+        isHit = true;
     }
 }
