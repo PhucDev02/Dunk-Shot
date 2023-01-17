@@ -56,9 +56,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         if (Random.Range(0, 10) >= 5)
         {
             StarObject star = ObjectPool.Instance.Spawn(PoolTag.STAR).GetComponent<StarObject>();
-            star.gameObject.transform.SetParent(hoop.transform);
             star.transform.position = hoop.transform.position + Vector3.up / 2;
-            star.gameObject.transform.SetParent(null);
         }
     }
 
