@@ -23784,6 +23784,10 @@ MonoBehaviour:
     Size: 1
     Expandable: 1
     ListObject: []
+  - Prefab: {fileID: 2541583674393800916, guid: a2b427ec09192fa4c8f4a056e50b7ef3, type: 3}
+    Size: 1
+    Expandable: 1
+    ListObject: []
 --- !u!4 &1352903071
 Transform:
   m_ObjectHideFlags: 0
