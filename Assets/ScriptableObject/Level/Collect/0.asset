@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc0a3ed34a93664fb41d77979e3dede, type: 3}
   m_Name: 0
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   type: 1
   id: 0
-  totalHoops: 8
+  totalHoops: 7
   description: Collect all tokens
   totalTokens: 20

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef2e47ad6cba084a9e6f02c3bad2309, type: 3}
   m_Name: 0
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4933470054901738317, guid: ecf83142b56a04f4b8cebdfd553f1323, type: 3}
   type: 0
   id: 0
-  totalHoops: 8
+  totalHoops: 7
   description: Score 8 hoops

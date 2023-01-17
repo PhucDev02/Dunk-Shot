@@ -79,6 +79,7 @@ public class ChallengeManager : MonoBehaviour
                     {
                         path = "Prefabs/Levels/Time/" + i;
                         lastLevel = timeLevels[i];
+                        TimeGameplay.Instance.Reset();
                         break;
                     }
                 }
@@ -148,8 +149,11 @@ public class ChallengeManager : MonoBehaviour
                 break;
             //case 2:
             //    break;
-            //case 3: //Time
-            //    return 1;
+            case 3: //Time
+                TimeGameplay.Instance.isRunning = false;
+                PopupManager.Instance.ShowWinTokenPopup(type);
+                SetLevelComplete();
+                return 1;
             case 4:
                 if (ScoreGameplay.Instance.IsCompleted())
                 {

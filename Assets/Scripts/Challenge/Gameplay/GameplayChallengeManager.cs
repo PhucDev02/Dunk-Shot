@@ -15,6 +15,8 @@ public class GameplayChallengeManager : MonoBehaviour
         this.RegisterListener(EventID.OnEffectHoop, (param) => { UpdateHoopPassed(); });
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateBounce());
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
+        this.RegisterListener(EventID.OnContactHoop, (param) => ResetTimer());
+
     }
     public void Reset()
     {
@@ -26,6 +28,8 @@ public class GameplayChallengeManager : MonoBehaviour
             BounceGameplay.Instance.Reset();
         if (ChallengeManager.Instance.type == 4)
             ScoreGameplay.Instance.Reset();
+        if (ChallengeManager.Instance.type == 3)
+            TimeGameplay.Instance.Reset();
     }
     public void UpdateHoopPassed()
     {
@@ -44,5 +48,10 @@ public class GameplayChallengeManager : MonoBehaviour
     {
         if (ChallengeManager.Instance.type == 4)
             ScoreGameplay.Instance.UpdateScore();
+    }
+    public void ResetTimer()
+    {
+        if (passedHoop == 0)
+            TimeGameplay.Instance.Reset();
     }
 }

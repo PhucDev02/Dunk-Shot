@@ -123,9 +123,9 @@ public class HoopController : MonoBehaviour
             ball.transform.position = anchor.position;
             ball.transform.localScale = Vector3.one * 2.777777f;
             HoopsPooler.Instance.SetIdLastHoop(id);
+            EffectContact();
             this.PostEvent(EventID.OnContactHoop);
 
-            EffectContact();
         }
     }
     public void EffectContact()

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef069ae472381e48a44e757372d76be, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   type: 3
   id: 1
-  totalHoops: 7
+  totalHoops: 6
   description: Complete with score 10
   totolScore: 10

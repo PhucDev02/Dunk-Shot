@@ -51,6 +51,10 @@ public class CameraController : MonoBehaviour
             {
                 Debug.Log("out");
                 vCamera.m_Follow = null;
+                if (GameController.Instance.challengeMode && ChallengeManager.Instance.type == 3)
+                {
+                    TimeGameplay.Instance.isRunning = false;
+                }
             }
     }
     public void Enable()
@@ -69,7 +73,7 @@ public class CameraController : MonoBehaviour
             Destroy(vCamera.gameObject);
         GameObject tmp = Instantiate(vCamPrefab);
         vCamera = tmp.GetComponent<CinemachineVirtualCamera>();
-        Camera.main.transform.position=vCamera.transform.position = initCameraPosition;
+        Camera.main.transform.position = vCamera.transform.position = initCameraPosition;
         vCamera.m_Follow = firstHoop;
         //setCamera();
         Camera.main.orthographicSize = vCamera.m_Lens.OrthographicSize = bound.bounds.size.x * Screen.height / Screen.width * 0.5f;

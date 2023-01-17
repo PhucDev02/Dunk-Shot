@@ -34,6 +34,10 @@ public class BallController : MonoBehaviour
     {
        if(this!=null)
         {
+            if (GameController.Instance.challengeMode && ChallengeManager.Instance.type == 3)
+            {
+                TimeGameplay.Instance.Reset();
+            }
             Reset();
             transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 1.2f;
         }

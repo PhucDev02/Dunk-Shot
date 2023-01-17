@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afe8606fca6db4498e04762b026c9dd, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   type: 4
   id: 1
-  totalHoops: 7
+  totalHoops: 6
   description: Complete with 5 bounces
   totolBounce: 5
