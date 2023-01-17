@@ -26,7 +26,7 @@ public class UI_Gameplay : MonoBehaviour
     }
     private void FixedUpdate()
     {
-            holder.transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 0.5f;
+        holder.transform.position = HoopsPooler.Instance.GetLastHoop().position + Vector3.up * 0.5f;
     }
     void ApplyThemeAndDarkmode()
     {
@@ -51,8 +51,10 @@ public class UI_Gameplay : MonoBehaviour
         if (streak == 2)
             this.PostEvent(EventID.OnPerfectx2);
         else if (streak >= 3)
+        {
             this.PostEvent(EventID.OnPerfectx3);
-        //
+            EffectGameplay.Instance.PerfectEffect();
+        }//
         if (bounce == 0) bounceCnt.text = "";
         else if (bounce == 1) bounceCnt.text = "Bounce!";
         else
@@ -142,7 +144,7 @@ public class UI_Gameplay : MonoBehaviour
     }
     public void SetUpUIChallenge(int type)
     {
-        switch(type)
+        switch (type)
         {
             case 1:
                 bounceCnt.gameObject.SetActive(false);

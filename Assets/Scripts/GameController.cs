@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int score, streak;
     public bool isPerfect;
     public int bounceCnt;
-    public bool IsGameOver;
+    public bool IsGameOver,reachNewBest;
     public bool challengeMode;
     public void NewGame()
     {
@@ -48,6 +48,8 @@ public class GameController : MonoBehaviour
         bounceCnt = 0;
         isPerfect = true;
         IsGameOver = false;
+        reachNewBest = false;
+        EffectGameplay.Instance.Reset();
     }
     private void OnBounceWall()
     {
@@ -78,6 +80,11 @@ public class GameController : MonoBehaviour
     {
         if (score > PlayerPrefs.GetInt("BestScore") && !challengeMode)
         {
+            if (score > 20 && PlayerPrefs.GetInt("BestScore") != 0&&reachNewBest==false)
+            {
+                reachNewBest = true;
+                EffectGameplay.Instance.NewBestEffect();
+            }
             PlayerPrefs.SetInt("BestScore", score);
         }
     }

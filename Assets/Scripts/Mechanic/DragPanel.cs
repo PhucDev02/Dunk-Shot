@@ -20,9 +20,10 @@ public class DragPanel : MonoBehaviour
             UI_Menu.Instance.Hide();
         }
 
-        if (Input.GetMouseButtonUp(0) && isValid==true)
+        if (Input.GetMouseButtonUp(0) && isValid == true)
         {
-            this.PostEvent(EventID.OnShoot);
+            if (force.magnitude > 0.1f)
+                this.PostEvent(EventID.OnShoot);
             force = Vector2.zero;
             isValid = false;
         }

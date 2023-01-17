@@ -23,6 +23,7 @@ public class UI_Controller : MonoBehaviour
         Instance = this;
         DOTween.KillAll();
         this.RegisterListener(EventID.OnChangeTheme, (param) => ApplyTheme());
+        this.RegisterListener(EventID.OnSwitchDarkmode, (param) => ApplyDarkmode());
         this.RegisterListener(EventID.OnPurchaseItem, (param) => UpdateCurrency());
         flashTransition.gameObject.SetActive(false);
     }

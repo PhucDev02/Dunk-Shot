@@ -11,6 +11,7 @@ public class CheckStuck : MonoBehaviour
     [SerializeField] Image stuckBtn;
     private void Awake()
     {
+        isRunning = false;
         time = 5;
         this.RegisterListener(EventID.OnShoot, (param) => isRunning = true);
         this.RegisterListener(EventID.OnContactHoop, (param) =>
