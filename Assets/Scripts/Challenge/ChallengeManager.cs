@@ -149,8 +149,15 @@ public class ChallengeManager : MonoBehaviour
                     }
                 }
                 break;
-            //case 2:
-            //    break;
+            case 2:
+                if (CollectGameplay.Instance.IsCompleted())
+                {
+                    SetLevelComplete();
+                    PopupManager.Instance.ShowWinTokenPopup(type);
+                    return 1;
+                }
+                else PopupManager.Instance.ShowFailedPopup(type);
+                return 0;
             case 3: //Time
                 TimeGameplay.Instance.isRunning = false;
                 PopupManager.Instance.ShowWinTokenPopup(type);

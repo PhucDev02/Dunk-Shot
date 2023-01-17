@@ -30,20 +30,20 @@ public class NewBallGameplay : MonoBehaviour
         lifes--;
         if (lifes == 2)
         {
-            lifeImg3.transform.DOScale(0, 0.5f);
+            lifeImg3.transform.DOScale(0, 0.5f).SetEase(Ease.InBack);
             GameController.Instance.RespawnAboveLastHoop();
 
             return;
         }
         if (lifes == 1)
         {
-            lifeImg2.transform.DOScale(0, 0.5f);
+            lifeImg2.transform.DOScale(0, 0.5f).SetEase(Ease.InBack);
             GameController.Instance.RespawnAboveLastHoop();
             return;
         }
         if (lifes == 0)
         {
-            lifeImg1.transform.DOScale(0, 0.5f).OnComplete(() =>
+            lifeImg1.transform.DOScale(0, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
             {
                 PopupManager.Instance.ShowFailedPopup(ChallengeManager.Instance.type);
             });
