@@ -36,12 +36,15 @@ public class PopupManager : MonoBehaviour
         winTokenPopup.AssignPopup(type);
         winTokenPopup.ShowPopup();
         UI_Controller.Instance.UpdateCurrency(PlayerPrefs.GetInt("Stars"), PlayerPrefs.GetInt("Tokens") + 20);
-    }    
+    }
     public void ShowUnlockPopup(Ball ball)
     {
-        panel.SetActive(true);
-        unlockPopup.AssignPopup(ball);
-        unlockPopup.ShowPopup();
+        if (BallShopController.Instance.GetUnlockStatus(ball.id) == 0)
+        {
+            panel.SetActive(true);
+            unlockPopup.AssignPopup(ball);
+            unlockPopup.ShowPopup();
+        }
     }
     public void ShowPopup(Ball ball)
     {

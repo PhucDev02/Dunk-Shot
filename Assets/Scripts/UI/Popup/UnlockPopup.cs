@@ -10,6 +10,7 @@ public class UnlockPopup : Popup
         base.AssignPopup(ball);
         this.ball = ball;
         preview.sprite = ball.spriteBall;
+        BallShopController.Instance.UnlockBall(ball.id);
     }
     public void OnClickEquip()
     {

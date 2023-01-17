@@ -58,5 +58,9 @@ public class BallShopController : MonoBehaviour
     public void UnlockBall(int id)
     {
         PlayerPrefs.SetInt("Ball_"+id, 1);
+        for (int i = 0; i < missionBall.transform.childCount; i++)
+        {
+           missionBall.GetChild(i).GetComponent<MissionBallDisplay>().Init();
+        }
     }
 }

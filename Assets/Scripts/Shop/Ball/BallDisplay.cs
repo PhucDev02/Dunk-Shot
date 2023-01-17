@@ -13,9 +13,26 @@ public class BallDisplay : MonoBehaviour
     {
         this.RegisterListener(EventID.OnChangeBall, (param) => UpdateSelectStatus());
     }
-    public void Init(Ball ball)
+    public virtual void Init(Ball ball)
     {
         this.ball = ball;
+        ballPreview.sprite = ball.spriteBall;
+        if (BallShopController.Instance.GetUnlockStatus(ball.id) == 0)
+        {
+            lockStatus.SetActive(true);
+        }
+        else
+        {
+            lockStatus.SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("IdBallSelected") == ball.id)
+        {
+            ballPreview.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+            buffer.SetActive(true);
+        }
+    }
+    public virtual void Init()
+    {
         ballPreview.sprite = ball.spriteBall;
         if (BallShopController.Instance.GetUnlockStatus(ball.id) == 0)
         {

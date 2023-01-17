@@ -789,6 +789,7 @@ MonoBehaviour:
   preview: {fileID: 1104867868}
   description: {fileID: 1970744218}
   fill: {fileID: 298348502}
+  progress: {fileID: 257579676}
 --- !u!1 &46526028
 GameObject:
   m_ObjectHideFlags: 0
@@ -9009,6 +9010,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnlockPopup, Assembly-CSharp
         m_MethodName: OnClickEquip
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1744920289}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25393,6 +25406,7 @@ GameObject:
   - component: {fileID: 1455844977}
   - component: {fileID: 1455844976}
   - component: {fileID: 1455844978}
+  - component: {fileID: 1455844979}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -25533,6 +25547,8 @@ MonoBehaviour:
   newBallLevels:
   - {fileID: 11400000, guid: 5daa01425a6b7d546876bc4a018d1260, type: 2}
   - {fileID: 11400000, guid: 5116867efd174dd40be17646662464db, type: 2}
+  - {fileID: 11400000, guid: 79892a2303d7c1e47bf7a4914deb4b05, type: 2}
+  - {fileID: 11400000, guid: fdfb04f65e3eb2a49bba41e415126e83, type: 2}
   collectLevels:
   - {fileID: 11400000, guid: 94d1cf0997bc26c48a2481362fcc6241, type: 2}
   - {fileID: 11400000, guid: ca770145296487a49b74884becb51753, type: 2}
@@ -25551,6 +25567,18 @@ MonoBehaviour:
   path: 
   type: 0
   lastLevel: {fileID: 0}
+--- !u!114 &1455844979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455844972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46fc82faaecee246b21041ecea82ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1467930489
 GameObject:
   m_ObjectHideFlags: 0

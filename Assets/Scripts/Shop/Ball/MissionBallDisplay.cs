@@ -4,14 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
-
 public class MissionBallDisplay : BallDisplay
 {
-    [SerializeField] Image fill;
     private void Start()
     {
         //progress of mission here
     }
+   
     public void OnClick()
     {
         if (BallShopController.Instance.GetUnlockStatus(ball.id) == 0)

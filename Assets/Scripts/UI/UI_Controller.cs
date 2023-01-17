@@ -60,7 +60,11 @@ public class UI_Controller : MonoBehaviour
             Time.timeScale = 1;
             GameController.Instance.NewGame();
             flashTransition.GetComponent<Image>().DOFade(a, 0);
-            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(() => { flashTransition.gameObject.SetActive(false); });
+            flashTransition.GetComponent<Image>().DOFade(0, timeFade).OnComplete(() =>
+            {
+                flashTransition.gameObject.SetActive(false);
+                AchievementManager.Instance.OnMenu();
+            });
             //SceneManager.LoadScene(0);
         });
     }
@@ -109,7 +113,7 @@ public class UI_Controller : MonoBehaviour
             else
                 panels[i].color = lightColor;
     }
-   public void UpdateCurrency(int starsCount,int tokensCount)
+    public void UpdateCurrency(int starsCount, int tokensCount)
     {
         PlayerPrefs.SetInt("Tokens", tokensCount);
         PlayerPrefs.SetInt("Stars", starsCount);
