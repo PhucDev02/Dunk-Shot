@@ -8,11 +8,12 @@ public class GameplayChallengeManager : MonoBehaviour
 
     public int passedHoop;
     public int bounceCount;
+    public int tokenCount;
     private void Awake()
     {
         Instance = this;
         passedHoop = 0;
-        this.RegisterListener(EventID.OnEffectHoop, (param) => { UpdateHoopPassed(); });
+        this.RegisterListener(EventID.OnEffectHoop, (param) => UpdateHoopPassed());
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateBounce());
         this.RegisterListener(EventID.OnContactHoop, (param) => UpdateScore());
         this.RegisterListener(EventID.OnContactHoop, (param) => ResetTimer());
@@ -22,6 +23,7 @@ public class GameplayChallengeManager : MonoBehaviour
     {
         passedHoop = 0;
         bounceCount = 0;
+        tokenCount = 0;
         if (ChallengeManager.Instance.type == 1 || ChallengeManager.Instance.type == 6)
             NewBallGameplay.Instance.Reset();
         if (ChallengeManager.Instance.type == 5)
@@ -30,6 +32,8 @@ public class GameplayChallengeManager : MonoBehaviour
             ScoreGameplay.Instance.Reset();
         if (ChallengeManager.Instance.type == 3)
             TimeGameplay.Instance.Reset();
+        if (ChallengeManager.Instance.type == 2)
+            CollectGameplay.Instance.Reset();
     }
     public void UpdateHoopPassed()
     {
@@ -40,7 +44,7 @@ public class GameplayChallengeManager : MonoBehaviour
     {
         if (ChallengeManager.Instance.type == 5)
         {
-            bounceCount+= GameController.Instance.bounceCnt;
+            bounceCount += GameController.Instance.bounceCnt;
             BounceGameplay.Instance.UpdateBounce();
         }
     }
@@ -51,7 +55,13 @@ public class GameplayChallengeManager : MonoBehaviour
     }
     public void ResetTimer()
     {
-        if (passedHoop == 0)
+        if (passedHoop == 0 && ChallengeManager.Instance.type == 3)
             TimeGameplay.Instance.Reset();
+    }
+    public void UpdateTokenCount()
+    {
+        tokenCount++;
+        if (ChallengeManager.Instance.type == 2)
+            CollectGameplay.Instance.UpdateToken();
     }
 }

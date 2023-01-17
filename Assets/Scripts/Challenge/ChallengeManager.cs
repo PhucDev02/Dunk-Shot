@@ -48,6 +48,7 @@ public class ChallengeManager : MonoBehaviour
     public void SetChallengeLevel(int type)
     {
         this.type = type;
+        GameplayChallengeManager.Instance.passedHoop = 0;
         switch (type)
         {
             case 1:
@@ -68,6 +69,7 @@ public class ChallengeManager : MonoBehaviour
                     {
                         path = "Prefabs/Levels/Collect/" + i;
                         lastLevel = collectLevels[i];
+                        CollectGameplay.Instance.Reset();
                         break;
                     }
                 }

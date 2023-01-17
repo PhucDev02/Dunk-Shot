@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - HoopSide
   - DeadBar
+  - Token
+  - Star
+  - Hoop
   layers:
   - Default
   - TransparentFX

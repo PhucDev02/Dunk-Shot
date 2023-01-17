@@ -43,20 +43,27 @@ public class HoopsPooler : MonoBehaviour
         }
         else
             tmp = Resources.Load(ChallengeManager.Instance.path) as GameObject;
-        for (int i = 0; i < tmp.transform.childCount - 1; i++) // -1 to except victoryhoop
+        int boundIndex = tmp.transform.childCount - 2;
+        for (int i = 0; i < boundIndex; i++) // -2 to except victoryhoop,-1 is obstacle
         {
             hoops.Add(Instantiate(tmp.transform.GetChild(i).gameObject, transform));
             hoops[i].GetComponent<HoopController>().id = i;
         }
 
-        hoops.Add(Instantiate(tmp.transform.GetChild(tmp.transform.childCount - 1).gameObject, transform));
+        hoops.Add(Instantiate(tmp.transform.GetChild(boundIndex).gameObject, transform));
         if (!GameController.Instance.challengeMode)
-            hoops[tmp.transform.childCount - 1].GetComponent<HoopController>().id = tmp.transform.childCount - 1;
+            hoops[boundIndex].GetComponent<HoopController>().id = boundIndex;
         else
         {
-            hoops[tmp.transform.childCount - 1].GetComponent<VictoryHoop>().id = tmp.transform.childCount - 1;
+            hoops[boundIndex].GetComponent<VictoryHoop>().id = boundIndex;
             hoops[0].GetComponent<HoopController>().SetFirstHoopInChallenge();
         }
+        //spawn Obstacle or token
+        for(int i=0;i<tmp.transform.GetChild(boundIndex+1).childCount;i++)
+        {
+            Instantiate(tmp.transform.GetChild(boundIndex + 1).GetChild(i).gameObject,transform);
+        }
+
         GameController.Instance.RespawnBall();
     }
 
