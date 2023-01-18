@@ -31,7 +31,6 @@ public class AudioManager : MonoBehaviour
         if (PlayerPrefs.GetInt("DontAllowSound") == 0)
         {
             s.source.Play();
-            Debug.Log(name);
         }
     }
     public void Stop(string name)

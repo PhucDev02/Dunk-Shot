@@ -20585,7 +20585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76742699e0e85b64cace2b97c0b9369c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 5
+  time: 7
   stuckBtn: {fileID: 2038136301}
 --- !u!1 &1158041925
 GameObject:
@@ -23087,7 +23087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles: {fileID: 1242629734}
-  maxTrajectoryPoint: 10
+  maxTrajectoryPoint: 30
   pointPrefab: {fileID: 4812295203039169659, guid: 953b80ecd6875574a9eeb4fd288e88ee, type: 3}
   points: []
 --- !u!4 &1294416901

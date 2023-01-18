@@ -1,6 +1,7 @@
 public enum EventID
 {
     OnShoot,
+    OnLaunchBall,
     OnDrag,
     OnContactHoop,
     OnBounceSide,

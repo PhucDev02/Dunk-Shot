@@ -13,7 +13,7 @@ public class CheckStuck : MonoBehaviour
     {
         isRunning = false;
         time = 7;
-        this.RegisterListener(EventID.OnShoot, (param) => isRunning = true);
+        this.RegisterListener(EventID.OnLaunchBall, (param) => isRunning = true);
         this.RegisterListener(EventID.OnContactHoop, (param) => Reset());
         this.RegisterListener(EventID.OnGameOver, (param) => Reset());
 

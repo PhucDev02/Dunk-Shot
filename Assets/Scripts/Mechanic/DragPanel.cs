@@ -8,7 +8,7 @@ public class DragPanel : MonoBehaviour
     // Start is called before the first frame update
     Vector3 startPosition, endPosition;
     public static Vector2 force;
-    public static float maxNetScale = 1.8f, maxMagnitude = 3, minMagnitude = 1.5f, forceCoef = 290; //275
+    public static float maxNetScale = 1.8f, maxMagnitude = 3, minMagnitude = 1.5f, forceCoef = 325; //290
     private bool isValid;
 
     private void LateUpdate()

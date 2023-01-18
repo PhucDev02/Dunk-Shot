@@ -4,7 +4,7 @@ using UnityEngine;
 public class Logger
 {
     // Start is called before the first frame update
-    public static bool enable = true;
+    public static bool enable = false;
     public static void Log(string message)
     {
         if (enable)

@@ -25,6 +25,7 @@ public class NetController : MonoBehaviour
     }
     public void EnableSensor()
     {
+        this.PostEvent(EventID.OnLaunchBall);
         StartCoroutine(WaitToEnableSensor());
     }
     IEnumerator WaitToEnableSensor()
