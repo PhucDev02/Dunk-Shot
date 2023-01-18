@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utility 
+public class Utility
 {
     public static string GetThemeString(Theme theme)
     {
@@ -29,5 +29,26 @@ public class Utility
         if (theme.theme == Themes.Lunch)
             return "Lunch";
         return "Classic";
+    }
+    public static void PlayShootSound()
+    {
+        if (GameController.Instance.streak >= 3)
+        {
+            if (DragPanel.force.magnitude <= DragPanel.maxMagnitude / 3)
+                AudioManager.Instance.Play("PowerLowShoot");
+            else if (DragPanel.force.magnitude < DragPanel.maxMagnitude * 2 / 3)
+                AudioManager.Instance.Play("PowerMidShoot");
+            else
+                AudioManager.Instance.Play("PowerHighShoot");
+        }
+        else
+        {
+            if (DragPanel.force.magnitude <= DragPanel.maxMagnitude / 3)
+                AudioManager.Instance.Play("LowShoot");
+            else if (DragPanel.force.magnitude < DragPanel.maxMagnitude * 2 / 3)
+                AudioManager.Instance.Play("MidShoot");
+            else
+                AudioManager.Instance.Play("HighShoot");
+        }
     }
 }

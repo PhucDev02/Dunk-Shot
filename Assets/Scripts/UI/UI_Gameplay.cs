@@ -53,8 +53,8 @@ public class UI_Gameplay : MonoBehaviour
         else if (streak >= 3)
         {
             this.PostEvent(EventID.OnPerfectx3);
-            EffectGameplay.Instance.PerfectEffect();
         }//
+        EffectGameplay.Instance.PerfectEffect(streak);
         if (bounce == 0) bounceCnt.text = "";
         else if (bounce == 1) bounceCnt.text = "Bounce!";
         else

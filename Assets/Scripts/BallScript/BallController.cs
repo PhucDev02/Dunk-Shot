@@ -47,16 +47,18 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            AudioManager.Instance.Play("BounceWall");
             this.PostEvent(EventID.OnBounceWall);
         }
         if (collision.gameObject.CompareTag("HoopSide"))
         {
+            AudioManager.Instance.Play("CollideVsNet");
             this.PostEvent(EventID.OnBounceSide);
         }
         if (collision.gameObject.CompareTag("DeadBar"))
         {
             rigidBody.velocity = Vector2.zero;
-            //gameObject.SetActive(false);
+            AudioManager.Instance.Play("GameOver");
             this.PostEvent(EventID.OnGameOver);
         }
     }

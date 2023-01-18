@@ -10,8 +10,9 @@ public class Popup : MonoBehaviour
     {
         preview.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
     }
-    public void ShowPopup()
+    public virtual void ShowPopup()
     {
+        AudioManager.Instance.Play("BallPopup");
         gameObject.SetActive(true);
         transform.localScale = Vector3.zero;
         transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo).SetUpdate(true);

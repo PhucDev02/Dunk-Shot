@@ -17,6 +17,7 @@ public class NetController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioManager.Instance.Play("CollideVsNet");
         if (collision.relativeVelocity.y > 1)
         {
             OnCollisionWithBall();

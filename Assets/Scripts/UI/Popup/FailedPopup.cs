@@ -11,6 +11,7 @@ public class FailedPopup : MonoBehaviour
     public Transform board;
     public void ShowPopup()
     {
+        AudioManager.Instance.Play("GameOverChallenge");
         gameObject.SetActive(true);
     }
     public void AssignPopup(int type)

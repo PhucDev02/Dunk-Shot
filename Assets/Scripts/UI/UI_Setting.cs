@@ -21,12 +21,14 @@ public class UI_Setting : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("Darkmode")==1)
         {
+            AudioManager.Instance.Play("DarkmodeOn");
             darkmodeOff.SetActive(false);
             darkmodeOn.SetActive(true);
             darkmodeBtn.color = orange;
         }
         else
         {
+            AudioManager.Instance.Play("DarkmodeOff");
             darkmodeOff.SetActive(true);
             darkmodeOn.SetActive(false);
             darkmodeBtn.color = gray;
@@ -34,23 +36,25 @@ public class UI_Setting : MonoBehaviour
     }
     void UpdateAllowSound()
     {
-        if (PlayerPrefs.GetInt("AllowSound") == 1)
-        {
-            soundOff.SetActive(false);
-            soundOn.SetActive(true);
-            soundBtn.color = orange;
-        }
-        else
+        if (PlayerPrefs.GetInt("DontAllowSound") == 1) //tat am thanh
         {
             soundOff.SetActive(true);
             soundOn.SetActive(false);
             soundBtn.color = gray;
+        }
+        else
+        {
+            AudioManager.Instance.Play("ButtonClick");
+            soundOff.SetActive(false);
+            soundOn.SetActive(true);
+            soundBtn.color = orange;
         }
     }
     void UpdateAllowVibration()
     {
         if (PlayerPrefs.GetInt("AllowVibration") == 1)
         {
+            Handheld.Vibrate();
             vibrationOff.SetActive(false);
             vibrationOn.SetActive(true);
             vibraBtn.color = orange;
@@ -70,7 +74,7 @@ public class UI_Setting : MonoBehaviour
     }
     public void SwitchAllowSound()
     {
-        PlayerPrefs.SetInt("AllowSound", 1 - PlayerPrefs.GetInt("AllowSound"));
+        PlayerPrefs.SetInt("DontAllowSound", 1 - PlayerPrefs.GetInt("DontAllowSound"));
         UpdateAllowSound();
     }
     public void SwitchAllowVibration()

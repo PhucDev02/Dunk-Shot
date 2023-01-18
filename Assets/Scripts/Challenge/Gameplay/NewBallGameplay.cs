@@ -28,6 +28,7 @@ public class NewBallGameplay : MonoBehaviour
     public void DecreaseLife()
     {
         lifes--;
+        AudioManager.Instance.Play("LostLife");
         if (lifes == 2)
         {
             lifeImg3.transform.DOScale(0, 0.5f).SetEase(Ease.InBack);

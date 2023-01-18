@@ -24,14 +24,25 @@ public class EffectGameplay : MonoBehaviour
         flash.DOKill();
         flash.DOFade(0, 0);
     }
-    public void PerfectEffect()
+    public void PerfectEffect(int streak)
     {
-        flash.DOKill();
-        flash.DOFade(0.8f, 0);
-        flash.DOFade(0, 0.2f);
+        if (streak >= 10)
+            AudioManager.Instance.Play("PerfectX10");
+        if (streak >= 1 && streak <= 9)
+            AudioManager.Instance.Play("PerfectX" + streak);
+        if (streak == 0)
+            AudioManager.Instance.Play("ScoreSimple");
+        if (streak >= 3)
+        {
+            flash.DOKill();
+            flash.DOFade(0.8f, 0);
+            flash.DOFade(0, 0.2f);
+            Handheld.Vibrate();
+        }
     }
     public void NewBestEffect()
     {
+        AudioManager.Instance.Play("NewBest");
         newBest.DOFade(1, 0.1f).OnComplete(() =>
             newBest.DOFade(0, 0.5f).SetDelay(2.0f)
         ); ;

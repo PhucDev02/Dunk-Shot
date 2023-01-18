@@ -30,8 +30,10 @@ public class TimeGameplay : MonoBehaviour
         {
             if (timeAmount < 0)
             {
-                timeAmount = 0;
+                timeAmount = 0.001f;
+                isRunning = false;
                 tictac.text = "00";
+                AudioManager.Instance.Play("TimeOut");
                 if (!BallController.isOnAir)
                     PopupManager.Instance.ShowFailedPopup(3);
             }

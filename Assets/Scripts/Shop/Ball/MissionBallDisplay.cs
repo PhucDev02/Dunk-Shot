@@ -24,6 +24,7 @@ public class MissionBallDisplay : BallDisplay
                 UI_Customize.Instance.TurnOffCustomize();
             else //chon theme moi
             {
+                AudioManager.Instance.Play("ShopSelect");
                 PlayerPrefs.SetInt("IdBallSelected", ball.id);
                 this.PostEvent(EventID.OnChangeBall);
                 //do sth with ball

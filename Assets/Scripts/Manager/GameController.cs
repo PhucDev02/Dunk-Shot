@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     }
     [SerializeField] BallController ball;
 
-    [SerializeField] private int score, streak;
+    [SerializeField] public int score, streak;
     public bool isPerfect;
     public int bounceCnt;
     public bool IsGameOver,reachNewBest;

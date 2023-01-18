@@ -103,6 +103,10 @@ public class UI_Controller : MonoBehaviour
     public void SwitchDarkMode()
     {
         PlayerPrefs.SetInt("Darkmode", 1 - PlayerPrefs.GetInt("Darkmode"));
+        if (PlayerPrefs.GetInt("Darkmode") == 1)
+            AudioManager.Instance.Play("DarkmodeOn");
+        else
+            AudioManager.Instance.Play("DarkmodeOff");
         ApplyDarkmode();
         this.PostEvent(EventID.OnSwitchDarkmode);
     }

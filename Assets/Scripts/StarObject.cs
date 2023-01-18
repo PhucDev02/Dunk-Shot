@@ -24,6 +24,7 @@ public class StarObject : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        AudioManager.Instance.Play("GainStar");
         transform.DOKill();
         transform.DOMoveY(transform.position.y + 0.5f, 0.4f);
         transform.DOScale(1.5f, 0.4f);

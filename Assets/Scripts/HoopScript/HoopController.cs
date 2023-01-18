@@ -72,6 +72,7 @@ public class HoopController : MonoBehaviour
             BallController.isOnAir = true;
             netController.OnLaunch();
             hoopEffect.ShootEffect();
+            Utility.PlayShootSound();
             if (GameController.Instance.challengeMode)
                 ResetRotation();
         }
@@ -124,6 +125,7 @@ public class HoopController : MonoBehaviour
             ball.transform.localScale = Vector3.one * 2.777777f;
             HoopsPooler.Instance.SetIdLastHoop(id);
             EffectContact();
+            AudioManager.Instance.Play("CollideVsNet");
             this.PostEvent(EventID.OnContactHoop);
 
         }

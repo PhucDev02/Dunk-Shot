@@ -14,29 +14,27 @@ public class CheckStuck : MonoBehaviour
         isRunning = false;
         time = 5;
         this.RegisterListener(EventID.OnShoot, (param) => isRunning = true);
-        this.RegisterListener(EventID.OnContactHoop, (param) =>
-        {
-            isRunning = false;
-            time = 5;
-        });
+        this.RegisterListener(EventID.OnContactHoop, (param) => Reset());
+        this.RegisterListener(EventID.OnGameOver, (param) => Reset());
 
     }
     private void Update()
     {
-        if(isRunning)
+        if (isRunning)
         {
             time -= Time.deltaTime;
-            if(time<0)
+            if (time < 0)
             {
                 isRunning = false;
                 stuckBtn.gameObject.SetActive(true);
                 stuckBtn.transform.localScale = Vector3.zero;
-                stuckBtn.transform.DOScale(1,0.5f).SetEase(Ease.OutBack);
+                stuckBtn.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
             }
         }
     }
     private void Reset()
     {
+        isRunning = false;
         time = 5;
     }
 }

@@ -62,7 +62,8 @@ public class BallDisplay : MonoBehaviour
             {
                 buffer.SetActive(false);
                 ballPreview.transform.localScale = Vector3.one;
-                ballPreview.transform.DOScale(1, 0.3f).SetEase(Ease.OutExpo).SetUpdate(true).OnComplete(()=> {
+                ballPreview.transform.DOScale(1, 0.3f).SetEase(Ease.OutExpo).SetUpdate(true).OnComplete(() =>
+                {
                     ballPreview.transform.DOKill();
                 });
 
@@ -70,7 +71,7 @@ public class BallDisplay : MonoBehaviour
     }
     protected void unlock()
     {
-        Logger.Log("unlock");
+        AudioManager.Instance.Play("ShopBuy"); ;
         this.PostEvent(EventID.OnPurchaseItem);
         PlayerPrefs.SetInt("Ball_" + ball.id, 1);
         ballPreview.transform.localScale = Vector3.one * 0.8f;

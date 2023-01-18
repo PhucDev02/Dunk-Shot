@@ -34,6 +34,7 @@ public class ThemeDisplay : MonoBehaviour
                 UI_Customize.Instance.TurnOffCustomize();
             else //chon theme moi
             {
+                AudioManager.Instance.Play("ShopSelect");
                 GameManager.Instance.SetTheme(theme);
                 this.PostEvent(EventID.OnChangeTheme);
                 Logger.Log("chon theme ");
@@ -44,6 +45,7 @@ public class ThemeDisplay : MonoBehaviour
             if (PlayerPrefs.GetInt("Tokens") > theme.price)
             {
                 Logger.Log("mua");
+                AudioManager.Instance.Play("ShopBuy");
                 PlayerPrefs.SetInt("Tokens", PlayerPrefs.GetInt("Tokens") - theme.price);
                 unlock();
             }
