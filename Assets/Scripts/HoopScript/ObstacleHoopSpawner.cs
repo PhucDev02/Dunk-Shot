@@ -93,7 +93,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
         obstacle.ApplyTheme();
-        float y = 1.5f;
+        float y = 1.7f;
         obstacle.transform.position = hoop.transform.position + new Vector3(0, y);
         obstacle.Appear();
         hoop.hoopObstacles.Add(obstacle);
@@ -140,7 +140,7 @@ public class ObstacleHoopSpawner : MonoBehaviour
         Obstacle obstacle = ObjectPool.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
 
         obstacle.ApplyTheme();
-        float duration = Random.Range(0.2f, 0.4f);
+        float duration = 0.2f;
 
         obstacle.transform.position = hoop.transform.position;
         obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.Fast).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);

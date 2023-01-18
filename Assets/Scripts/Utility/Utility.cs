@@ -34,18 +34,18 @@ public class Utility
     {
         if (GameController.Instance.streak >= 3)
         {
-            if (DragPanel.force.magnitude <= DragPanel.maxMagnitude / 3)
+            if (DragPanel.force.magnitude <= DragPanel.maxMagnitude *3/ 5)
                 AudioManager.Instance.Play("PowerLowShoot");
-            else if (DragPanel.force.magnitude < DragPanel.maxMagnitude * 2 / 3)
+            else if (DragPanel.force.magnitude < DragPanel.maxMagnitude * 4/5)
                 AudioManager.Instance.Play("PowerMidShoot");
             else
                 AudioManager.Instance.Play("PowerHighShoot");
         }
         else
         {
-            if (DragPanel.force.magnitude <= DragPanel.maxMagnitude / 3)
+            if (DragPanel.force.magnitude <= DragPanel.maxMagnitude *3/5)
                 AudioManager.Instance.Play("LowShoot");
-            else if (DragPanel.force.magnitude < DragPanel.maxMagnitude * 2 / 3)
+            else if (DragPanel.force.magnitude < DragPanel.maxMagnitude * 4/5)
                 AudioManager.Instance.Play("MidShoot");
             else
                 AudioManager.Instance.Play("HighShoot");

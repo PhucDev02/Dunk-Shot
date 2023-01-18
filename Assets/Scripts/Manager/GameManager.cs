@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         else
             SetTokenValue(PlayerPrefs.GetInt("Tokens"));
         if (PlayerPrefs.GetInt("Stars") == 0)
-            SetStarValue(999);
+            SetStarValue(400);
         else
             SetStarValue(PlayerPrefs.GetInt("Stars"));
         for (int i = 0; i < balls.Length; i++)

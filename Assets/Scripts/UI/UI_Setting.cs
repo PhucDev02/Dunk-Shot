@@ -82,9 +82,4 @@ public class UI_Setting : MonoBehaviour
         PlayerPrefs.SetInt("AllowVibration", 1 - PlayerPrefs.GetInt("AllowVibration"));
         UpdateAllowVibration();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

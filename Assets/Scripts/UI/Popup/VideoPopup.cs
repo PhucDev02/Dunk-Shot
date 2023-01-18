@@ -18,11 +18,11 @@ public class VideoPopup : Popup
     }
     public void Watch()
     {
+        AudioManager.Instance.Play("WatchAds");
         int tmp = PlayerPrefs.GetInt("Ball_" + ball.id + "_VideoWatched");
         tmp += 1;
-        if (tmp >= ball.videosCount) tmp = ball.videosCount - 1;
-        PlayerPrefs.SetInt("Ball_" + ball.id + "_VideoWatched", tmp + 1);
-        tmp += 1;
+        if (tmp >= ball.videosCount) tmp = ball.videosCount ;
+        PlayerPrefs.SetInt("Ball_" + ball.id + "_VideoWatched", tmp);
         this.PostEvent(EventID.OnWatchAds, ball);
         progress.text = PlayerPrefs.GetInt("Ball_" + ball.id + "_VideoWatched") + "/" + ball.videosCount;
         fill.DOFillAmount((tmp * 1.0f / ball.videosCount), 0.5f).SetEase(Ease.InOutSine).SetUpdate(true).OnComplete(() =>

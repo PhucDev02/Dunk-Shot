@@ -13,11 +13,11 @@ public class NetController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hoopController.ContactBall();
+        AudioManager.Instance.Play("CollideVsNet");
         sensor.enabled = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        AudioManager.Instance.Play("CollideVsNet");
         if (collision.relativeVelocity.y > 1)
         {
             OnCollisionWithBall();

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class UI_Customize : MonoBehaviour
 {
     public static UI_Customize Instance;
-    
+
     [SerializeField] Image theme, ball;
-    [SerializeField] Color gray,orange;
+    [SerializeField] Color gray, orange;
     private void Awake()
     {
         Instance = this;
@@ -31,5 +31,11 @@ public class UI_Customize : MonoBehaviour
     public void TurnOffCustomize()
     {
         gameObject.SetActive(false);
+    }
+    public void WatchEarnStars()
+    {
+        AudioManager.Instance.Play("WatchAds");
+        PlayerPrefs.SetInt("Stars", PlayerPrefs.GetInt("Stars") + 25);
+        UI_Controller.Instance.UpdateCurrency();
     }
 }

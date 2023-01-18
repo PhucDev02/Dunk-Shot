@@ -32,7 +32,7 @@ public class BallController : MonoBehaviour
     }
     public void Respawn()
     {
-       if(this!=null)
+        if (this != null)
         {
             if (GameController.Instance.challengeMode && ChallengeManager.Instance.type == 3)
             {
@@ -52,8 +52,11 @@ public class BallController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("HoopSide"))
         {
-            AudioManager.Instance.Play("CollideVsNet");
-            this.PostEvent(EventID.OnBounceSide);
+            if (collision.relativeVelocity.magnitude > 2.5f)
+            {
+                AudioManager.Instance.Play("BounceHoop");
+                this.PostEvent(EventID.OnBounceSide);
+            }
         }
         if (collision.gameObject.CompareTag("DeadBar"))
         {

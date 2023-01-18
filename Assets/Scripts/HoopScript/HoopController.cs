@@ -125,7 +125,6 @@ public class HoopController : MonoBehaviour
             ball.transform.localScale = Vector3.one * 2.777777f;
             HoopsPooler.Instance.SetIdLastHoop(id);
             EffectContact();
-            AudioManager.Instance.Play("CollideVsNet");
             this.PostEvent(EventID.OnContactHoop);
 
         }
