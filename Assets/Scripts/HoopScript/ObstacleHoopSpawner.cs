@@ -18,7 +18,9 @@ public class ObstacleHoopSpawner : MonoBehaviour
         this.hoop = hoop;
         atRight = hoop.transform.position.x > 0f;
 
-        int id = Random.Range(1, 16);
+        int id = Random.Range(1, 20);
+        if (GameController.Instance.score < 20)
+            id = 9;
         if (hoop.transform.localRotation.z == 0)
             SpawnStar();
         switch (id)

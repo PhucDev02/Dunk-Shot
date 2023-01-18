@@ -157,11 +157,11 @@ public class UI_Controller : MonoBehaviour
     private float timer;
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > 1)
-        {
-            fps.text = ((int)(1 / Time.deltaTime)).ToString();
-            timer = 0;
-        }
+        //timer += Time.deltaTime;
+        //if (timer > 1)
+        //{
+        //    fps.text = ((int)(1 / Time.deltaTime)).ToString();
+        //    timer = 0;
+        //}
     }
 }

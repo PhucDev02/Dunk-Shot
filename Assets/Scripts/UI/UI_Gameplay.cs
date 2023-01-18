@@ -53,6 +53,7 @@ public class UI_Gameplay : MonoBehaviour
         else if (streak >= 3)
         {
             this.PostEvent(EventID.OnPerfectx3);
+            CinemachineShake.Instance.ShakeCamera(0.5f, 0.1f);
         }//
         EffectGameplay.Instance.PerfectEffect(streak);
         if (bounce == 0) bounceCnt.text = "";

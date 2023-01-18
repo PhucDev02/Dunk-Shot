@@ -51,4 +51,11 @@ public class Utility
                 AudioManager.Instance.Play("HighShoot");
         }
     }
+    public static void Vibrate()
+    {
+        if(PlayerPrefs.GetInt("AllowVibration")==1)
+        {
+            Handheld.Vibrate();
+        }
+    }
 }

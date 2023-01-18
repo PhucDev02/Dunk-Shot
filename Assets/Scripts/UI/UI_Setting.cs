@@ -54,7 +54,7 @@ public class UI_Setting : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("AllowVibration") == 1)
         {
-            Handheld.Vibrate();
+            Utility.Vibrate();
             vibrationOff.SetActive(false);
             vibrationOn.SetActive(true);
             vibraBtn.color = orange;

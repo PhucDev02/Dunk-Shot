@@ -6,13 +6,13 @@ using DG.Tweening;
 
 public class CheckStuck : MonoBehaviour
 {
-    public float time = 7;
+    public float time = 5;
     private bool isRunning;
     [SerializeField] Image stuckBtn;
     private void Awake()
     {
         isRunning = false;
-        time = 7;
+        time = 5;
         this.RegisterListener(EventID.OnLaunchBall, (param) => isRunning = true);
         this.RegisterListener(EventID.OnContactHoop, (param) => Reset());
         this.RegisterListener(EventID.OnGameOver, (param) => Reset());
@@ -35,6 +35,6 @@ public class CheckStuck : MonoBehaviour
     private void Reset()
     {
         isRunning = false;
-        time = 7;
+        time = 5;
     }
 }

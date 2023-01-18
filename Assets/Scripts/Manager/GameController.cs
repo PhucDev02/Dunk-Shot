@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         if (!challengeMode)
         {
-            if (UI_SecondChange.Instance.IsActivated == false && score >= 3)
+            if (UI_SecondChange.Instance.IsActivated == false && score >= 15)
             {
                 UI_SecondChange.Instance.ActivePanel();
             }

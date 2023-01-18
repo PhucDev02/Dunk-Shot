@@ -37,7 +37,7 @@ public class EffectGameplay : MonoBehaviour
             flash.DOKill();
             flash.DOFade(0.8f, 0);
             flash.DOFade(0, 0.2f);
-            Handheld.Vibrate();
+            Utility.Vibrate();
         }
     }
     public void NewBestEffect()
